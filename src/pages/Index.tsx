@@ -1,10 +1,11 @@
 import SafcoHeader from "@/components/SafcoHeader";
-import HeroSplitUtility from "@/components/HeroSplitUtility";
+import HeroPromoGrid from "@/components/HeroPromoGrid";
 import CategoryGrid from "@/components/CategoryGrid";
-import EssentialsRow from "@/components/EssentialsRow";
-import PromoGrid from "@/components/PromoGrid";
-import TrustSignals from "@/components/TrustSignals";
+import BrandStrip from "@/components/BrandStrip";
+import DealProductRow from "@/components/DealProductRow";
+import PromoBanners from "@/components/PromoBanners";
 import BuyingGuides from "@/components/BuyingGuides";
+import TrustSignals from "@/components/TrustSignals";
 import SKUPadInjector from "@/components/SKUPadInjector";
 import SafcoFooter from "@/components/SafcoFooter";
 
@@ -13,10 +14,12 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SafcoHeader />
       <main>
-        <HeroSplitUtility />
+        <HeroPromoGrid />
+        <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
+        <BrandStrip />
+        <PromoBanners />
+        <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
         <CategoryGrid />
-        <EssentialsRow />
-        <PromoGrid />
         <BuyingGuides />
         <TrustSignals />
       </main>

@@ -1,34 +1,32 @@
-import { Gem, FlaskConical, Shield, Wrench, Microscope, Syringe } from "lucide-react";
+import { Gem, FlaskConical, Shield, Wrench, Microscope, Syringe, Stethoscope, Package } from "lucide-react";
 
 const CATEGORIES = [
   { name: "Burs & Diamonds", icon: Gem, count: "2,400+" },
   { name: "Restorative", icon: FlaskConical, count: "3,100+" },
   { name: "Infection Control", icon: Shield, count: "1,800+" },
-  { name: "Handpieces & Equipment", icon: Wrench, count: "950+" },
+  { name: "Equipment", icon: Wrench, count: "950+" },
   { name: "Laboratory", icon: Microscope, count: "2,200+" },
   { name: "Anesthetics", icon: Syringe, count: "600+" },
+  { name: "Preventive", icon: Stethoscope, count: "1,200+" },
+  { name: "All Products", icon: Package, count: "30,000+" },
 ];
 
 const CategoryGrid = () => {
   return (
-    <section className="py-6 lg:py-8">
+    <section className="py-4">
       <div className="container">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-foreground">Shop by Category</h2>
-          <a href="#" className="text-sm text-primary font-medium hover:underline">View All →</a>
-        </div>
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+        <h2 className="text-base font-bold text-foreground mb-3">Shop by Category</h2>
+        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
           {CATEGORIES.map(({ name, icon: Icon, count }) => (
             <a
               key={name}
               href="#"
-              className="flex flex-col items-center gap-2 p-4 bg-card rounded hover:shadow-md transition-shadow border border-transparent hover:border-primary/20 group"
+              className="flex flex-col items-center gap-1.5 p-3 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-sm transition-all group"
             >
-              <div className="w-12 h-12 rounded-full bg-bg-green flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                <Icon className="h-5 w-5 text-primary" />
+              <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                <Icon className="h-4 w-4 text-primary" />
               </div>
-              <span className="text-xs font-medium text-foreground text-center leading-tight">{name}</span>
-              <span className="text-[10px] text-muted-foreground font-mono">{count} items</span>
+              <span className="text-[10px] font-medium text-foreground text-center leading-tight">{name}</span>
             </a>
           ))}
         </div>
