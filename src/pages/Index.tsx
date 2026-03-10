@@ -1,12 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import SafcoHeader from "@/components/SafcoHeader";
+import HeroSplitUtility from "@/components/HeroSplitUtility";
+import CategoryGrid from "@/components/CategoryGrid";
+import EssentialsRow from "@/components/EssentialsRow";
+import PromoGrid from "@/components/PromoGrid";
+import TrustSignals from "@/components/TrustSignals";
+import BuyingGuides from "@/components/BuyingGuides";
+import SKUPadInjector from "@/components/SKUPadInjector";
+import SafcoFooter from "@/components/SafcoFooter";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <SafcoHeader />
+      <main>
+        <HeroSplitUtility />
+        <CategoryGrid />
+        <EssentialsRow />
+        <PromoGrid />
+        <BuyingGuides />
+        <TrustSignals />
+      </main>
+      <SafcoFooter />
+      <SKUPadInjector />
     </div>
   );
 };
