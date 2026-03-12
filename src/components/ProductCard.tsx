@@ -35,10 +35,12 @@ const ProductCard = ({ image, name, price, originalPrice }: ProductCardProps) =>
         </div>
 
         {/* Shop Now Button */}
-        <Button variant="cart" className="w-full flex items-center justify-center gap-2 py-2.5 text-sm rounded-lg">
-          <ShoppingCart className="h-4 w-4" />
-          Shop Now
-        </Button>
+        <Link to="/product/1028073">
+          <Button variant="cart" className="w-full flex items-center justify-center gap-2 py-2.5 text-sm rounded-lg">
+            <ShoppingCart className="h-4 w-4" />
+            Shop Now
+          </Button>
+        </Link>
       </div>
     </div>
   );
