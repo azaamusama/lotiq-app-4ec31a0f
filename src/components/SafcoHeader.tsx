@@ -28,7 +28,7 @@ const SafcoHeader = () => {
           </a>
           <div className="flex items-center gap-1.5">
             <Truck className="h-3 w-3" />
-            <span>Free Shipping on orders over $99</span>
+            <span>Free Shipping on orders over <s className="opacity-60">$250</s> $99</span>
           </div>
         </div>
       </div>
