@@ -1,89 +1,124 @@
-import { ArrowUpRight } from "lucide-react";
+import { Wrench, DollarSign, Monitor, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const SERVICES = [
   {
     name: "Uptime Services",
     tagline: "Equipment Repair & Maintenance",
-    logoText: "uptime",
-    logoSub: "services",
-    logoColor: "text-blue-600",
-    accentColor: "bg-blue-600",
+    icon: Wrench,
+    accent: "hsl(217 72% 40%)",
+    accentLight: "hsl(217 72% 95%)",
+    badge: "Official Partner",
     description:
-      "We specialize in providing comprehensive dental equipment services to ensure your practice operates efficiently and effectively.",
-    links: [
-      { label: "Click to learn more", text: " and get the equipment you need to support your practice!" },
-      { label: "Click to learn more", text: " and keep your practice running smoothly with our expert dental equipment repair and maintenance." },
+      "Comprehensive dental equipment services to ensure your practice operates efficiently and effectively — from installation to ongoing repairs.",
+    bullets: [
+      "Same-day equipment repair scheduling",
+      "Certified dental equipment technicians",
+      "Preventive maintenance programs",
     ],
+    cta: "Explore Equipment Services",
   },
   {
     name: "Group Financial Services",
     tagline: "Practice Financing Solutions",
-    logoText: "Group",
-    logoSub: "financial SERVICES",
-    logoColor: "text-orange-600",
-    accentColor: "bg-orange-600",
+    icon: DollarSign,
+    accent: "hsl(28 90% 45%)",
+    accentLight: "hsl(28 90% 95%)",
+    badge: "Financing Partner",
     description:
-      "In partnership with Group Financial Services, we offer customized financing solutions to support your practice's growth, including equipment and supplies.",
-    links: [
-      { label: "Click to learn more", text: " and discover how they can help your practice thrive!" },
+      "Customized financing solutions to support your practice's growth — covering equipment purchases, supplies, and office expansions.",
+    bullets: [
+      "Flexible payment terms up to 84 months",
+      "Equipment & supply financing",
+      "Quick approval process",
     ],
+    cta: "Explore Financing Options",
   },
   {
     name: "Klas Solutions",
     tagline: "Technology & Patient Care Tools",
-    logoText: "KLAS",
-    logoSub: "Solutions",
-    logoColor: "text-green-700",
-    accentColor: "bg-green-700",
+    icon: Monitor,
+    accent: "hsl(145 60% 35%)",
+    accentLight: "hsl(145 60% 95%)",
+    badge: "Technology Partner",
     description:
-      "In partnership with Klas Solutions, we provide top-tier support for dental professionals, offering cutting-edge tools and technologies to enhance patient care and elevate your practice.",
-    links: [
-      { label: "Click to learn more", text: " and discover how they can help your practice thrive!" },
+      "Top-tier support for dental professionals with cutting-edge tools and technologies to enhance patient care and elevate your practice.",
+    bullets: [
+      "Practice management software",
+      "Digital imaging & diagnostics",
+      "Patient engagement platforms",
     ],
+    cta: "Explore Technology Solutions",
   },
 ];
 
 const ServiceSolutions = () => {
   return (
-    <section className="py-10 bg-background border-t border-border">
+    <section className="py-12 bg-muted/30 border-t border-border">
       <div className="container">
-        <h2 className="text-xl font-bold text-foreground text-center mb-8">
-          Professional Service Solutions
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-border">
-          {SERVICES.map((service) => (
-            <div key={service.name} className="pt-6 md:pt-0 md:px-8 first:pl-0 last:pr-0 flex flex-col gap-4">
-              {/* Logo block */}
-              <div className="flex items-center gap-2 h-16">
-                <div className="flex items-baseline gap-0.5">
-                  <span className={`text-3xl font-extrabold ${service.logoColor} tracking-tight`}>
-                    {service.logoText}
-                  </span>
-                  <span className="text-xl text-muted-foreground font-light tracking-wide">
-                    {service.logoSub}
+        {/* Header */}
+        <div className="text-center mb-10">
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">Safco Partner Network</span>
+          <h2 className="text-2xl font-bold text-foreground">Professional Service Solutions</h2>
+          <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
+            Trusted partners to help your dental practice grow, stay operational, and deliver exceptional patient care.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {SERVICES.map(({ name, tagline, icon: Icon, accent, accentLight, badge, description, bullets, cta }) => (
+            <div
+              key={name}
+              className="bg-card rounded-xl border border-border flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
+            >
+              {/* Top accent bar */}
+              <div className="h-1.5 w-full" style={{ backgroundColor: accent }} />
+
+              <div className="p-6 flex flex-col gap-5 flex-1">
+                {/* Icon + Badge */}
+                <div className="flex items-start justify-between">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: accentLight }}
+                  >
+                    <Icon className="h-6 w-6" style={{ color: accent }} />
+                  </div>
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+                    style={{ backgroundColor: accentLight, color: accent }}
+                  >
+                    {badge}
                   </span>
                 </div>
-              </div>
 
-              {/* Description */}
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+                {/* Title */}
+                <div>
+                  <h3 className="text-base font-bold text-foreground">{name}</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">{tagline}</p>
+                </div>
 
-              {/* Links */}
-              <div className="flex flex-col gap-1.5 mt-auto">
-                {service.links.map((link, i) => (
-                  <p key={i} className="text-sm text-foreground leading-relaxed">
-                    <a
-                      href="#"
-                      className="text-primary hover:underline font-medium inline-flex items-center gap-0.5"
-                    >
-                      {link.label}
-                      <ArrowUpRight className="h-3 w-3" />
-                    </a>
-                    {link.text}
-                  </p>
-                ))}
+                {/* Description */}
+                <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+
+                {/* Bullets */}
+                <ul className="flex flex-col gap-2">
+                  {bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0" style={{ color: accent }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <a
+                  href="#"
+                  className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-colors group-hover:gap-2.5"
+                  style={{ color: accent }}
+                >
+                  {cta}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
             </div>
           ))}
