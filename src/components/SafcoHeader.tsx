@@ -46,41 +46,42 @@ const SafcoHeader = () => {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="shrink-0 w-40">
+          <Link to="/" className="shrink-0 w-44">
             <img src={safcoLogo} alt="Safco Dental Supply" className="h-12 w-auto" />
           </Link>
 
           {/* Search Bar + Recent — centered */}
           <div className="flex-1 flex flex-col items-center">
-          <div className="w-full max-w-2xl">
-            <div className="flex w-full rounded-lg border border-input overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary">
-              <input
-                type="text"
-                placeholder="Search by product name or item number"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                className="flex-1 h-10 pl-4 pr-3 bg-card text-sm focus:outline-none text-foreground placeholder:text-muted-foreground"
-              />
-              <button className="px-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center">
-                <Search className="h-4 w-4" />
-              </button>
-            </div>
-            {/* Recent searches */}
-            <div className="hidden sm:flex items-center gap-1.5 mt-1.5">
-              <span className="sr-only">Recent:</span>
-              {RECENT_SEARCHES.map((term) => (
-                <button
-                  key={term}
-                  className="text-[11px] text-muted-foreground border border-border rounded-full px-2.5 py-0.5 hover:border-primary/40 hover:text-foreground transition-colors"
-                >
-                  {term}
+            <div className="w-full max-w-2xl">
+              <div className="flex w-full rounded-lg border border-input overflow-hidden focus-within:ring-2 focus-within:ring-primary focus-within:border-primary">
+                <input
+                  type="text"
+                  placeholder="Search by product name or item number"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  className="flex-1 h-10 pl-4 pr-3 bg-card text-sm focus:outline-none text-foreground placeholder:text-muted-foreground"
+                />
+                <button className="px-4 bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex items-center">
+                  <Search className="h-4 w-4" />
                 </button>
-              ))}
+              </div>
+              {/* Recent searches */}
+              <div className="hidden sm:flex items-center gap-1.5 mt-1.5">
+                <span className="sr-only">Recent:</span>
+                {RECENT_SEARCHES.map((term) => (
+                  <button
+                    key={term}
+                    className="text-[11px] text-muted-foreground border border-border rounded-full px-2.5 py-0.5 hover:border-primary/40 hover:text-foreground transition-colors"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* User & Cart */}
-          <div className="flex items-center gap-4 ml-auto shrink-0">
+          <div className="flex items-center gap-4 shrink-0 w-44 justify-end">
             {/* User Account */}
             <button className="hidden sm:flex items-center gap-1.5 text-sm text-foreground hover:text-primary transition-colors">
               <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">
