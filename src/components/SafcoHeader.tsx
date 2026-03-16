@@ -1,4 +1,4 @@
-import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X } from "lucide-react";
+import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X, LogIn } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import safcoLogo from "@/assets/safco-logo.png";
