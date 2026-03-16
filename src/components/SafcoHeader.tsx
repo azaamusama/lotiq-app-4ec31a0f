@@ -116,19 +116,19 @@ const SafcoHeader = () => {
       <nav className="hidden lg:block bg-card border-b border-border">
         <div className="container flex items-center">
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href="#"
+              to={`/category/${item.slug}`}
               className={`px-4 py-2.5 text-sm font-medium transition-colors hover:bg-muted ${
                 item.highlight ? "text-primary font-bold" : "text-foreground"
               }`}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a href="#" className="ml-auto px-4 py-2.5 text-sm font-medium text-primary hover:bg-muted">
+          <Link to="/category/all-products" className="ml-auto px-4 py-2.5 text-sm font-medium text-primary hover:bg-muted">
             Quick Order
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -137,11 +137,16 @@ const SafcoHeader = () => {
         <div className="lg:hidden border-t border-border bg-card">
           <div className="flex flex-col">
             {NAV_ITEMS.map((item) => (
-              <a key={item.label} href="#" className={`px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted ${item.highlight ? "text-primary font-bold" : "text-foreground"}`}>
+              <Link
+                key={item.label}
+                to={`/category/${item.slug}`}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted ${item.highlight ? "text-primary font-bold" : "text-foreground"}`}
+              >
                 {item.label}
-              </a>
+              </Link>
             ))}
-            <a href="#" className="px-4 py-3 text-sm font-medium text-primary border-b border-border hover:bg-muted">Quick Order</a>
+            <Link to="/category/all-products" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-primary border-b border-border hover:bg-muted">Quick Order</Link>
             <a href="#" className="px-4 py-3 text-sm font-medium text-foreground border-b border-border hover:bg-muted flex items-center gap-2">
               <User className="h-4 w-4" /> Sign In
             </a>
