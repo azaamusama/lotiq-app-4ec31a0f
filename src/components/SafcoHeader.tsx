@@ -13,7 +13,7 @@ const NAV_ITEMS = [
 
 const RECENT_SEARCHES = ["wipes", "brush", "make"];
 
-const SafcoHeader = () => {
+const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [versionDropdownOpen, setVersionDropdownOpen] = useState(false);
