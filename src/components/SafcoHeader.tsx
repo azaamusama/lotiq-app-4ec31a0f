@@ -1,10 +1,10 @@
 import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import safcoLogo from "@/assets/safco-logo.png";
 
 const NAV_ITEMS = [
-  { label: "All Products", slug: "all-products", hasDropdown: true },
+  { label: "All Products", slug: "all-products", hasDropdown: true, isVersionPicker: true },
   { label: "Restorative & Preventives", slug: "restorative", hasDropdown: true },
   { label: "Services & Equipment", slug: "equipment", hasDropdown: true },
   { label: "Laboratory", slug: "laboratory", hasDropdown: true },
@@ -16,6 +16,18 @@ const RECENT_SEARCHES = ["wipes", "brush", "make"];
 const SafcoHeader = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [versionDropdownOpen, setVersionDropdownOpen] = useState(false);
+  const versionDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (versionDropdownRef.current && !versionDropdownRef.current.contains(e.target as Node)) {
+        setVersionDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-card shadow-sm">
@@ -108,16 +120,48 @@ const SafcoHeader = () => {
       {/* Navigation Bar */}
       <nav className="hidden lg:block bg-card border-b border-border">
         <div className="container flex items-center gap-1">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.label}
-              to={`/category/${item.slug}`}
-              className="flex items-center gap-1 px-3 py-2.5 text-sm font-medium text-foreground hover:text-primary hover:bg-muted/60 rounded transition-colors whitespace-nowrap"
-            >
-              {item.label}
-              {item.hasDropdown && <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) =>
+            item.isVersionPicker ? (
+              <div key={item.label} className="relative" ref={versionDropdownRef}>
+                <button
+                  onClick={() => setVersionDropdownOpen((v) => !v)}
+                  className="flex items-center gap-1 px-3 py-2.5 text-sm font-medium text-foreground hover:text-primary hover:bg-muted/60 rounded transition-colors whitespace-nowrap"
+                >
+                  {item.label}
+                  <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${versionDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                {versionDropdownOpen && (
+                  <div className="absolute left-0 top-full mt-1 w-44 bg-card border border-border rounded-lg shadow-lg overflow-hidden z-50">
+                    <Link
+                      to="/"
+                      onClick={() => setVersionDropdownOpen(false)}
+                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                    >
+                      <span>Homepage V1</span>
+                      <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">Current</span>
+                    </Link>
+                    <Link
+                      to="/v2"
+                      onClick={() => setVersionDropdownOpen(false)}
+                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                    >
+                      <span>Homepage V2</span>
+                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">New</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                to={`/category/${item.slug}`}
+                className="flex items-center gap-1 px-3 py-2.5 text-sm font-medium text-foreground hover:text-primary hover:bg-muted/60 rounded transition-colors whitespace-nowrap"
+              >
+                {item.label}
+                {item.hasDropdown && <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />}
+              </Link>
+            )
+          )}
 
           {/* Personalized pill */}
           <Link
@@ -146,7 +190,7 @@ const SafcoHeader = () => {
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
-                to={`/category/${item.slug}`}
+                to={item.isVersionPicker ? "/" : `/category/${item.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between"
               >
@@ -154,6 +198,11 @@ const SafcoHeader = () => {
                 {item.hasDropdown && <ChevronDown className="h-4 w-4 text-muted-foreground" />}
               </Link>
             ))}
+            {/* V2 link in mobile */}
+            <Link to="/v2" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
+              Homepage V2
+              <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">New</span>
+            </Link>
             <Link to="/category/personalized" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-primary border-b border-border hover:bg-muted flex items-center gap-2">
               <Pencil className="h-4 w-4" /> Personalized
             </Link>
