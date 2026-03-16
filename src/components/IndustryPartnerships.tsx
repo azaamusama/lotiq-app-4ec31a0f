@@ -22,7 +22,7 @@ const IndustryPartnerships = () => {
               <div className="flex-1 p-5 flex flex-col justify-between bg-muted/30">
                 <div>
                   <div className="flex items-center gap-1.5 mb-2">
-                    <Crown className="h-5 w-5 text-yellow-500" />
+                    <Crown className="h-5 w-5 text-alert" />
                     <span className="text-xs font-bold uppercase tracking-wide text-primary">VIP Program</span>
                   </div>
                   <h3 className="text-lg font-extrabold text-foreground leading-tight">
