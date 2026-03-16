@@ -57,7 +57,7 @@ const SafcoHeader = () => {
           </button>
 
           {/* Logo */}
-          <a href="/" className="shrink-0">
+          <Link to="/" className="shrink-0">
             <img src={safcoLogo} alt="Safco Dental Supply" className="h-10 w-auto" />
           </a>
 
