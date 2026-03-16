@@ -8,6 +8,7 @@ import BuyingGuides from "@/components/BuyingGuides";
 import TrustSignals from "@/components/TrustSignals";
 import SKUPadInjector from "@/components/SKUPadInjector";
 import SafcoFooter from "@/components/SafcoFooter";
+import ServiceSolutions from "@/components/ServiceSolutions";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
         <BrandStrip />
         <PromoBanners />
         <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
+        <ServiceSolutions />
         <CategoryGrid />
         <BuyingGuides />
         <TrustSignals />
