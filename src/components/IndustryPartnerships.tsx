@@ -9,17 +9,15 @@ const IndustryPartnerships = () => {
     <section className="py-16 bg-background border-t border-border">
       <div className="container">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-          <div>
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1 rounded-full mb-3">
-              <Sparkles className="h-3 w-3" />
-              Exclusive Member Benefits
-            </span>
-            <h2 className="text-3xl font-extrabold text-foreground tracking-tight">
-              Partnerships &amp; Loyalty
-            </h2>
-          </div>
-          <p className="text-sm text-muted-foreground max-w-xs sm:text-right">
+        <div className="flex flex-col items-center text-center gap-3 mb-10">
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1 rounded-full">
+            <Sparkles className="h-3 w-3" />
+            Exclusive Member Benefits
+          </span>
+          <h2 className="text-3xl font-extrabold text-foreground tracking-tight">
+            Partnerships &amp; Loyalty
+          </h2>
+          <p className="text-sm text-muted-foreground max-w-md">
             Thousands of dental professionals save more through Safco's programs and association partnerships.
           </p>
         </div>
