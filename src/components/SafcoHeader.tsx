@@ -1,10 +1,10 @@
 import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import safcoLogo from "@/assets/safco-logo.png";
 
 const NAV_ITEMS = [
-  { label: "All Products", slug: "all-products", hasDropdown: true },
+  { label: "All Products", slug: "all-products", hasDropdown: true, isVersionPicker: true },
   { label: "Restorative & Preventives", slug: "restorative", hasDropdown: true },
   { label: "Services & Equipment", slug: "equipment", hasDropdown: true },
   { label: "Laboratory", slug: "laboratory", hasDropdown: true },
