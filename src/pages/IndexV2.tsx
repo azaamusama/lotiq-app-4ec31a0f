@@ -14,7 +14,7 @@ import IndustryPartnerships from "@/components/IndustryPartnerships";
 const IndexV2 = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SafcoHeader />
+      <SafcoHeader newCustomer />
       <main>
         <HeroPromoGrid />
         <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
