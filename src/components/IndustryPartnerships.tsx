@@ -1,5 +1,4 @@
-import { ArrowRight, Crown, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, Crown, Sparkles, Shield } from "lucide-react";
 import partnerVip from "@/assets/partnership-vip.jpg";
 import partnerCds from "@/assets/partnership-cds.jpg";
 import partnerOda from "@/assets/partnership-oda.jpg";
@@ -7,181 +6,160 @@ import safcoLogo from "@/assets/safco-logo.png";
 
 const IndustryPartnerships = () => {
   return (
-    <section className="py-12 bg-muted/20 border-t border-border">
+    <section className="py-16 bg-background border-t border-border">
       <div className="container">
         {/* Header */}
-        <div className="text-center mb-8">
-          <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">
-            Exclusive Member Benefits
-          </span>
-          <h2 className="text-2xl font-bold text-foreground">
-            Industry Partnerships &amp; Loyalty
-          </h2>
-          <p className="text-sm text-muted-foreground mt-2 max-w-lg mx-auto">
-            Join thousands of dental professionals who save more with Safco's exclusive programs and association partnerships.
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+          <div>
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1 rounded-full mb-3">
+              <Sparkles className="h-3 w-3" />
+              Exclusive Member Benefits
+            </span>
+            <h2 className="text-3xl font-extrabold text-foreground tracking-tight">
+              Partnerships &amp; Loyalty
+            </h2>
+          </div>
+          <p className="text-sm text-muted-foreground max-w-xs sm:text-right">
+            Thousands of dental professionals save more through Safco's programs and association partnerships.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-          {/* ── Card 1: VIP Loyalty ── */}
-          <div className="rounded-2xl overflow-hidden border border-border bg-card flex flex-col group hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-            {/* Top gradient header */}
-            <div className="bg-primary px-6 pt-6 pb-4">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-8 h-8 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-                  <Crown className="h-4 w-4 text-primary-foreground" />
-                </div>
-                <span className="text-primary-foreground/80 text-xs font-bold uppercase tracking-widest">
-                  VIP Loyalty Program
-                </span>
-              </div>
-              <h3 className="text-2xl font-extrabold text-primary-foreground leading-tight">
-                Safco <span className="text-alert">VIP</span><br />Rewards
-              </h3>
-              <p className="text-primary-foreground/70 text-sm mt-1">Your ticket to exclusive savings</p>
-            </div>
-
-            {/* Image strip */}
-            <div className="relative h-40 overflow-hidden">
+          {/* ── Card 1: VIP Loyalty — wide ── */}
+          <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-border bg-card group hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            {/* Image hero */}
+            <div className="relative h-52 overflow-hidden">
               <img
                 src={partnerVip}
                 alt="Safco VIP dental professionals"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-              {/* Floating badge */}
-              <div className="absolute top-3 right-3 bg-primary rounded-xl px-3 py-2 shadow-lg">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <Star className="h-3 w-3 text-alert fill-alert" />
-                  <Star className="h-3 w-3 text-alert fill-alert" />
-                  <Star className="h-3 w-3 text-alert fill-alert" />
-                </div>
-                <p className="text-[9px] font-bold text-primary-foreground uppercase tracking-wider">
-                  Exclusive Member
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+              {/* Top-left badge */}
+              <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-primary/90 backdrop-blur-sm text-primary-foreground text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                <Crown className="h-3 w-3" />
+                VIP Loyalty
+              </div>
+
+              {/* Bottom text */}
+              <div className="absolute bottom-0 left-0 right-0 p-5">
+                <p className="text-white/70 text-xs font-medium uppercase tracking-widest mb-1">Safco Rewards</p>
+                <h3 className="text-2xl font-extrabold text-white leading-tight">
+                  Earn More.<br />Save More.
+                </h3>
               </div>
             </div>
 
             {/* Body */}
             <div className="p-5 flex flex-col gap-4 flex-1">
-              <ul className="flex flex-col gap-2">
+              <ul className="grid grid-cols-1 gap-2">
                 {[
                   "Earn points on every order",
                   "Access member-only pricing",
                   "Early access to promotions",
                 ].map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-sm text-foreground">
+                  <li key={b} className="flex items-center gap-2.5 text-sm text-foreground">
                     <span className="h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                     {b}
                   </li>
                 ))}
               </ul>
-              <Button variant="action" size="sm" className="w-full mt-auto rounded-full">
+              <a
+                href="#"
+                className="mt-auto group/btn inline-flex items-center justify-between w-full bg-primary text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl hover:bg-primary/90 transition-colors"
+              >
                 Become a VIP Today
-                <ArrowRight className="h-4 w-4 ml-1" />
-              </Button>
+                <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-0.5 transition-transform" />
+              </a>
             </div>
           </div>
 
-          {/* ── Card 2: Chicago Dental Society ── */}
-          <div className="rounded-2xl overflow-hidden border border-border flex flex-col group hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-            {/* Logo bar */}
-            <div className="bg-primary px-5 py-3 flex items-center gap-3">
-              <img
-                src={safcoLogo}
-                alt="Safco"
-                className="h-6 object-contain brightness-0 invert"
-              />
-              <span className="text-primary-foreground/60 font-bold text-lg">+</span>
-              <div>
-                <p className="text-primary-foreground font-extrabold text-sm leading-tight uppercase tracking-tight">
-                  Chicago Dental Society
-                </p>
-                <p className="text-primary-foreground/60 text-[10px] uppercase tracking-widest">
-                  Preferred Distributor
-                </p>
-              </div>
-            </div>
+          {/* ── Right column: two stacked cards ── */}
+          <div className="lg:col-span-7 flex flex-col gap-5">
 
-            {/* Image with overlay */}
-            <div className="relative flex-1 min-h-[200px] overflow-hidden">
-              <img
-                src={partnerCds}
-                alt="Chicago Dental Society"
-                className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <div className="inline-flex items-center gap-1.5 bg-success/90 text-success-foreground text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full mb-2">
-                  Guaranteed Savings
+            {/* ── Card 2: Chicago Dental Society ── */}
+            <div className="rounded-2xl overflow-hidden border border-border bg-card group hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row">
+              {/* Image side */}
+              <div className="relative sm:w-52 h-44 sm:h-auto shrink-0 overflow-hidden">
+                <img
+                  src={partnerCds}
+                  alt="Chicago Dental Society"
+                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 sm:block hidden" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent sm:hidden" />
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col gap-3 flex-1">
+                {/* Logo bar */}
+                <div className="flex items-center gap-2">
+                  <img src={safcoLogo} alt="Safco" className="h-5 object-contain" />
+                  <span className="text-muted-foreground font-bold text-sm">×</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-tight">Chicago Dental Society</span>
                 </div>
-                <p className="text-white text-sm leading-relaxed">
-                  Safco is the <strong>preferred distributor</strong> of the Chicago Dental Society — CDS members enjoy exclusive savings and manufacturer incentives.
+
+                <div>
+                  <span className="inline-flex items-center gap-1 bg-success/15 text-success text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                    <Shield className="h-3 w-3" />
+                    Preferred Distributor
+                  </span>
+                </div>
+
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                  CDS members enjoy <strong className="text-foreground">exclusive savings</strong> and manufacturer incentives through Safco — their preferred dental distributor.
                 </p>
+
+                <a href="#" className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold hover:gap-2.5 transition-all">
+                  Learn more about CDS
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="px-5 py-4 bg-card border-t border-border flex items-center justify-between">
-              <span className="text-xs text-muted-foreground">CDS Member?</span>
-              <a
-                href="#"
-                className="text-sm text-primary font-semibold inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
-              >
-                Learn More about CDS
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
+            {/* ── Card 3: OhioDDS ── */}
+            <div className="rounded-2xl overflow-hidden border border-border bg-card group hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300 flex flex-col sm:flex-row">
+              {/* Image side */}
+              <div className="relative sm:w-52 h-44 sm:h-auto shrink-0 overflow-hidden">
+                <img
+                  src={partnerOda}
+                  alt="Ohio Dental Association"
+                  className="w-full h-full object-cover absolute inset-0 group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20 sm:block hidden" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent sm:hidden" />
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col gap-3 flex-1">
+                {/* Logo bar */}
+                <div className="flex items-center gap-2">
+                  <img src={safcoLogo} alt="Safco" className="h-5 object-contain" />
+                  <span className="text-muted-foreground font-bold text-sm">×</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-tight">OhioDDS GPO</span>
+                </div>
+
+                <div>
+                  <span className="inline-flex items-center gap-1 bg-safco-blue/10 text-safco-blue text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                    <Shield className="h-3 w-3" />
+                    GPO Partner
+                  </span>
+                </div>
+
+                <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+                  OhioDDS GPO members receive <strong className="text-foreground">exclusive savings</strong> and manufacturer incentives through Safco Dental Supply.
+                </p>
+
+                <a href="#" className="inline-flex items-center gap-1.5 text-sm text-primary font-semibold hover:gap-2.5 transition-all">
+                  Learn more about ODA
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </div>
             </div>
+
           </div>
-
-          {/* ── Card 3: OhioDDS ── */}
-          <div className="rounded-2xl overflow-hidden border border-border flex flex-col group hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5">
-            {/* Logo bar */}
-            <div className="bg-safco-blue-dark px-5 py-3 flex items-center gap-3">
-              <img
-                src={safcoLogo}
-                alt="Safco"
-                className="h-6 object-contain brightness-0 invert"
-              />
-              <span className="text-white/60 font-bold text-lg">+</span>
-              <div>
-                <p className="text-white font-extrabold text-sm leading-tight uppercase tracking-tight">
-                  OhioDDS
-                </p>
-                <p className="text-white/60 text-[10px] uppercase tracking-widest">
-                  GPO Partner
-                </p>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div className="relative h-44 overflow-hidden">
-              <img
-                src={partnerOda}
-                alt="Ohio Dental Association"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </div>
-
-            {/* Body */}
-            <div className="p-5 flex flex-col gap-4 flex-1 bg-card">
-              <div className="inline-flex items-center gap-1.5 bg-safco-blue/10 text-safco-blue text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full w-fit">
-                Preferred Distributor — ODA
-              </div>
-              <p className="text-sm text-foreground leading-relaxed">
-                Members of the <strong>OhioDDS Group Purchasing Organization (GPO)</strong> enjoy <strong>exclusive savings</strong> and manufacturer incentives through Safco Dental Supply.
-              </p>
-              <a
-                href="#"
-                className="mt-auto text-sm text-primary font-semibold inline-flex items-center gap-1.5 hover:gap-2.5 transition-all"
-              >
-                Learn More about ODA
-                <ArrowRight className="h-3.5 w-3.5" />
-              </a>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
