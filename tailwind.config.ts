@@ -166,6 +166,12 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        "v2-search": "0 2px 12px 0 hsl(219 59% 39% / 0.08)",
+        "v2-search-focus": "0 4px 20px 0 hsl(219 59% 39% / 0.16)",
+        "v2-card-hover": "0 8px 24px -4px hsl(219 59% 39% / 0.12)",
+        "v2-dropdown": "0 8px 32px -4px hsl(219 30% 30% / 0.18)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
