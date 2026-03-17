@@ -114,7 +114,6 @@ const SafcoHeaderV3 = () => {
           {NAV_ITEMS.map((item) =>
             item.isVersionPicker ? (
               <div key={item.label} className="relative mr-2" ref={versionDropdownRef}>
-                {/* "All Products" styled as outlined rounded-rect button */}
                 <button
                   onClick={() => setVersionDropdownOpen((v) => !v)}
                   className="flex items-center gap-1.5 px-4 py-1.5 text-sm font-semibold text-primary-foreground border border-primary-foreground/40 rounded-md hover:border-primary-foreground hover:bg-primary-foreground/10 transition-colors whitespace-nowrap"
@@ -152,34 +151,65 @@ const SafcoHeaderV3 = () => {
                     </Link>
                   </div>
                 )}
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                to={`/category/${item.slug}`}
+                className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80 transition-colors whitespace-nowrap"
+              >
+                {item.label}
+                {item.hasDropdown && (
+                  <ChevronDown className="h-3.5 w-3.5 text-primary-foreground/70" />
+                )}
+              </Link>
+            )
+          )}
+
+          {/* Quick Order */}
+          <Link
+            to="/category/all-products"
+            className="px-3 py-2 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80 transition-colors whitespace-nowrap ml-1"
+          >
+            Quick Order
+          </Link>
+
+          {/* Personalized — outlined pill */}
+          <Link
+            to="/category/personalized"
+            className="flex items-center gap-1.5 ml-2 px-3 py-1.5 text-sm font-medium text-primary-foreground border border-primary-foreground/40 rounded-full hover:border-primary-foreground hover:bg-primary-foreground/10 transition-colors whitespace-nowrap"
+          >
+            <Pencil className="h-3.5 w-3.5" />
+            Personalized
+          </Link>
         </div>
       </nav>
 
       {/* ── Mobile Menu ── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-border bg-card">
+        <div className="lg:hidden border-t border-primary-foreground/20 bg-primary">
           <div className="flex flex-col">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 to={item.isVersionPicker ? "/v3" : `/category/${item.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between"
+                className="px-4 py-3 text-sm font-medium border-b border-primary-foreground/20 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between"
               >
                 {item.label}
-                {item.hasDropdown && <ChevronDown className="h-4 w-4 text-muted-foreground" />}
+                {item.hasDropdown && <ChevronDown className="h-4 w-4 text-primary-foreground/70" />}
               </Link>
             ))}
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
-              Homepage V1 <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">V1</span>
+            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-primary-foreground/20 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between">
+              Homepage V1 <span className="text-[10px] font-semibold bg-primary-foreground/20 text-primary-foreground rounded px-1.5 py-0.5">V1</span>
             </Link>
-            <Link to="/v2" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
-              Homepage V2 <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
+            <Link to="/v2" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-primary-foreground/20 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between">
+              Homepage V2 <span className="text-[10px] font-semibold bg-primary-foreground/20 text-primary-foreground rounded px-1.5 py-0.5">V2</span>
             </Link>
-            <Link to="/category/personalized" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-primary border-b border-border hover:bg-muted flex items-center gap-2">
+            <Link to="/category/personalized" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-primary-foreground border-b border-primary-foreground/20 hover:bg-primary-foreground/10 flex items-center gap-2">
               <Pencil className="h-4 w-4" /> Personalized
             </Link>
-            <Link to="/category/all-products" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-foreground border-b border-border hover:bg-muted">
+            <Link to="/category/all-products" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-primary-foreground border-b border-primary-foreground/20 hover:bg-primary-foreground/10">
               Quick Order
             </Link>
           </div>
