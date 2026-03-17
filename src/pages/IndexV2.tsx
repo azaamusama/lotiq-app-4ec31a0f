@@ -1,31 +1,26 @@
 import SafcoHeader from "@/components/SafcoHeader";
-import HeroPromoGrid from "@/components/HeroPromoGrid";
-import CategoryGrid from "@/components/CategoryGrid";
-import BrandStrip from "@/components/BrandStrip";
-import DealProductRow from "@/components/DealProductRow";
-import PromoBanners from "@/components/PromoBanners";
-import BuyingGuides from "@/components/BuyingGuides";
-import TrustSignals from "@/components/TrustSignals";
-import SKUPadInjector from "@/components/SKUPadInjector";
+import HeroV2 from "@/components/v2/HeroV2";
+import SmartReorderV2 from "@/components/v2/SmartReorderV2";
+import CategoryGridV2 from "@/components/v2/CategoryGridV2";
+import PromosV2 from "@/components/v2/PromosV2";
+import BrandsV2 from "@/components/v2/BrandsV2";
+import TrustV2 from "@/components/v2/TrustV2";
+import ContentHubV2 from "@/components/v2/ContentHubV2";
 import SafcoFooter from "@/components/SafcoFooter";
-import ServiceSolutions from "@/components/ServiceSolutions";
-import IndustryPartnerships from "@/components/IndustryPartnerships";
+import SKUPadInjector from "@/components/SKUPadInjector";
 
 const IndexV2 = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-v2-section">
       <SafcoHeader newCustomer />
       <main>
-        <HeroPromoGrid />
-        <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
-        <BrandStrip />
-        <PromoBanners />
-        <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
-        <IndustryPartnerships />
-        <ServiceSolutions />
-        <CategoryGrid />
-        <BuyingGuides />
-        <TrustSignals />
+        <HeroV2 />
+        <SmartReorderV2 />
+        <CategoryGridV2 />
+        <PromosV2 />
+        <BrandsV2 />
+        <TrustV2 />
+        <ContentHubV2 />
       </main>
       <SafcoFooter />
       <SKUPadInjector />

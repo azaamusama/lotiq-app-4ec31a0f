@@ -57,6 +57,107 @@
     --success-foreground: 0 0% 100%;
     --promo-red: 0 72% 51%;
     --promo-red-foreground: 0 0% 100%;
+
+    /* ── V2 Design Tokens ────────────────────────────── */
+
+    /* Hero */
+    --v2-hero-bg: 219 40% 97%;
+    --v2-blob-a: 219 59% 70%;
+    --v2-blob-b: 168 38% 70%;
+    --v2-blob-c: 153 38% 75%;
+    --v2-headline: 219 59% 18%;
+    --v2-headline-accent: 219 59% 39%;
+    --v2-subheadline: 219 15% 45%;
+    --v2-badge-bg: 0 0% 100%;
+    --v2-badge-border: 219 30% 88%;
+    --v2-badge-text: 219 59% 39%;
+    --v2-badge-icon-bg: 219 59% 92%;
+    --v2-trust-label: 219 20% 35%;
+    --v2-search-bg: 0 0% 100%;
+    --v2-search-border: 219 20% 88%;
+    --v2-search-focus-border: 219 59% 55%;
+    --v2-search-icon: 219 20% 60%;
+    --v2-search-text: 0 0% 10%;
+    --v2-search-placeholder: 219 15% 65%;
+    --v2-search-shadow: 219 59% 39%;
+    --v2-dropdown-bg: 0 0% 100%;
+    --v2-dropdown-border: 219 20% 90%;
+    --v2-dropdown-label: 219 20% 55%;
+    --v2-dropdown-icon: 219 20% 60%;
+    --v2-dropdown-item: 0 0% 15%;
+    --v2-dropdown-item-hover: 219 40% 96%;
+    --v2-cta-secondary: 219 59% 39%;
+    --v2-cta-secondary-border: 219 40% 80%;
+    --v2-cta-secondary-hover: 219 40% 95%;
+
+    /* Sections */
+    --v2-section: 0 0% 100%;
+    --v2-section-alt: 219 30% 97%;
+    --v2-section-title: 219 40% 15%;
+    --v2-section-sub: 219 10% 50%;
+
+    /* Cards */
+    --v2-card: 0 0% 100%;
+    --v2-card-border: 219 20% 90%;
+    --v2-card-hover-border: 219 40% 75%;
+
+    /* Product */
+    --v2-img-bg: 219 40% 97%;
+    --v2-brand-label: 219 20% 55%;
+    --v2-brand-name: 219 40% 20%;
+    --v2-product-name: 219 30% 20%;
+    --v2-price: 219 59% 32%;
+    --v2-price-unit: 219 15% 55%;
+    --v2-timestamp: 219 10% 55%;
+    --v2-timestamp-icon: 219 20% 60%;
+
+    /* Smart Reorder */
+    --v2-list-cta-bg: 219 40% 97%;
+    --v2-list-cta-border: 219 30% 88%;
+
+    /* Promo */
+    --v2-promo-hero-bg: 219 59% 39%;
+    --v2-promo-teal-bg: 168 38% 94%;
+    --v2-promo-teal-border: 168 38% 80%;
+    --v2-promo-teal-title: 168 38% 22%;
+
+    /* Category tile colors */
+    --v2-cat-blue: 219 59% 93%;
+    --v2-cat-blue-icon: 219 59% 39%;
+    --v2-cat-teal: 185 45% 92%;
+    --v2-cat-teal-icon: 185 45% 32%;
+    --v2-cat-green: 153 38% 91%;
+    --v2-cat-green-icon: 153 38% 30%;
+    --v2-cat-purple: 260 40% 93%;
+    --v2-cat-purple-icon: 260 40% 40%;
+    --v2-cat-orange: 22 87% 93%;
+    --v2-cat-orange-icon: 22 87% 42%;
+    --v2-cat-red: 0 60% 93%;
+    --v2-cat-red-icon: 0 60% 40%;
+    --v2-cat-indigo: 240 45% 93%;
+    --v2-cat-indigo-icon: 240 45% 40%;
+
+    /* Trust */
+    --v2-trust-blue: 219 59% 93%;
+    --v2-trust-teal: 185 45% 92%;
+    --v2-trust-teal-icon: 185 45% 32%;
+    --v2-trust-green: 153 38% 91%;
+    --v2-trust-green-icon: 153 38% 30%;
+    --v2-trust-purple: 260 40% 93%;
+    --v2-trust-purple-icon: 260 40% 40%;
+    --v2-trust-orange: 22 87% 93%;
+    --v2-trust-orange-icon: 22 87% 42%;
+
+    /* Content Hub */
+    --v2-hub-teal: 185 45% 32%;
+    --v2-hub-teal-bg: 185 45% 92%;
+    --v2-hub-teal-text: 185 45% 25%;
+    --v2-hub-green: 153 38% 30%;
+    --v2-hub-green-bg: 153 38% 91%;
+    --v2-hub-green-text: 153 38% 22%;
+    --v2-hub-orange: 22 87% 42%;
+    --v2-hub-orange-bg: 22 87% 93%;
+    --v2-hub-orange-text: 22 87% 32%;
   }
 
   .dark {
