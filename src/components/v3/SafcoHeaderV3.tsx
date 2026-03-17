@@ -64,7 +64,6 @@ const SafcoHeaderV3 = () => {
               src={safcoLogo}
               alt="Safco Dental Supply"
               className="h-[48px] w-auto"
-              style={{ mixBlendMode: "screen" }}
             />
           </Link>
 
