@@ -46,7 +46,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Main Header ── */}
-      <div className="bg-primary">
+      <div className="bg-[#2952A0]">
         <div className="container flex items-center gap-6 py-3.5">
 
           {/* Mobile toggle */}
