@@ -1,4 +1,4 @@
-import SafcoHeader from "@/components/SafcoHeader";
+import SafcoHeaderV3 from "@/components/v3/SafcoHeaderV3";
 import HeroPromoGrid from "@/components/HeroPromoGrid";
 import CategoryGrid from "@/components/CategoryGrid";
 import BrandStrip from "@/components/BrandStrip";
@@ -14,7 +14,7 @@ import IndustryPartnerships from "@/components/IndustryPartnerships";
 const IndexV3 = () => {
   return (
     <div className="min-h-screen bg-background">
-      <SafcoHeader />
+      <SafcoHeaderV3 />
       <main>
         <HeroPromoGrid />
         <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
