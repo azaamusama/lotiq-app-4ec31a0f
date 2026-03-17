@@ -51,12 +51,12 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Main Header ── */}
-      <div className="bg-card border-b border-border">
+      <div className="bg-primary">
         <div className="container flex items-center gap-5 py-3">
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-1.5 text-foreground"
+            className="lg:hidden p-1.5 text-primary-foreground"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -65,7 +65,7 @@ const SafcoHeaderV3 = () => {
 
           {/* Logo */}
           <Link to="/v3" className="shrink-0">
-            <img src={safcoLogo} alt="Safco Dental Supply" className="h-[52px] w-auto" />
+            <img src={safcoLogo} alt="Safco Dental Supply" className="h-[52px] w-auto brightness-0 invert" />
           </Link>
 
           {/* ── Search bar (icon inside, right side) ── */}
@@ -76,7 +76,7 @@ const SafcoHeaderV3 = () => {
                 placeholder="Search by product name or item number"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                className="w-full h-10 pl-4 pr-11 rounded border border-input bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                className="w-full h-10 pl-4 pr-11 rounded border border-primary-foreground/30 bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary-foreground/40 transition-colors"
               />
               <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
             </div>
@@ -85,19 +85,19 @@ const SafcoHeaderV3 = () => {
           {/* ── Account + Cart ── */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
             {/* Account */}
-            <button className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors">
-              <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center shrink-0 leading-none">
+            <button className="flex items-center gap-2 text-sm text-primary-foreground hover:text-primary-foreground/80 transition-colors">
+              <span className="w-7 h-7 rounded-full bg-primary-foreground/20 border border-primary-foreground/40 text-primary-foreground text-[11px] font-bold flex items-center justify-center shrink-0 leading-none">
                 SD
               </span>
               <span className="font-medium">Safco Dental</span>
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+              <ChevronDown className="h-3.5 w-3.5 text-primary-foreground/70" />
             </button>
 
             {/* Cart */}
-            <button className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors">
+            <button className="flex items-center gap-1.5 text-sm font-medium text-primary-foreground hover:text-primary-foreground/80 transition-colors">
               <div className="relative">
                 <ShoppingCart className="h-6 w-6" />
-                <span className="absolute -top-1.5 -right-1.5 bg-primary text-primary-foreground text-[10px] font-bold rounded-full h-[17px] w-[17px] flex items-center justify-center leading-none">
+                <span className="absolute -top-1.5 -right-1.5 bg-primary-foreground text-primary text-[10px] font-bold rounded-full h-[17px] w-[17px] flex items-center justify-center leading-none">
                   3
                 </span>
               </div>
