@@ -1,31 +1,39 @@
+import { useState } from "react";
 import SafcoHeaderV3 from "@/components/v3/SafcoHeaderV3";
-import HeroPromoGrid from "@/components/HeroPromoGrid";
-import CategoryGrid from "@/components/CategoryGrid";
-import BrandStrip from "@/components/BrandStrip";
-import DealProductRow from "@/components/DealProductRow";
-import PromoBanners from "@/components/PromoBanners";
-import BuyingGuides from "@/components/BuyingGuides";
-import TrustSignals from "@/components/TrustSignals";
-import SKUPadInjector from "@/components/SKUPadInjector";
+import WelcomeHeroV3 from "@/components/v3/WelcomeHeroV3";
+import PersonalizedSectionV3 from "@/components/v3/PersonalizedSectionV3";
+import AccountPromptV3 from "@/components/v3/AccountPromptV3";
+import EssentialsStarterV3 from "@/components/v3/EssentialsStarterV3";
+import TrustBannerV3 from "@/components/v3/TrustBannerV3";
 import SafcoFooter from "@/components/SafcoFooter";
-import ServiceSolutions from "@/components/ServiceSolutions";
-import IndustryPartnerships from "@/components/IndustryPartnerships";
+import SKUPadInjector from "@/components/SKUPadInjector";
 
 const IndexV3 = () => {
+  const [onboarded, setOnboarded] = useState(false);
+  const [practice, setPractice] = useState("general");
+  const [lookingFor, setLookingFor] = useState("explore");
+
+  const handleOnboardingComplete = (p: string, lf: string) => {
+    setPractice(p);
+    setLookingFor(lf);
+    setOnboarded(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SafcoHeaderV3 />
       <main>
-        <HeroPromoGrid />
-        <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
-        <BrandStrip />
-        <PromoBanners />
-        <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
-        <IndustryPartnerships />
-        <ServiceSolutions />
-        <CategoryGrid />
-        <BuyingGuides />
-        <TrustSignals />
+        {!onboarded && (
+          <WelcomeHeroV3 onComplete={handleOnboardingComplete} />
+        )}
+        {onboarded && (
+          <>
+            <PersonalizedSectionV3 practice={practice} lookingFor={lookingFor} />
+            <AccountPromptV3 />
+          </>
+        )}
+        <EssentialsStarterV3 />
+        <TrustBannerV3 />
       </main>
       <SafcoFooter />
       <SKUPadInjector />
