@@ -1,4 +1,4 @@
-import SafcoHeader from "@/components/SafcoHeader";
+import SafcoHeaderV2 from "@/components/v2/SafcoHeaderV2";
 import HeroV2 from "@/components/v2/HeroV2";
 import SmartReorderV2 from "@/components/v2/SmartReorderV2";
 import CategoryGridV2 from "@/components/v2/CategoryGridV2";
@@ -12,7 +12,7 @@ import SKUPadInjector from "@/components/SKUPadInjector";
 const IndexV2 = () => {
   return (
     <div className="min-h-screen bg-v2-section">
-      <SafcoHeader newCustomer />
+      <SafcoHeaderV2 />
       <main>
         <HeroV2 />
         <SmartReorderV2 />
