@@ -108,7 +108,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Navigation Bar ── */}
-      <nav className="hidden lg:block bg-card border-b border-border">
+      <nav className="hidden lg:block bg-primary border-b border-primary-foreground/20">
         <div className="container flex items-center gap-0.5 py-1">
 
           {NAV_ITEMS.map((item) =>
