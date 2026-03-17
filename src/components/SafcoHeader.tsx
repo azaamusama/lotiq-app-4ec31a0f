@@ -145,7 +145,7 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
                       className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
                     >
                       <span>Homepage V1</span>
-                      <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">Current</span>
+                      <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">V1</span>
                     </Link>
                     <Link
                       to="/v2"
@@ -153,7 +153,15 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
                       className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
                     >
                       <span>Homepage V2</span>
-                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">New</span>
+                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
+                    </Link>
+                    <Link
+                      to="/v3"
+                      onClick={() => setVersionDropdownOpen(false)}
+                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
+                    >
+                      <span>Homepage V3</span>
+                      <span className="text-[10px] font-semibold bg-green-100 text-green-700 rounded px-1.5 py-0.5">V3</span>
                     </Link>
                   </div>
                 )}
