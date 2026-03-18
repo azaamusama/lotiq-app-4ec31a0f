@@ -5,7 +5,7 @@ const PromoBannerV4 = () => (
     <img
       src={bannerMintyGreen}
       alt="Minty Green Savings Week – Buy 3 Get 1 Free on Select Products"
-      className="w-full object-cover max-h-[160px]"
+      className="w-full h-auto block"
     />
   </section>
 );
