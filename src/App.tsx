@@ -9,6 +9,7 @@ import IndexV3 from "./pages/IndexV3.tsx";
 import IndexV4 from "./pages/IndexV4.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
 import ProductListing from "./pages/ProductListing.tsx";
+import BundleBuilder from "./pages/BundleBuilder.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
