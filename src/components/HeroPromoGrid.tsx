@@ -107,18 +107,30 @@ const HeroPromoGrid = () => {
             </div>
           </div>
 
-          {/* Big visual promo */}
-          <div className="bg-safco-blue-dark rounded-lg p-6 flex flex-col justify-between min-h-[220px]">
-            <div>
-              <p className="text-primary-foreground/70 text-xs font-medium uppercase tracking-wide mb-1">This Week</p>
-              <h2 className="text-xl font-bold text-primary-foreground leading-tight">
-                Supply Deals
-              </h2>
-              <p className="text-primary-foreground/80 text-sm mt-1">Save up to 30% on essentials</p>
+          {/* Minty Green Savings Week Card */}
+          <div className="relative bg-[hsl(90_30%_95%)] rounded-lg overflow-hidden flex flex-col justify-between min-h-[220px]">
+            {/* Product images */}
+            <div className="absolute left-2 bottom-0 flex flex-col items-start gap-1 z-10">
+              <img src={productProphy} alt="Safco Excel Alginate" className="w-20 h-20 object-contain drop-shadow-lg -rotate-6 translate-y-1" />
+              <img src={productCement} alt="Safco Protect Ultra" className="w-16 h-16 object-contain drop-shadow-lg rotate-2 -mt-2" />
             </div>
-            <Button variant="outline" size="sm" className="w-fit border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 mt-4">
-              View All <ArrowRight className="h-3 w-3 ml-1" />
-            </Button>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 z-10">
+              <img src={productComposite} alt="Safco Nice Bite" className="w-20 h-20 object-contain drop-shadow-lg rotate-12" />
+            </div>
+
+            {/* Center copy */}
+            <div className="flex-1 flex flex-col items-center justify-center text-center px-24 py-5 z-20 relative">
+              <h2 className="text-lg font-black text-[hsl(120_50%_25%)] leading-tight mb-1">
+                Minty Green<br />Savings Week!
+              </h2>
+              <p className="text-[11px] text-[hsl(120_30%_35%)] font-medium mb-3">
+                Fresh Deals on Trusted Dental Brands
+              </p>
+              <div className="bg-[hsl(120_45%_30%)] text-white font-black text-sm px-3 py-1.5 rounded-full inline-flex items-baseline gap-1 shadow-md">
+                Buy 3, Get 1 <span className="text-[hsl(120_70%_75%)] ml-1">FREE!</span>
+                <span className="text-[10px] font-semibold text-white/80 ml-1">on Select Products</span>
+              </div>
+            </div>
           </div>
         </div>
 
