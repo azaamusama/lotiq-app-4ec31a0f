@@ -268,19 +268,6 @@ const ProductDetail = () => {
               <p className="text-xs font-bold text-alert mt-1">Offer Ends 10/31/2025</p>
             </div>
 
-            {/* Trust Strip */}
-            <div className="bg-card border border-border rounded-lg px-4 py-4 flex items-center justify-around mb-5">
-              {TRUST_ITEMS.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex flex-col items-center gap-2 text-center">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shadow-sm">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                      <Icon className="h-4 w-4 text-primary" />
-                    </div>
-                  </div>
-                  <span className="text-[10px] text-foreground font-medium leading-tight max-w-[60px]">{label}</span>
-                </div>
-              ))}
-            </div>
 
             {/* Qty + Add to Cart */}
             <div className="flex items-center gap-4 mb-3">
