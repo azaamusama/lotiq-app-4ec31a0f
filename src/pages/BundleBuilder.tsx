@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Check, ChevronRight, Minus, Plus, ShoppingCart, Bookmark, Truck, Award, Users, Star, ChevronLeft, Info, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SafcoHeader from "@/components/SafcoHeader";
+import SafcoHeader from "@/components/v3/SafcoHeaderV3";
 import SafcoFooter from "@/components/SafcoFooter";
 import productGloves from "@/assets/product-gloves.jpg";
 import productMasks from "@/assets/product-masks.jpg";

@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import SafcoHeader from "@/components/SafcoHeader";
+import SafcoHeader from "@/components/v3/SafcoHeaderV3";
 import SafcoFooter from "@/components/SafcoFooter";
 
 import productProphy from "@/assets/product-prophy.jpg";

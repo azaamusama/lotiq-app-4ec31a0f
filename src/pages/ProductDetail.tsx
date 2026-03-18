@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Star, Heart, ChevronRight, Minus, Plus, Truck, RotateCcw, ShieldCheck, Award, Package, X, ChevronDown, ChevronUp, DollarSign, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SafcoHeader from "@/components/SafcoHeader";
+import SafcoHeader from "@/components/v3/SafcoHeaderV3";
 import SafcoFooter from "@/components/SafcoFooter";
 import productGloves from "@/assets/product-gloves.jpg";
 import bannerMicroflexXceed from "@/assets/banner-microflex-xceed.png";
