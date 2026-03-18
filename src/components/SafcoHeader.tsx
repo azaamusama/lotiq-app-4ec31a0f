@@ -17,12 +17,17 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [versionDropdownOpen, setVersionDropdownOpen] = useState(false);
+  const [pdpDropdownOpen, setPdpDropdownOpen] = useState(false);
   const versionDropdownRef = useRef<HTMLDivElement>(null);
+  const pdpDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (versionDropdownRef.current && !versionDropdownRef.current.contains(e.target as Node)) {
         setVersionDropdownOpen(false);
+      }
+      if (pdpDropdownRef.current && !pdpDropdownRef.current.contains(e.target as Node)) {
+        setPdpDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
