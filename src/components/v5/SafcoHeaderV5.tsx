@@ -1,4 +1,4 @@
-import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X, User } from "lucide-react";
+import { Search, Phone, Truck, ShoppingCart, ChevronDown, Pencil, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import safcoLogo from "@/assets/safco-logo-white.png";
@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: "Preventatives", slug: "preventatives", hasDropdown: true },
 ];
 
-const SafcoHeaderV3 = () => {
+const SafcoHeaderV5 = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [versionDropdownOpen, setVersionDropdownOpen] = useState(false);
@@ -46,7 +46,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Main Header ── */}
-      <div className="bg-[#20335A]">
+      <div className="bg-[#15203C]">
         <div className="container flex items-center gap-6 py-3.5">
 
           {/* Mobile toggle */}
@@ -58,13 +58,8 @@ const SafcoHeaderV3 = () => {
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
 
-          {/* Logo — mix-blend-mode:screen removes the dark background */}
-          <Link to="/v3" className="shrink-0">
-            <img
-              src={safcoLogo}
-              alt="Safco Dental Supply"
-              className="h-[48px] w-auto"
-            />
+          <Link to="/v5" className="shrink-0">
+            <img src={safcoLogo} alt="Safco Dental Supply" className="h-[48px] w-auto" />
           </Link>
 
           {/* ── Search bar ── */}
@@ -83,7 +78,6 @@ const SafcoHeaderV3 = () => {
 
           {/* ── Account + Cart ── */}
           <div className="hidden sm:flex items-center gap-5 shrink-0">
-            {/* Account */}
             <button className="flex items-center gap-2.5 text-sm text-primary-foreground hover:text-primary-foreground/80 transition-colors group">
               <div className="w-8 h-8 rounded-full bg-primary-foreground/15 border border-primary-foreground/25 flex items-center justify-center shrink-0 group-hover:bg-primary-foreground/20 transition-colors">
                 <span className="text-[11px] font-bold text-primary-foreground leading-none">SD</span>
@@ -95,11 +89,9 @@ const SafcoHeaderV3 = () => {
               <ChevronDown className="h-3.5 w-3.5 text-primary-foreground/50 hidden md:block" />
             </button>
 
-            {/* Divider */}
             <div className="w-px h-6 bg-primary-foreground/20" />
 
-            {/* Cart */}
-            <button className="flex items-center gap-2 text-sm font-semibold text-primary-foreground hover:text-primary-foreground/80 transition-colors group">
+            <button className="flex items-center gap-2 text-sm font-semibold text-primary-foreground hover:text-primary-foreground/80 transition-colors">
               <div className="relative">
                 <ShoppingCart className="h-6 w-6" />
                 <span className="absolute -top-1.5 -right-1.5 bg-white text-primary text-[10px] font-bold rounded-full h-[18px] w-[18px] flex items-center justify-center leading-none shadow-sm">
@@ -113,7 +105,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Navigation Bar ── */}
-      <nav className="hidden lg:block bg-[#20396C] border-t border-primary-foreground/10">
+      <nav className="hidden lg:block bg-[#20335A] border-t border-primary-foreground/10">
         <div className="container flex items-center gap-1 py-0">
 
           {NAV_ITEMS.map((item) =>
@@ -163,10 +155,8 @@ const SafcoHeaderV3 = () => {
             )
           )}
 
-          {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Quick Order */}
           <Link
             to="/category/all-products"
             className="px-4 py-3 text-sm font-medium text-primary-foreground/85 hover:text-primary-foreground border-b-2 border-transparent hover:border-primary-foreground/60 transition-all whitespace-nowrap"
@@ -174,7 +164,6 @@ const SafcoHeaderV3 = () => {
             Quick Order
           </Link>
 
-          {/* Personalized pill */}
           <Link
             to="/category/personalized"
             className="flex items-center gap-1.5 mx-2 my-2 px-3.5 py-1.5 text-sm font-semibold text-primary-foreground border border-primary-foreground/40 rounded-full hover:bg-primary-foreground/10 hover:border-primary-foreground transition-all whitespace-nowrap"
@@ -187,12 +176,12 @@ const SafcoHeaderV3 = () => {
 
       {/* ── Mobile Menu ── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-primary-foreground/10 bg-[#20396C]">
+        <div className="lg:hidden border-t border-primary-foreground/10 bg-[#20335A]">
           <div className="flex flex-col">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
-                to={item.isVersionPicker ? "/v3" : `/category/${item.slug}`}
+                to={item.isVersionPicker ? "/v5" : `/category/${item.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-5 py-3.5 text-sm font-medium border-b border-primary-foreground/10 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between"
               >
@@ -200,15 +189,6 @@ const SafcoHeaderV3 = () => {
                 {item.hasDropdown && <ChevronDown className="h-4 w-4 text-primary-foreground/50" />}
               </Link>
             ))}
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="px-5 py-3.5 text-sm font-medium border-b border-primary-foreground/10 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between">
-              Homepage V1 <span className="text-[10px] font-bold bg-primary-foreground/20 text-primary-foreground rounded px-1.5 py-0.5">V1</span>
-            </Link>
-            <Link to="/v2" onClick={() => setMobileMenuOpen(false)} className="px-5 py-3.5 text-sm font-medium border-b border-primary-foreground/10 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between">
-              Homepage V2 <span className="text-[10px] font-bold bg-primary-foreground/20 text-primary-foreground rounded px-1.5 py-0.5">V2</span>
-            </Link>
-            <Link to="/v4" onClick={() => setMobileMenuOpen(false)} className="px-5 py-3.5 text-sm font-medium border-b border-primary-foreground/10 hover:bg-primary-foreground/10 text-primary-foreground flex items-center justify-between">
-              Homepage V4 <span className="text-[10px] font-bold bg-primary-foreground/20 text-primary-foreground rounded px-1.5 py-0.5">V4</span>
-            </Link>
             <Link to="/category/personalized" onClick={() => setMobileMenuOpen(false)} className="px-5 py-3.5 text-sm font-medium border-b border-primary-foreground/10 hover:bg-primary-foreground/10 text-primary-foreground flex items-center gap-2">
               <Pencil className="h-4 w-4" /> Personalized
             </Link>
@@ -222,4 +202,4 @@ const SafcoHeaderV3 = () => {
   );
 };
 
-export default SafcoHeaderV3;
+export default SafcoHeaderV5;

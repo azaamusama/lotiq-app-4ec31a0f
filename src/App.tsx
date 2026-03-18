@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import IndexV2 from "./pages/IndexV2.tsx";
 import IndexV3 from "./pages/IndexV3.tsx";
 import IndexV4 from "./pages/IndexV4.tsx";
+import IndexV5 from "./pages/IndexV5.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
 import ProductListing from "./pages/ProductListing.tsx";
 import BundleBuilder from "./pages/BundleBuilder.tsx";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/v2" element={<IndexV2 />} />
           <Route path="/v3" element={<IndexV3 />} />
           <Route path="/v4" element={<IndexV4 />} />
+          <Route path="/v5" element={<IndexV5 />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/category/:slug" element={<ProductListing />} />
           <Route path="/bundle/:id" element={<BundleBuilder />} />
