@@ -144,37 +144,43 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
                 </button>
                 {versionDropdownOpen && (
                   <div className="absolute left-0 top-full mt-1 w-44 bg-card border border-border rounded-lg shadow-lg overflow-hidden z-50">
-                    <Link
-                      to="/"
-                      onClick={() => setVersionDropdownOpen(false)}
-                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                    >
+                    <Link to="/" onClick={() => setVersionDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
                       <span>Homepage V1</span>
                       <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">V1</span>
                     </Link>
-                    <Link
-                      to="/v2"
-                      onClick={() => setVersionDropdownOpen(false)}
-                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                    >
+                    <Link to="/v2" onClick={() => setVersionDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
                       <span>Homepage V2</span>
                       <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
                     </Link>
-                    <Link
-                      to="/v3"
-                      onClick={() => setVersionDropdownOpen(false)}
-                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                    >
+                    <Link to="/v3" onClick={() => setVersionDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
                       <span>Homepage V3</span>
                       <span className="text-[10px] font-semibold bg-success/20 text-success rounded px-1.5 py-0.5">V3</span>
                     </Link>
-                    <Link
-                      to="/v4"
-                      onClick={() => setVersionDropdownOpen(false)}
-                      className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                    >
+                    <Link to="/v4" onClick={() => setVersionDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
                       <span>Homepage V4</span>
                       <span className="text-[10px] font-semibold bg-orange-100 text-orange-600 rounded px-1.5 py-0.5">V4</span>
+                    </Link>
+                  </div>
+                )}
+              </div>
+            ) : item.isPdpPicker ? (
+              <div key={item.label} className="relative" ref={pdpDropdownRef}>
+                <button
+                  onClick={() => setPdpDropdownOpen((v) => !v)}
+                  className="flex items-center gap-1 px-3 py-2.5 text-sm font-medium text-foreground hover:text-primary hover:bg-muted/60 rounded transition-colors whitespace-nowrap"
+                >
+                  {item.label}
+                  <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${pdpDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                {pdpDropdownOpen && (
+                  <div className="absolute left-0 top-full mt-1 w-52 bg-card border border-border rounded-lg shadow-lg overflow-hidden z-50">
+                    <Link to="/product/1028073" onClick={() => setPdpDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
+                      <span>PDP — Standard</span>
+                      <span className="text-[10px] font-semibold bg-muted text-muted-foreground rounded px-1.5 py-0.5">V1</span>
+                    </Link>
+                    <Link to="/bundle/starter-kit" onClick={() => setPdpDropdownOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors">
+                      <span>PDP — Bundle Builder</span>
+                      <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
                     </Link>
                   </div>
                 )}
@@ -218,7 +224,7 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
-                to={item.isVersionPicker ? "/" : `/category/${item.slug}`}
+                to={item.isVersionPicker ? "/" : item.isPdpPicker ? "/product/1028073" : `/category/${item.slug}`}
                 onClick={() => setMobileMenuOpen(false)}
                 className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between"
               >
@@ -226,17 +232,18 @@ const SafcoHeader = ({ newCustomer = false }: { newCustomer?: boolean }) => {
                 {item.hasDropdown && <ChevronDown className="h-4 w-4 text-muted-foreground" />}
               </Link>
             ))}
-            {/* V2 link in mobile */}
+            <Link to="/bundle/starter-kit" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
+              PDP — Bundle Builder
+              <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
+            </Link>
             <Link to="/v2" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
               Homepage V2
               <span className="text-[10px] font-semibold bg-primary/10 text-primary rounded px-1.5 py-0.5">V2</span>
             </Link>
-            {/* V3 link in mobile */}
             <Link to="/v3" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
               Homepage V3
               <span className="text-[10px] font-semibold bg-success/20 text-success rounded px-1.5 py-0.5">V3</span>
             </Link>
-            {/* V4 link in mobile */}
             <Link to="/v4" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium border-b border-border hover:bg-muted text-foreground flex items-center justify-between">
               Homepage V4
               <span className="text-[10px] font-semibold bg-orange-100 text-orange-600 rounded px-1.5 py-0.5">V4</span>
