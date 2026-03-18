@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import SafcoHeader from "@/components/SafcoHeader";
 import SafcoFooter from "@/components/SafcoFooter";
 import productGloves from "@/assets/product-gloves.jpg";
+import bannerMicroflexXceed from "@/assets/banner-microflex-xceed.png";
 
 const PRODUCT = {
   brand: "Safco",
