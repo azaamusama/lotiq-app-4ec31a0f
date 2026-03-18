@@ -65,22 +65,45 @@ const HeroPromoGrid = () => {
             </a>
           </div>
 
-          {/* Top Category Deals */}
-          <div className="bg-card rounded-lg p-4 border border-border">
-            <h3 className="text-sm font-bold text-foreground mb-3">Top seller deals</h3>
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { img: productAnesthetic, label: "Septocaine®", price: "$61.99" },
-                { img: productMasks, label: "Procedure Masks", price: "$6.99" },
-                { img: productProphy, label: "Prophy Paste", price: "$8.49" },
-                { img: productGloves, label: "Exam Gloves", price: "$15.99" },
-              ].map((item) => (
-                <a key={item.label} href="#" className="flex flex-col items-center p-2 rounded hover:bg-muted transition-colors">
-                  <img src={item.img} alt={item.label} className="w-14 h-14 object-contain mb-1" />
-                  <span className="text-[10px] text-foreground text-center leading-tight">{item.label}</span>
-                  <span className="text-[10px] font-bold text-primary">{item.price}</span>
-                </a>
-              ))}
+          {/* Coming Soon: myBrand Card */}
+          <div className="relative bg-white rounded-lg p-5 border border-border flex flex-col justify-between min-h-[220px] overflow-hidden">
+            {/* Bottom accent bar */}
+            <div className="absolute bottom-0 left-0 right-0 h-2 bg-[hsl(220_40%_80%)] rounded-b-lg" />
+
+            <div className="flex items-start justify-between gap-3 flex-1">
+              {/* Left: copy */}
+              <div className="flex-1">
+                <h2 className="text-lg font-black text-foreground leading-tight mb-1">
+                  Coming Soon:{" "}
+                  <span className="text-primary">
+                    <span className="font-black italic">my</span>
+                    <span className="font-light">brand</span>
+                  </span>
+                </h2>
+                <p className="text-xs text-muted-foreground mb-4">Easy &amp; On-Demand Personalization</p>
+
+                <div className="flex items-start gap-2">
+                  {/* Checkmark */}
+                  <div className="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <svg className="w-3 h-3 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-xs text-foreground leading-snug">
+                    Easily <strong>Customize</strong> Patient Giveaways!
+                  </p>
+                </div>
+
+                <button className="mt-4 bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded hover:bg-primary/90 transition-colors">
+                  Notify Me
+                </button>
+              </div>
+
+              {/* Right: product visual */}
+              <div className="shrink-0 flex flex-col items-end gap-1 -mr-1">
+                <img src={productProphy} alt="Branded product" className="w-20 h-20 object-contain drop-shadow-md" />
+                <img src={productMasks} alt="Patient giveaway" className="w-16 h-16 object-contain drop-shadow-md -mt-3" />
+              </div>
             </div>
           </div>
 
