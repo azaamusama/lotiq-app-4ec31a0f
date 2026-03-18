@@ -43,7 +43,7 @@ const IndexV4 = () => {
 
       <main>
         <HeroBannerV4 />
-        <PromoBannerV4 />
+        
         <HeroPromoGrid />
         <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
         <BrandStrip />
