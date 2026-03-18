@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Star, Heart, ChevronRight, Minus, Plus, Truck, RotateCcw, ShieldCheck, Award, Package, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, Heart, ChevronRight, Minus, Plus, Truck, RotateCcw, ShieldCheck, Award, Package, X, ChevronDown, ChevronUp, DollarSign, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SafcoHeader from "@/components/SafcoHeader";
 import SafcoFooter from "@/components/SafcoFooter";
