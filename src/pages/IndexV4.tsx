@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SafcoHeaderV3 from "@/components/v3/SafcoHeaderV3";
 import HeroBannerV4 from "@/components/v4/HeroBannerV4";
+import PromoBannerV4 from "@/components/v4/PromoBannerV4";
 import HeroPromoGrid from "@/components/HeroPromoGrid";
 import CategoryGrid from "@/components/CategoryGrid";
 import BrandStrip from "@/components/BrandStrip";
@@ -42,6 +43,7 @@ const IndexV4 = () => {
 
       <main>
         <HeroBannerV4 />
+        <PromoBannerV4 />
         <HeroPromoGrid />
         <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
         <BrandStrip />
