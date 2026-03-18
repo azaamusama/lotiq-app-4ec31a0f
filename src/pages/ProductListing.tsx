@@ -426,7 +426,7 @@ const ProductListing = () => {
                 <div className="relative">
                   <button
                     onClick={() => setShowSortDropdown(!showSortDropdown)}
-                    className="flex items-center gap-2 text-sm border border-border rounded px-3 py-1.5 bg-card hover:bg-muted transition-colors"
+                    className="flex items-center gap-2 text-sm border border-border rounded-lg px-3 py-1.5 bg-card hover:bg-muted transition-colors"
                   >
                     <span className="text-muted-foreground">Sort By:</span>
                     <span className="font-medium text-foreground">{sortBy}</span>
