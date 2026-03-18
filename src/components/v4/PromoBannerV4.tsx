@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import bannerCeramir from "@/assets/banner-ceramir.png";
+import bannerHygienBundle from "@/assets/banner-hygiene-bundle.png";
 
 const PromoBannerV4 = () => (
   <section className="w-full py-3">
