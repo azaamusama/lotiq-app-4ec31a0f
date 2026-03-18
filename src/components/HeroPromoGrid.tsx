@@ -8,6 +8,7 @@ import productAnesthetic from "@/assets/product-anesthetic.jpg";
 import productMasks from "@/assets/product-masks.jpg";
 import productProphy from "@/assets/product-prophy.jpg";
 import promoLabubu from "@/assets/promo-labubu.png";
+import promoPredicta from "@/assets/promo-predicta.png";
 
 const HeroPromoGrid = () => {
   return (
