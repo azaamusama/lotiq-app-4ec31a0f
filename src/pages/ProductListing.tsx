@@ -124,8 +124,9 @@ const PLPProductCard = ({
         <img src={image} alt={name} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300" loading="lazy" />
       </div>
       {lastPurchased && (
-        <div className="absolute top-2 left-2 bg-card/90 border border-border text-[10px] text-muted-foreground px-2 py-1 rounded font-medium backdrop-blur-sm">
-          Last Purchased {lastPurchased}
+        <div className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px] px-2.5 py-1 rounded-lg font-semibold shadow-sm flex items-center gap-1">
+          <RotateCcw className="h-2.5 w-2.5" />
+          {lastPurchased}
         </div>
       )}
     </div>
