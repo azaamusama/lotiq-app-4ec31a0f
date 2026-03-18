@@ -14,16 +14,22 @@ const HeroPromoGrid = () => {
       <div className="container">
         {/* Top Promo Row - 4 columns like Staples */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
-          {/* Large Promo Card */}
-          <div className="bg-primary rounded-lg p-6 flex flex-col justify-between min-h-[220px]">
-            <div>
-              <p className="text-primary-foreground/70 text-xs font-medium uppercase tracking-wide mb-1">Limited Time</p>
-              <h2 className="text-2xl font-bold text-primary-foreground leading-tight">
-                20% BACK
+          {/* Large Promo Card - Brand Offers */}
+          <div className="relative bg-gradient-to-br from-[hsl(200_30%_96%)] to-[hsl(195_40%_90%)] rounded-lg p-5 flex flex-col justify-between min-h-[220px] overflow-hidden">
+            {/* Product image — overlapping right side */}
+            <img
+              src={productComposite}
+              alt="Composite Syringe"
+              className="absolute -right-4 bottom-0 h-40 object-contain drop-shadow-xl rotate-[-15deg] opacity-90"
+            />
+            <div className="relative z-10">
+              <p className="text-muted-foreground text-xs font-semibold uppercase tracking-wide mb-1">Brand Offers</p>
+              <h2 className="text-2xl font-black text-foreground leading-tight">
+                Original Brand<br />Restorative<br />Materials
               </h2>
-              <p className="text-primary-foreground/80 text-sm mt-1">on your first order</p>
+              <p className="text-sm font-semibold text-[hsl(153_50%_35%)] mt-2 bg-[hsl(153_50%_92%)] inline-block px-2 py-0.5 rounded-full">on Select Products</p>
             </div>
-            <Button variant="outline" size="sm" className="w-fit border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 mt-4">
+            <Button size="sm" className="w-fit mt-3 relative z-10 bg-primary text-primary-foreground hover:bg-primary/90">
               Shop Now <ArrowRight className="h-3 w-3 ml-1" />
             </Button>
           </div>
