@@ -107,29 +107,29 @@ const HeroPromoGrid = () => {
             </div>
           </div>
 
-          {/* Minty Green Savings Week Card */}
-          <div className="relative bg-[hsl(90_30%_95%)] rounded-lg overflow-hidden flex flex-col justify-between min-h-[220px]">
-            {/* Product images */}
-            <div className="absolute left-2 bottom-0 flex flex-col items-start gap-1 z-10">
-              <img src={productProphy} alt="Safco Excel Alginate" className="w-20 h-20 object-contain drop-shadow-lg -rotate-6 translate-y-1" />
-              <img src={productCement} alt="Safco Protect Ultra" className="w-16 h-16 object-contain drop-shadow-lg rotate-2 -mt-2" />
-            </div>
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 z-10">
-              <img src={productComposite} alt="Safco Nice Bite" className="w-20 h-20 object-contain drop-shadow-lg rotate-12" />
+          {/* Mepivacaine Promo Card */}
+          <div className="relative bg-[hsl(38_60%_95%)] rounded-lg overflow-hidden flex items-center min-h-[220px] px-5 gap-3">
+            {/* Left: copy */}
+            <div className="shrink-0 max-w-[30%]">
+              <h3 className="text-sm font-bold text-foreground leading-snug">Safco Mepivacaine</h3>
+              <p className="text-[11px] text-muted-foreground leading-snug mt-1">HCI Injection USP 3% Without Vasoconstrictor</p>
             </div>
 
-            {/* Center copy */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center px-24 py-5 z-20 relative">
-              <h2 className="text-lg font-black text-[hsl(120_50%_25%)] leading-tight mb-1">
-                Minty Green<br />Savings Week!
-              </h2>
-              <p className="text-[11px] text-[hsl(120_30%_35%)] font-medium mb-3">
-                Fresh Deals on Trusted Dental Brands
+            {/* Center: product image */}
+            <div className="flex-1 flex items-center justify-center">
+              <img
+                src={productAnesthetic}
+                alt="Safco Mepivacaine HCI Injection USP 3%"
+                className="h-32 object-contain drop-shadow-xl"
+              />
+            </div>
+
+            {/* Right: deal */}
+            <div className="shrink-0 text-right max-w-[30%]">
+              <p className="text-base font-semibold text-foreground leading-tight">Buy 10,</p>
+              <p className="text-base leading-tight">
+                Get 2 <span className="font-black text-foreground">FREE!</span>
               </p>
-              <div className="bg-[hsl(120_45%_30%)] text-white font-black text-sm px-3 py-1.5 rounded-full inline-flex items-baseline gap-1 shadow-md">
-                Buy 3, Get 1 <span className="text-[hsl(120_70%_75%)] ml-1">FREE!</span>
-                <span className="text-[10px] font-semibold text-white/80 ml-1">on Select Products</span>
-              </div>
             </div>
           </div>
         </div>
