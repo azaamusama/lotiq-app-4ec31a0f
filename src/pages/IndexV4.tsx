@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SafcoHeaderV3 from "@/components/v3/SafcoHeaderV3";
+import HeroBannerV4 from "@/components/v4/HeroBannerV4";
 import HeroPromoGrid from "@/components/HeroPromoGrid";
 import CategoryGrid from "@/components/CategoryGrid";
 import BrandStrip from "@/components/BrandStrip";
