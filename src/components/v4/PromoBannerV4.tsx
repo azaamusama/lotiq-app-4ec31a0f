@@ -1,12 +1,13 @@
-import bannerMintyGreen from "@/assets/banner-minty-green.webp";
+import bannerSafcoBrand from "@/assets/banner-safco-brand-april.jpg";
 
 const PromoBannerV4 = () => (
   <section className="w-full py-3">
     <div className="container">
       <img
-        src={bannerMintyGreen}
-        alt="Minty Green Savings Week – Buy 3 Get 1 Free on Select Products"
-        className="w-full h-auto block rounded-xl"
+        src={bannerSafcoBrand}
+        alt="Safco Dental Supply Brand Products"
+        className="w-full object-cover object-center block rounded-xl"
+        style={{ maxHeight: "160px" }}
       />
     </div>
   </section>
