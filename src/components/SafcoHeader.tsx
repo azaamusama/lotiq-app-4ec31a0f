@@ -5,7 +5,7 @@ import safcoLogo from "@/assets/safco-logo.png";
 
 const NAV_ITEMS = [
   { label: "All Products", slug: "all-products", hasDropdown: true, isVersionPicker: true },
-  { label: "Restorative & Preventives", slug: "restorative", hasDropdown: true },
+  { label: "Restorative & Preventives", slug: "restorative", hasDropdown: true, isPdpPicker: true },
   { label: "Services & Equipment", slug: "equipment", hasDropdown: true },
   { label: "Laboratory", slug: "laboratory", hasDropdown: true },
   { label: "Endodontics", slug: "endodontics", hasDropdown: true },
