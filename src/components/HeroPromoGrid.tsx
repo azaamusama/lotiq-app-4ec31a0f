@@ -190,13 +190,13 @@ const HeroPromoGrid = () => {
             </div>
           </div>
 
-          {/* Quick reorder */}
-          <div className="bg-secondary rounded-lg p-4">
-            <h3 className="text-sm font-bold text-secondary-foreground mb-2">Quick Reorder</h3>
-            <p className="text-xs text-secondary-foreground/70 mb-3">Sign in to see your recent orders</p>
-            <Button variant="action" size="sm">
-              Sign In <ArrowRight className="h-3 w-3 ml-1" />
-            </Button>
+          {/* Predicta Bioactive Promo Card */}
+          <div className="relative rounded-lg overflow-hidden min-h-[120px] flex">
+            <img
+              src={promoPredicta}
+              alt="Predicta Bioactive – Buy 2 Get 1 Free"
+              className="w-full h-full object-cover object-center"
+            />
           </div>
         </div>
       </div>
