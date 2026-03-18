@@ -18,7 +18,7 @@ const IndexV5 = () => {
   const [showModal, setShowModal] = useState(true);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background theme-v5">
       <SafcoHeaderV5 />
 
       {/* Onboarding Modal Overlay */}

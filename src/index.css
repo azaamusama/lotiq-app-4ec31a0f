@@ -204,4 +204,11 @@
   .font-mono-data {
     font-family: 'Roboto Mono', monospace;
   }
+
+  /* V5 theme: orange CTAs */
+  .theme-v5 {
+    --primary: 24 87% 61%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 24 87% 61%;
+  }
 }
