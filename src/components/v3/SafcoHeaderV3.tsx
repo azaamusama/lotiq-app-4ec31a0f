@@ -31,7 +31,7 @@ const SafcoHeaderV3 = () => {
     <header className="sticky top-0 z-50 shadow-lg">
 
       {/* ── Utility Bar ── */}
-      <div className="bg-[#5E8AD2]">
+      <div className="bg-[#3563AE]">
         <div className="container flex items-center justify-center gap-10 py-1.5 text-[12px] text-primary-foreground/80">
           <a href="tel:8006212178" className="flex items-center gap-1.5 hover:text-primary-foreground transition-colors">
             <Phone className="h-3 w-3" />
@@ -46,7 +46,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Main Header ── */}
-      <div className="bg-[#2952A0]">
+      <div className="bg-[#20335A]">
         <div className="container flex items-center gap-6 py-3.5">
 
           {/* Mobile toggle */}
@@ -113,7 +113,7 @@ const SafcoHeaderV3 = () => {
       </div>
 
       {/* ── Navigation Bar ── */}
-      <nav className="hidden lg:block bg-[#2952A0] border-t border-primary-foreground/10">
+      <nav className="hidden lg:block bg-[#20396C] border-t border-primary-foreground/10">
         <div className="container flex items-center gap-1 py-0">
 
           {NAV_ITEMS.map((item) =>
@@ -183,7 +183,7 @@ const SafcoHeaderV3 = () => {
 
       {/* ── Mobile Menu ── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-primary-foreground/10 bg-[hsl(219_59%_34%)]">
+        <div className="lg:hidden border-t border-primary-foreground/10 bg-[#20396C]">
           <div className="flex flex-col">
             {NAV_ITEMS.map((item) => (
               <Link
