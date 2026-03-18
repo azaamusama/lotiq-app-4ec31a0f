@@ -108,28 +108,32 @@ const HeroPromoGrid = () => {
           </div>
 
           {/* Mepivacaine Promo Card */}
-          <div className="relative bg-[hsl(38_60%_95%)] rounded-lg overflow-hidden flex items-center min-h-[220px] px-5 gap-3">
-            {/* Left: copy */}
-            <div className="shrink-0 max-w-[30%]">
-              <h3 className="text-sm font-bold text-foreground leading-snug">Safco Mepivacaine</h3>
-              <p className="text-[11px] text-muted-foreground leading-snug mt-1">HCI Injection USP 3% Without Vasoconstrictor</p>
+          <div className="relative bg-[hsl(38_55%_95%)] rounded-lg overflow-hidden flex flex-col justify-between min-h-[220px] p-5">
+            {/* Top: product name */}
+            <div>
+              <p className="text-[10px] text-muted-foreground uppercase font-semibold tracking-wide mb-1">Featured Product</p>
+              <h3 className="text-base font-black text-foreground leading-snug">Safco Mepivacaine</h3>
+              <p className="text-[11px] text-muted-foreground leading-snug mt-0.5">HCI Injection USP 3%<br />Without Vasoconstrictor</p>
             </div>
 
             {/* Center: product image */}
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex items-center justify-center py-2">
               <img
                 src={productAnesthetic}
                 alt="Safco Mepivacaine HCI Injection USP 3%"
-                className="h-32 object-contain drop-shadow-xl"
+                className="h-24 object-contain drop-shadow-xl"
               />
             </div>
 
-            {/* Right: deal */}
-            <div className="shrink-0 text-right max-w-[30%]">
-              <p className="text-base font-semibold text-foreground leading-tight">Buy 10,</p>
-              <p className="text-base leading-tight">
-                Get 2 <span className="font-black text-foreground">FREE!</span>
-              </p>
+            {/* Bottom: deal + CTA */}
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-lg font-black text-foreground leading-tight">Buy 10,</p>
+                <p className="text-lg font-black text-[hsl(22_80%_45%)] leading-tight">Get 2 FREE!</p>
+              </div>
+              <a href="#" className="text-xs font-bold bg-foreground text-background px-3 py-1.5 rounded hover:opacity-80 transition-opacity">
+                Shop Now
+              </a>
             </div>
           </div>
         </div>
