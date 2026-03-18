@@ -34,23 +34,35 @@ const HeroPromoGrid = () => {
             </Button>
           </div>
 
-          {/* Deals just for you - product mini grid */}
-          <div className="bg-card rounded-lg p-4 border border-border">
-            <h3 className="text-sm font-bold text-foreground mb-3">Deals just for you</h3>
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { img: productGloves, label: "Nitrile Gloves", price: "$15.99" },
-                { img: productBurs, label: "Diamond Burs Kit", price: "$42.50" },
-                { img: productComposite, label: "Composite Syringe", price: "$89.00" },
-                { img: productCement, label: "Luting Cement", price: "$34.75" },
-              ].map((item) => (
-                <a key={item.label} href="#" className="flex flex-col items-center p-2 rounded hover:bg-muted transition-colors">
-                  <img src={item.img} alt={item.label} className="w-14 h-14 object-contain mb-1" />
-                  <span className="text-[10px] text-foreground text-center leading-tight">{item.label}</span>
-                  <span className="text-[10px] font-bold text-primary">{item.price}</span>
-                </a>
-              ))}
+          {/* Take Back Your Costs Card */}
+          <div className="relative bg-[hsl(200_60%_94%)] rounded-lg p-5 flex flex-col justify-between min-h-[220px] overflow-hidden">
+            <div className="flex gap-3">
+              {/* Left: headline */}
+              <div className="flex-1">
+                <h2 className="text-xl font-black text-[hsl(220_70%_30%)] leading-tight tracking-tight uppercase">
+                  Take Back<br />Your<br />Costs
+                </h2>
+              </div>
+              {/* Center: icon + body */}
+              <div className="flex-1">
+                <div className="w-8 h-9 bg-[hsl(145_55%_42%)] flex items-center justify-center rounded-sm mb-2" style={{clipPath: 'polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%)'}}>
+                  <span className="text-white font-black text-sm">$</span>
+                </div>
+                <p className="text-[11px] text-[hsl(220_30%_35%)] leading-snug">
+                  Lower pricing across everyday essentials plus a reduced free shipping threshold.
+                </p>
+              </div>
             </div>
+
+            {/* Free shipping badge */}
+            <div className="mt-3 border-2 border-[hsl(220_70%_30%)] rounded-lg px-3 py-2 inline-flex items-baseline gap-1 w-fit">
+              <span className="text-[10px] font-bold text-[hsl(220_70%_30%)] uppercase leading-tight">Free Shipping<br />on orders over</span>
+              <span className="text-2xl font-black text-[hsl(220_70%_30%)]">$99</span>
+            </div>
+
+            <a href="#" className="mt-3 w-fit text-xs font-bold bg-[hsl(220_70%_40%)] text-white px-4 py-2 rounded hover:bg-[hsl(220_70%_30%)] transition-colors inline-block">
+              Shop Now
+            </a>
           </div>
 
           {/* Top Category Deals */}
