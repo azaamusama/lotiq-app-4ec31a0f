@@ -6,8 +6,7 @@ const PromoBannerV4 = () => (
       <img
         src={bannerCeramir}
         alt="Ceramir Crown & Bridge – Buy 3 Get 1 Free"
-        className="w-full object-cover object-center block rounded-xl"
-        style={{ maxHeight: "160px" }}
+        className="w-full h-auto block rounded-xl"
       />
     </div>
   </section>
