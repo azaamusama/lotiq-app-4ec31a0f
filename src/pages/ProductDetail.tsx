@@ -115,19 +115,19 @@ const ProductDetail = () => {
 
         {/* Promo Banner */}
         {promoVisible && (
-          <div className="border border-alert/40 bg-alert/5 rounded-lg px-4 py-3 flex items-start gap-3 mb-6 relative">
-            <span className="text-alert mt-0.5">⊙</span>
-            <div className="flex-1 text-sm">
-              <p className="font-semibold text-alert">Winter Sale is Here!</p>
-              <p className="text-muted-foreground text-xs mt-0.5">
-                Save up to 25% on select nitrile gloves and dental essentials. Offer valid through January 31, 2026.
-              </p>
-              <p className="text-xs mt-1">
-                <a href="#" className="text-alert font-semibold hover:underline">Later &nbsp; View all Offers →</a>
-              </p>
-            </div>
-            <button onClick={() => setPromoVisible(false)} className="text-muted-foreground hover:text-foreground">
-              <X className="h-4 w-4" />
+          <div className="relative mb-6">
+            <a href="/category/gloves">
+              <img
+                src={bannerMicroflexXceed}
+                alt="Deal of the Week – Microflex XCEED 6+4 Free"
+                className="w-full h-auto block rounded-xl transition-opacity hover:opacity-90"
+              />
+            </a>
+            <button
+              onClick={() => setPromoVisible(false)}
+              className="absolute top-2 right-2 bg-foreground/60 hover:bg-foreground/80 text-background rounded-full p-1 transition-colors"
+            >
+              <X className="h-3.5 w-3.5" />
             </button>
           </div>
         )}
