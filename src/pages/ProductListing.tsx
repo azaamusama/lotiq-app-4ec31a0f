@@ -119,9 +119,9 @@ const PLPProductCard = ({
 }: (typeof PRODUCTS)[number]) => (
   <div className="bg-card border border-border rounded-lg overflow-hidden flex flex-col group hover:shadow-md transition-shadow">
     {/* Image */}
-    <div className="relative bg-background">
-      <div className="aspect-[4/3] flex items-center justify-center p-4">
-        <img src={image} alt={name} className="w-full h-full object-contain" loading="lazy" />
+    <div className="relative bg-white">
+      <div className="aspect-square overflow-hidden">
+        <img src={image} alt={name} className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300" loading="lazy" />
       </div>
       {lastPurchased && (
         <div className="absolute top-2 left-2 bg-card/90 border border-border text-[10px] text-muted-foreground px-2 py-1 rounded font-medium backdrop-blur-sm">
