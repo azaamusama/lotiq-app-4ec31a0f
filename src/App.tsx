@@ -9,6 +9,7 @@ import IndexV3 from "./pages/IndexV3.tsx";
 import IndexV4 from "./pages/IndexV4.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
 import ProductListing from "./pages/ProductListing.tsx";
+import BundleBuilder from "./pages/BundleBuilder.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/v4" element={<IndexV4 />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/category/:slug" element={<ProductListing />} />
+          <Route path="/bundle/:id" element={<BundleBuilder />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
