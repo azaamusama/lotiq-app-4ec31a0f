@@ -10,26 +10,33 @@ import SKUPadInjector from "@/components/SKUPadInjector";
 import SafcoFooter from "@/components/SafcoFooter";
 import ServiceSolutions from "@/components/ServiceSolutions";
 import IndustryPartnerships from "@/components/IndustryPartnerships";
+import { AuthGatingProvider } from "@/components/auth/AuthGatingProvider";
+import AuthModal from "@/components/auth/AuthModal";
+import IncentiveBanner from "@/components/auth/IncentiveBanner";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <SafcoHeader />
-      <main>
-        <HeroPromoGrid />
-        <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
-        <BrandStrip />
-        <PromoBanners />
-        <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
-        <IndustryPartnerships />
-        <ServiceSolutions />
-        <CategoryGrid />
-        <BuyingGuides />
-        <TrustSignals />
-      </main>
-      <SafcoFooter />
-      <SKUPadInjector />
-    </div>
+    <AuthGatingProvider>
+      <div className="min-h-screen bg-background">
+        <IncentiveBanner />
+        <SafcoHeader />
+        <main>
+          <HeroPromoGrid />
+          <DealProductRow title="Deals just for you" subtitle="Competitive pricing on your most-ordered consumables" />
+          <BrandStrip />
+          <PromoBanners />
+          <DealProductRow title="Top favorites" subtitle="Popular products from trusted brands" />
+          <IndustryPartnerships />
+          <ServiceSolutions />
+          <CategoryGrid />
+          <BuyingGuides />
+          <TrustSignals />
+        </main>
+        <SafcoFooter />
+        <SKUPadInjector />
+        <AuthModal />
+      </div>
+    </AuthGatingProvider>
   );
 };
 
