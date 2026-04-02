@@ -18,6 +18,10 @@ import Properties from "@/pages/lotiq/Properties";
 import PropertyDetail from "@/pages/lotiq/PropertyDetail";
 import Pricing from "@/pages/lotiq/Pricing";
 import MonitoringRules from "@/pages/lotiq/MonitoringRules";
+import Billing from "@/pages/lotiq/Billing";
+import Invoices from "@/pages/lotiq/Invoices";
+import InvoiceDetail from "@/pages/lotiq/InvoiceDetail";
+import PaymentMethod from "@/pages/lotiq/PaymentMethod";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
