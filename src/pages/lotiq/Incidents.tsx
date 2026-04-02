@@ -26,23 +26,23 @@ export default function Incidents() {
           <ArrowLeft className="h-4 w-4" /> Back to incidents
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           <div className="lg:col-span-2 space-y-4">
             {/* Header Card */}
             <Card>
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
+              <CardContent className="p-4 md:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-lg">{incidentTypeIcons[incident.type]}</span>
-                      <h3 className="text-lg font-semibold">{incident.title}</h3>
+                      <h3 className="text-base md:text-lg font-semibold">{incident.title}</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">{incident.description}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{incident.description}</p>
                   </div>
                   <IncidentStatusBadge status={incident.status} />
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t">
+                <div className="grid grid-cols-2 gap-3 md:gap-4 pt-4 border-t">
                   <Detail icon={<Clock className="h-3.5 w-3.5" />} label="Detected" value={format(new Date(incident.timestamp), "MMM d, h:mm a")} />
                   <Detail icon={<Camera className="h-3.5 w-3.5" />} label="Camera" value={incident.cameraName} />
                   <Detail icon={<MapPin className="h-3.5 w-3.5" />} label="Zone" value={incident.zone} />
@@ -60,9 +60,9 @@ export default function Incidents() {
 
             {/* Evidence */}
             <Card>
-              <CardContent className="p-6">
+              <CardContent className="p-4 md:p-6">
                 <h4 className="text-sm font-semibold mb-3">Evidence</h4>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 md:gap-3">
                   {incident.images.map((img, i) => (
                     <div key={i} className="aspect-video rounded-lg bg-muted flex items-center justify-center border">
                       <span className="text-xs text-muted-foreground">Capture {i + 1}</span>
@@ -127,7 +127,7 @@ export default function Incidents() {
   return (
     <AppLayout title="Incidents" subtitle={`${incidents.length} total incidents`}>
       {/* Filters */}
-      <div className="flex flex-wrap gap-2 mb-4">
+      <div className="flex flex-nowrap gap-1.5 md:gap-2 mb-3 md:mb-4 overflow-x-auto pb-1 -mx-1 px-1">
         <FilterChip active={filterType === "all"} onClick={() => setFilterType("all")}>All Types</FilterChip>
         {(Object.keys(incidentTypeLabels) as IncidentType[]).map(type => (
           <FilterChip key={type} active={filterType === type} onClick={() => setFilterType(type)}>
@@ -135,7 +135,7 @@ export default function Incidents() {
           </FilterChip>
         ))}
       </div>
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-nowrap gap-1.5 md:gap-2 mb-4 md:mb-6 overflow-x-auto pb-1 -mx-1 px-1">
         {(["all", "active", "escalated", "monitoring", "resolved"] as const).map(s => (
           <FilterChip key={s} active={filterStatus === s} onClick={() => setFilterStatus(s)}>
             {s === "all" ? "All Status" : s.charAt(0).toUpperCase() + s.slice(1)}
@@ -146,22 +146,24 @@ export default function Incidents() {
       <div className="space-y-2">
         {filtered.map((incident) => (
           <Card key={incident.id} className="hover:border-primary/30 transition-colors cursor-pointer" onClick={() => navigate(`/incidents/${incident.id}`)}>
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <span className="text-lg">{incidentTypeIcons[incident.type]}</span>
+            <CardContent className="p-3 md:p-4">
+              <div className="flex items-start gap-2 md:gap-3">
+                <span className="text-base md:text-lg mt-0.5">{incidentTypeIcons[incident.type]}</span>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-sm font-medium">{incident.title}</span>
+                  <div className="flex items-center gap-1.5 md:gap-2 mb-0.5 flex-wrap">
+                    <span className="text-xs md:text-sm font-medium">{incident.title}</span>
                     <IncidentStatusBadge status={incident.status} />
                   </div>
-                  <p className="text-xs text-muted-foreground">{incident.zone} · {incident.cameraName} · {incidentTypeLabels[incident.type]}</p>
+                  <p className="text-[10px] md:text-xs text-muted-foreground truncate">{incident.zone} · {incident.cameraName} · {incidentTypeLabels[incident.type]}</p>
                 </div>
-                {incident.licensePlate && (
-                  <span className="text-xs font-mono-data font-medium px-2 py-1 rounded bg-muted">{incident.licensePlate}</span>
-                )}
-                <span className="text-xs text-muted-foreground shrink-0">
-                  {formatDistanceToNow(new Date(incident.timestamp), { addSuffix: true })}
-                </span>
+                <div className="flex flex-col items-end gap-1 shrink-0">
+                  {incident.licensePlate && (
+                    <span className="text-[10px] md:text-xs font-mono-data font-medium px-1.5 md:px-2 py-0.5 md:py-1 rounded bg-muted">{incident.licensePlate}</span>
+                  )}
+                  <span className="text-[10px] md:text-xs text-muted-foreground">
+                    {formatDistanceToNow(new Date(incident.timestamp), { addSuffix: true })}
+                  </span>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -175,7 +177,7 @@ function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; 
   return (
     <div>
       <div className="flex items-center gap-1 text-muted-foreground mb-0.5">{icon}<span className="text-[10px] uppercase tracking-wide">{label}</span></div>
-      <p className="text-sm font-medium">{value}</p>
+      <p className="text-xs md:text-sm font-medium">{value}</p>
     </div>
   );
 }
@@ -184,7 +186,7 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
   return (
     <button
       onClick={onClick}
-      className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
+      className={`px-2.5 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-medium transition-colors border whitespace-nowrap shrink-0 ${
         active ? "bg-primary text-primary-foreground border-primary" : "bg-card text-muted-foreground border-border hover:border-primary/30"
       }`}
     >
