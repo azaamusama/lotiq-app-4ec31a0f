@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 
 export default function Dashboard() {
-  const { stats, incidents, towJobs } = useLotIQ();
+  const { stats, incidents } = useLotIQ();
   const navigate = useNavigate();
 
   const activeIncidents = incidents.filter(i => i.status === "active" || i.status === "escalated").slice(0, 4);
