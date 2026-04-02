@@ -14,6 +14,7 @@ import People from "@/pages/lotiq/People";
 import Vehicles from "@/pages/lotiq/Vehicles";
 import Cameras from "@/pages/lotiq/Cameras";
 import PropertySetup from "@/pages/lotiq/PropertySetup";
+import Properties from "@/pages/lotiq/Properties";
 import Pricing from "@/pages/lotiq/Pricing";
 import NotFound from "@/pages/NotFound";
 
