@@ -7,9 +7,10 @@ interface AppLayoutProps {
   children: React.ReactNode;
   title?: string;
   subtitle?: string;
+  headerRight?: React.ReactNode;
 }
 
-export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
+export function AppLayout({ children, title, subtitle, headerRight }: AppLayoutProps) {
   const { stats } = useLotIQ();
 
   return (
@@ -24,17 +25,21 @@ export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
           )}
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" className="text-muted-foreground relative h-8 w-8 md:h-9 md:w-9">
-            <Bell className="h-4 w-4" />
-            {stats.activeIncidents > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-destructive text-destructive-foreground text-[10px] flex items-center justify-center font-medium">
-                {stats.activeIncidents}
-              </span>
-            )}
-          </Button>
-          <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
-            <span className="text-[10px] md:text-xs font-semibold text-primary">PM</span>
-          </div>
+          {headerRight || (
+            <>
+              <Button variant="ghost" size="icon" className="text-muted-foreground relative h-8 w-8 md:h-9 md:w-9">
+                <Bell className="h-4 w-4" />
+                {stats.activeIncidents > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-destructive text-destructive-foreground text-[10px] flex items-center justify-center font-medium">
+                    {stats.activeIncidents}
+                  </span>
+                )}
+              </Button>
+              <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <span className="text-[10px] md:text-xs font-semibold text-primary">PM</span>
+              </div>
+            </>
+          )}
         </div>
       </header>
       <main className="flex-1 overflow-auto p-3 md:p-6 pb-20 max-w-3xl mx-auto w-full">
