@@ -18,6 +18,10 @@ import Properties from "@/pages/lotiq/Properties";
 import PropertyDetail from "@/pages/lotiq/PropertyDetail";
 import Pricing from "@/pages/lotiq/Pricing";
 import MonitoringRules from "@/pages/lotiq/MonitoringRules";
+import Billing from "@/pages/lotiq/Billing";
+import Invoices from "@/pages/lotiq/Invoices";
+import InvoiceDetail from "@/pages/lotiq/InvoiceDetail";
+import PaymentMethod from "@/pages/lotiq/PaymentMethod";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -43,6 +47,10 @@ const App = () => (
             <Route path="/property/setup" element={<PropertySetup />} />
             <Route path="/property/:id" element={<PropertyDetail />} />
             <Route path="/property/:id/monitoring" element={<MonitoringRules />} />
+            <Route path="/property/:id/billing" element={<Billing />} />
+            <Route path="/property/:id/billing/invoices" element={<Invoices />} />
+            <Route path="/property/:id/billing/invoices/:invoiceId" element={<InvoiceDetail />} />
+            <Route path="/property/:id/billing/payment" element={<PaymentMethod />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
