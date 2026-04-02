@@ -1,28 +1,78 @@
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLotIQ } from "@/contexts/LotIQContext";
-import { IncidentStatusBadge } from "@/components/lotiq/StatusBadge";
-import { incidentTypeIcons } from "@/lib/mock-data";
-import { CheckCircle2, Truck, Clock, ChevronRight, Snowflake, Camera, ShieldAlert } from "lucide-react";
+import { CheckCircle2, Truck, Snowflake, Camera, ShieldAlert, ChevronRight, AlertTriangle, Zap, Building2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 
+const attentionIconMap: Record<string, { icon: React.ReactNode; bg: string; border: string; labelColor: string }> = {
+  escalated: {
+    icon: <AlertTriangle className="h-5 w-5 text-destructive" />,
+    bg: "bg-destructive/10",
+    border: "border-destructive/40",
+    labelColor: "text-destructive",
+  },
+  active: {
+    icon: <Zap className="h-5 w-5 text-[hsl(var(--lotiq-amber))]" />,
+    bg: "bg-[hsl(var(--lotiq-amber))]/10",
+    border: "border-[hsl(var(--lotiq-amber))]/40",
+    labelColor: "text-[hsl(var(--lotiq-amber))]",
+  },
+  tow: {
+    icon: <Truck className="h-5 w-5 text-[hsl(var(--lotiq-amber))]" />,
+    bg: "bg-[hsl(var(--lotiq-amber))]/10",
+    border: "border-[hsl(var(--lotiq-amber))]/40",
+    labelColor: "text-[hsl(var(--lotiq-amber))]",
+  },
+  health: {
+    icon: <Building2 className="h-5 w-5 text-destructive" />,
+    bg: "bg-destructive/10",
+    border: "border-destructive/40",
+    labelColor: "text-destructive",
+  },
+};
+
 export default function Dashboard() {
-  const { stats, incidents } = useLotIQ();
+  const { stats, incidents, towJobs } = useLotIQ();
   const navigate = useNavigate();
 
-  const activeIncidents = incidents.filter(i => i.status === "active" || i.status === "escalated").slice(0, 4);
+  // Build attention items from active/escalated incidents + active tows
+  const activeIncidents = incidents.filter(i => i.status === "active" || i.status === "escalated").slice(0, 3);
+  const activeTowItems = towJobs.filter(t => !["completed", "cancelled"].includes(t.status)).slice(0, 1);
 
-  // Attention items - combine urgent incidents
-  const attentionItems = activeIncidents.map(inc => ({
-    id: inc.id,
-    property: inc.zone,
-    label: inc.title,
-    time: formatDistanceToNow(new Date(inc.timestamp), { addSuffix: true }),
-    icon: incidentTypeIcons[inc.type],
-    color: inc.status === "escalated" ? "border-l-destructive" : "border-l-[hsl(var(--lotiq-amber))]",
-    labelColor: inc.status === "escalated" ? "text-destructive" : "text-[hsl(var(--lotiq-amber))]",
-  }));
+  const attentionItems = [
+    ...activeIncidents.map(inc => {
+      const style = inc.status === "escalated" ? attentionIconMap.escalated : attentionIconMap.active;
+      return {
+        id: inc.id,
+        property: inc.zone,
+        label: inc.title,
+        time: formatDistanceToNow(new Date(inc.timestamp), { addSuffix: true }),
+        ...style,
+        onClick: () => navigate(`/incidents/${inc.id}`),
+      };
+    }),
+    ...activeTowItems.map(tow => {
+      const style = attentionIconMap.tow;
+      return {
+        id: tow.id,
+        property: tow.vehicleDescription,
+        label: "Tow in progress",
+        time: formatDistanceToNow(new Date(tow.requestedAt), { addSuffix: true }),
+        ...style,
+        onClick: () => navigate("/towing"),
+      };
+    }),
+    // Add a property health item
+    {
+      id: "health-1",
+      property: incidents[0]?.zone || "Main Property",
+      label: "Property health 65%",
+      time: "5 minutes ago",
+      ...attentionIconMap.health,
+      onClick: () => navigate("/property"),
+    },
+  ];
 
   return (
     <AppLayout title="Overview">
@@ -31,18 +81,20 @@ export default function Dashboard() {
         <h3 className="text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
           Requires Attention
         </h3>
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {attentionItems.map((item) => (
             <Card
               key={item.id}
-              className={`border-l-4 ${item.color} cursor-pointer hover:bg-muted/30 transition-colors`}
-              onClick={() => navigate(`/incidents/${item.id}`)}
+              className={`border-2 ${item.border} cursor-pointer hover:bg-muted/30 transition-colors`}
+              onClick={item.onClick}
             >
               <CardContent className="p-3 md:p-4 flex items-center gap-3">
-                <span className="text-lg md:text-xl">{item.icon}</span>
+                <div className={`w-10 h-10 rounded-xl ${item.bg} flex items-center justify-center shrink-0`}>
+                  {item.icon}
+                </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs md:text-sm font-semibold text-foreground truncate">{item.property}</p>
-                  <p className={`text-[10px] md:text-xs font-medium ${item.labelColor}`}>{item.label}</p>
+                  <p className="text-sm font-semibold text-foreground truncate">{item.property}</p>
+                  <p className={`text-xs font-medium ${item.labelColor}`}>{item.label}</p>
                   <p className="text-[10px] text-muted-foreground">{item.time}</p>
                 </div>
               </CardContent>
@@ -67,7 +119,7 @@ export default function Dashboard() {
           onClick={() => navigate("/property")}
           className="w-full rounded-xl bg-primary p-4 flex items-center gap-3 text-left hover:bg-primary/90 transition-colors"
         >
-          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
             <CheckCircle2 className="h-5 w-5 text-primary-foreground" />
           </div>
           <div className="flex-1">
@@ -110,39 +162,6 @@ export default function Dashboard() {
           />
         </div>
       </section>
-
-      {/* RECENT ACTIVITY - desktop gets more detail */}
-      <section className="hidden md:block">
-        <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
-          Recent Activity
-        </h3>
-        <Card>
-          <CardContent className="p-0">
-            <div className="divide-y">
-              {incidents.slice(0, 6).map((incident) => (
-                <button
-                  key={incident.id}
-                  onClick={() => navigate(`/incidents/${incident.id}`)}
-                  className="w-full flex items-start gap-3 p-4 hover:bg-muted/50 transition-colors text-left"
-                >
-                  <span className="text-lg mt-0.5">{incidentTypeIcons[incident.type]}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="text-sm font-medium text-foreground truncate">{incident.title}</span>
-                      <IncidentStatusBadge status={incident.status} />
-                    </div>
-                    <p className="text-xs text-muted-foreground truncate">{incident.zone} · {incident.cameraName}</p>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground shrink-0">
-                    <Clock className="h-3 w-3" />
-                    {formatDistanceToNow(new Date(incident.timestamp), { addSuffix: true })}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </section>
     </AppLayout>
   );
 }
@@ -150,11 +169,11 @@ export default function Dashboard() {
 function OverviewStat({ icon, iconBg, value, label }: { icon: React.ReactNode; iconBg: string; value: string | number; label: string }) {
   return (
     <Card>
-      <CardContent className="p-4 flex flex-col items-center text-center gap-2">
-        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${iconBg} flex items-center justify-center`}>
+      <CardContent className="p-4 flex flex-col items-start gap-2">
+        <div className={`w-10 h-10 rounded-xl ${iconBg} flex items-center justify-center`}>
           {icon}
         </div>
-        <p className="text-2xl md:text-3xl font-bold font-mono-data">{value}</p>
+        <p className="text-2xl font-bold font-mono-data">{value}</p>
         <p className="text-[10px] md:text-xs text-muted-foreground">{label}</p>
       </CardContent>
     </Card>
