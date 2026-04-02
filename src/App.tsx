@@ -42,6 +42,7 @@ const App = () => (
             <Route path="/property" element={<Properties />} />
             <Route path="/property/setup" element={<PropertySetup />} />
             <Route path="/property/:id" element={<PropertyDetail />} />
+            <Route path="/property/:id/monitoring" element={<MonitoringRules />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
