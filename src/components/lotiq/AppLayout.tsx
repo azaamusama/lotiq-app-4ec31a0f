@@ -7,9 +7,10 @@ interface AppLayoutProps {
   children: React.ReactNode;
   title?: string;
   subtitle?: string;
+  headerRight?: React.ReactNode;
 }
 
-export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
+export function AppLayout({ children, title, subtitle, headerRight }: AppLayoutProps) {
   const { stats } = useLotIQ();
 
   return (
