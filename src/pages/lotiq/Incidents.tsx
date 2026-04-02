@@ -2,195 +2,374 @@ import { useState } from "react";
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useLotIQ } from "@/contexts/LotIQContext";
-import { IncidentStatusBadge } from "@/components/lotiq/StatusBadge";
-import { incidentTypeLabels, incidentTypeIcons, IncidentType, IncidentStatus } from "@/lib/mock-data";
-import { Clock, Camera, MapPin, Shield, Truck, CheckCircle2, ArrowLeft } from "lucide-react";
+import {
+  ArrowLeft, MapPin, Camera, Clock, AlertTriangle, CheckCircle2,
+  Truck, Car, Zap, Trash2, ChevronRight,
+} from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
-import { formatDistanceToNow, format } from "date-fns";
+import { format } from "date-fns";
+
+import evidence1 from "@/assets/evidence-1.jpg";
+import evidence2 from "@/assets/evidence-2.jpg";
+import evidence3 from "@/assets/evidence-3.jpg";
+
+type VehicleStatus = "allowed" | "grace" | "violation" | "tow_requested" | "trash_overflow" | "ev";
+
+interface StatusIncident {
+  id: string;
+  plate: string;
+  vehicleType: string;
+  status: VehicleStatus;
+  description: string;
+  zone: string;
+  camera: string;
+  time: string;
+  timestamp: string;
+  images: string[];
+  rulesTriggered: string[];
+  towTimeline?: { action: string; time: string }[];
+}
+
+const statusConfig: Record<VehicleStatus, {
+  label: string; color: string; bg: string; borderColor: string;
+  bannerBg: string; bannerText: string; icon: React.ReactNode;
+}> = {
+  allowed: {
+    label: "Allowed", color: "text-[hsl(var(--lotiq-green))]",
+    bg: "bg-[hsl(var(--lotiq-green))]/10", borderColor: "border-[hsl(var(--lotiq-green))]/30",
+    bannerBg: "bg-[hsl(var(--lotiq-green))]/10", bannerText: "text-[hsl(var(--lotiq-green))]",
+    icon: <CheckCircle2 className="h-4 w-4" />,
+  },
+  grace: {
+    label: "Grace", color: "text-[hsl(var(--lotiq-amber))]",
+    bg: "bg-[hsl(var(--lotiq-amber))]/10", borderColor: "border-[hsl(var(--lotiq-amber))]/30",
+    bannerBg: "bg-[hsl(var(--lotiq-amber))]/10", bannerText: "text-[hsl(var(--lotiq-amber))]",
+    icon: <Clock className="h-4 w-4" />,
+  },
+  violation: {
+    label: "Violation", color: "text-destructive",
+    bg: "bg-destructive/10", borderColor: "border-destructive/30",
+    bannerBg: "bg-destructive/10", bannerText: "text-destructive",
+    icon: <AlertTriangle className="h-4 w-4" />,
+  },
+  tow_requested: {
+    label: "Tow Requested", color: "text-destructive",
+    bg: "bg-destructive/10", borderColor: "border-destructive/30",
+    bannerBg: "bg-destructive", bannerText: "text-destructive-foreground",
+    icon: <Truck className="h-4 w-4" />,
+  },
+  trash_overflow: {
+    label: "Trash Overflow", color: "text-destructive",
+    bg: "bg-destructive/10", borderColor: "border-destructive/30",
+    bannerBg: "bg-foreground", bannerText: "text-background",
+    icon: <Trash2 className="h-4 w-4" />,
+  },
+  ev: {
+    label: "EV", color: "text-[hsl(var(--lotiq-amber))]",
+    bg: "bg-[hsl(var(--lotiq-amber))]/10", borderColor: "border-[hsl(var(--lotiq-amber))]/30",
+    bannerBg: "bg-[hsl(var(--lotiq-amber))]/10", bannerText: "text-[hsl(var(--lotiq-amber))]",
+    icon: <Zap className="h-4 w-4" />,
+  },
+};
+
+const mockStatusIncidents: StatusIncident[] = [
+  {
+    id: "si-1", plate: "ABC-1234", vehicleType: "Standard", status: "allowed",
+    description: "Registered vehicle · Unit 204",
+    zone: "Lot A - Entrance", camera: "CAM-001", time: "17 minutes ago",
+    timestamp: "2026-04-02T14:30:00Z", images: [evidence1, evidence2, evidence3],
+    rulesTriggered: [],
+  },
+  {
+    id: "si-2", plate: "XYZ-5678", vehicleType: "EV · Plugged in", status: "allowed",
+    description: "EV charging · registered guest",
+    zone: "Lot B - EV Zone", camera: "CAM-003", time: "27 minutes ago",
+    timestamp: "2026-04-02T14:20:00Z", images: [evidence1],
+    rulesTriggered: [],
+  },
+  {
+    id: "si-3", plate: "DEF-9012", vehicleType: "Standard", status: "trash_overflow",
+    description: "Unregistered vehicle · 12 min grace remaining",
+    zone: "Lot A - Row 2", camera: "CAM-002", time: "15 minutes ago",
+    timestamp: "2026-04-02T14:32:00Z", images: [evidence1, evidence2],
+    rulesTriggered: ["Not on authorized vehicle list", "After-hours enforcement active (10 PM – 6 AM)"],
+  },
+  {
+    id: "si-4", plate: "ABC-1234", vehicleType: "EV · Not Plugged", status: "violation",
+    description: "EV spot · not charging",
+    zone: "Lot B - EV Zone", camera: "CAM-003", time: "about 1 hour ago",
+    timestamp: "2026-04-02T13:45:00Z", images: [evidence1, evidence2, evidence3],
+    rulesTriggered: ["Not on authorized vehicle list", "After-hours enforcement active (10 PM – 6 AM)", "Reserved parking zone violation"],
+  },
+  {
+    id: "si-5", plate: "JKL-7890", vehicleType: "Standard", status: "tow_requested",
+    description: "Unauthorized parking · after hours",
+    zone: "Lot C - Reserved", camera: "CAM-005", time: "about 2 hours ago",
+    timestamp: "2026-04-02T12:47:00Z", images: [evidence1, evidence2, evidence3],
+    rulesTriggered: ["Not on authorized vehicle list", "After-hours enforcement active (10 PM – 6 AM)", "Reserved parking zone violation"],
+    towTimeline: [
+      { action: "Tow Requested", time: "Feb 7, 3:47 PM" },
+      { action: "Tow Truck Dispatched", time: "Feb 7, 3:52 PM" },
+    ],
+  },
+];
+
+const filterOptions: { label: string; value: VehicleStatus | "all" }[] = [
+  { label: "All", value: "all" },
+  { label: "Allowed", value: "allowed" },
+  { label: "Grace", value: "grace" },
+  { label: "Violation", value: "violation" },
+  { label: "Tow", value: "tow_requested" },
+  { label: "Trash", value: "trash_overflow" },
+  { label: "EV", value: "ev" },
+];
 
 export default function Incidents() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { incidents, requestTow, resolveIncident } = useLotIQ();
-  const [filterType, setFilterType] = useState<IncidentType | "all">("all");
-  const [filterStatus, setFilterStatus] = useState<IncidentStatus | "all">("all");
+  const [filter, setFilter] = useState<VehicleStatus | "all">("all");
 
+  // DETAIL VIEW
   if (id) {
-    const incident = incidents.find(i => i.id === id);
-    if (!incident) return <AppLayout title="Incident Not Found"><p>Incident not found.</p></AppLayout>;
+    const incident = mockStatusIncidents.find(i => i.id === id);
+    if (!incident) return <AppLayout title="Not Found"><p className="text-sm text-muted-foreground">Incident not found.</p></AppLayout>;
+
+    const cfg = statusConfig[incident.status];
 
     return (
-      <AppLayout title={`Incident ${incident.id}`} subtitle={incident.title}>
-        <button onClick={() => navigate("/incidents")} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4">
-          <ArrowLeft className="h-4 w-4" /> Back to incidents
-        </button>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-          <div className="lg:col-span-2 space-y-4">
-            {/* Header Card */}
-            <Card>
-              <CardContent className="p-4 md:p-6">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-lg">{incidentTypeIcons[incident.type]}</span>
-                      <h3 className="text-base md:text-lg font-semibold">{incident.title}</h3>
-                    </div>
-                    <p className="text-xs md:text-sm text-muted-foreground">{incident.description}</p>
-                  </div>
-                  <IncidentStatusBadge status={incident.status} />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 md:gap-4 pt-4 border-t">
-                  <Detail icon={<Clock className="h-3.5 w-3.5" />} label="Detected" value={format(new Date(incident.timestamp), "MMM d, h:mm a")} />
-                  <Detail icon={<Camera className="h-3.5 w-3.5" />} label="Camera" value={incident.cameraName} />
-                  <Detail icon={<MapPin className="h-3.5 w-3.5" />} label="Zone" value={incident.zone} />
-                  <Detail icon={<Shield className="h-3.5 w-3.5" />} label="Rule" value={incident.ruleTriggered} />
-                </div>
-
-                {incident.licensePlate && (
-                  <div className="mt-4 p-3 rounded-lg bg-muted/50">
-                    <span className="text-xs text-muted-foreground">License Plate</span>
-                    <p className="text-lg font-mono-data font-bold">{incident.licensePlate}</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Evidence */}
-            <Card>
-              <CardContent className="p-4 md:p-6">
-                <h4 className="text-sm font-semibold mb-3">Evidence</h4>
-                <div className="grid grid-cols-2 gap-2 md:gap-3">
-                  {incident.images.map((img, i) => (
-                    <div key={i} className="aspect-video rounded-lg bg-muted flex items-center justify-center border">
-                      <span className="text-xs text-muted-foreground">Capture {i + 1}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Timeline & Actions */}
-          <div className="space-y-4">
-            {/* Actions */}
-            {incident.status !== "resolved" && (
-              <Card>
-                <CardContent className="p-4 space-y-2">
-                  <h4 className="text-sm font-semibold mb-2">Actions</h4>
-                  {incident.licensePlate && !incident.towJobId && (
-                    <Button className="w-full" onClick={() => requestTow(incident.id)}>
-                      <Truck className="h-4 w-4 mr-2" /> Request Tow
-                    </Button>
-                  )}
-                  <Button variant="outline" className="w-full" onClick={() => resolveIncident(incident.id)}>
-                    <CheckCircle2 className="h-4 w-4 mr-2" /> Resolve Incident
-                  </Button>
-                </CardContent>
-              </Card>
+      <AppLayout
+        title="Status"
+        headerLeft={
+          <button onClick={() => navigate("/incidents")} className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center">
+            <ArrowLeft className="h-4 w-4 text-foreground" />
+          </button>
+        }
+      >
+        {/* Status Banner */}
+        <div className={`rounded-xl p-4 mb-4 ${cfg.bannerBg}`}>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className={`text-sm font-semibold ${cfg.bannerText}`}>
+                {incident.status === "tow_requested" ? "Tow In Progress" :
+                 incident.status === "allowed" ? "Authorized Parker" :
+                 cfg.label}
+              </p>
+              {incident.status === "tow_requested" && (
+                <p className={`text-xs ${cfg.bannerText} opacity-80`}>Tow truck en route to location</p>
+              )}
+              {incident.status === "allowed" && (
+                <p className={`text-xs ${cfg.bannerText} opacity-80`}>{incident.zone}</p>
+              )}
+              {(incident.status === "trash_overflow" || incident.status === "ev") && (
+                <p className={`text-xs ${cfg.bannerText} opacity-80`}>{incident.time}</p>
+              )}
+            </div>
+            {incident.status === "tow_requested" && (
+              <span className="flex items-center gap-1 text-xs font-medium text-destructive bg-destructive/10 px-2 py-1 rounded-full">
+                <Truck className="h-3.5 w-3.5" /> Tow Requested
+              </span>
             )}
-
-            {/* Timeline */}
-            <Card>
-              <CardContent className="p-4">
-                <h4 className="text-sm font-semibold mb-3">Timeline</h4>
-                <div className="space-y-3">
-                  {incident.timeline.map((event, i) => (
-                    <div key={i} className="flex gap-3">
-                      <div className="flex flex-col items-center">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-1.5" />
-                        {i < incident.timeline.length - 1 && <div className="w-px flex-1 bg-border mt-1" />}
-                      </div>
-                      <div className="pb-3">
-                        <p className="text-sm font-medium">{event.action}</p>
-                        <p className="text-xs text-muted-foreground">{event.actor} · {format(new Date(event.timestamp), "h:mm a")}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            {incident.status === "allowed" && (
+              <span className="flex items-center gap-1 text-xs font-medium text-[hsl(var(--lotiq-green))] bg-[hsl(var(--lotiq-green))]/10 px-2 py-1 rounded-full">
+                <CheckCircle2 className="h-3.5 w-3.5" /> Allowed
+              </span>
+            )}
           </div>
         </div>
+
+        {/* Vehicle Info */}
+        <Card className="mb-4">
+          <CardContent className="p-4">
+            <div className="flex items-center gap-3 mb-3">
+              {incident.images[0] && (
+                <img src={incident.images[0]} alt="Vehicle" className="w-14 h-14 rounded-xl object-cover" loading="lazy" />
+              )}
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-foreground">{incident.plate}</p>
+                <p className="text-xs text-muted-foreground">{incident.vehicleType}</p>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <MapPin className="h-3.5 w-3.5 shrink-0" />
+                {incident.zone}
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Camera className="h-3.5 w-3.5 shrink-0" />
+                {incident.camera}
+              </div>
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Clock className="h-3.5 w-3.5 shrink-0" />
+                Detected {format(new Date(incident.timestamp), "MMM d, h:mm a")}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Evidence */}
+        {incident.images.length > 0 && (
+          <section className="mb-4">
+            <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+              Evidence
+            </h3>
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1">
+              {incident.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`Evidence ${i + 1}`}
+                  loading="lazy"
+                  className="w-28 h-20 rounded-xl object-cover shrink-0"
+                />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Rules Triggered */}
+        {incident.rulesTriggered.length > 0 && (
+          <section className="mb-4">
+            <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+              Rules Triggered
+            </h3>
+            <Card>
+              <CardContent className="p-0 divide-y">
+                {incident.rulesTriggered.map((rule, i) => (
+                  <div key={i} className="flex items-center gap-3 p-3">
+                    <AlertTriangle className="h-4 w-4 text-destructive shrink-0" />
+                    <p className="text-xs text-foreground">{rule}</p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </section>
+        )}
+
+        {/* Tow Timeline */}
+        {incident.towTimeline && incident.towTimeline.length > 0 && (
+          <section className="mb-4">
+            <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+              Tow Timeline
+            </h3>
+            <Card>
+              <CardContent className="p-4">
+                <div className="space-y-4">
+                  {incident.towTimeline.map((event, i) => (
+                    <div key={i} className="flex gap-3">
+                      <div className="flex flex-col items-center">
+                        <div className="w-3 h-3 rounded-full border-2 border-destructive bg-background mt-0.5" />
+                        {i < incident.towTimeline!.length - 1 && <div className="w-px flex-1 bg-border mt-1" />}
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-foreground">{event.action}</p>
+                        <p className="text-xs text-muted-foreground">{event.time}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+        )}
+
+        {/* Actions */}
+        {incident.status !== "allowed" && (
+          <div className="space-y-2">
+            {incident.status !== "tow_requested" && (
+              <Button className="w-full gap-2">
+                <Truck className="h-4 w-4" /> Request Tow
+              </Button>
+            )}
+            <Button variant="outline" className="w-full gap-2">
+              <CheckCircle2 className="h-4 w-4" /> Resolve
+            </Button>
+          </div>
+        )}
       </AppLayout>
     );
   }
 
-  // List view
-  const filtered = incidents.filter(i =>
-    (filterType === "all" || i.type === filterType) &&
-    (filterStatus === "all" || i.status === filterStatus)
-  );
+  // LIST VIEW
+  const filtered = filter === "all" ? mockStatusIncidents : mockStatusIncidents.filter(i => i.status === filter);
 
   return (
-    <AppLayout title="Incidents" subtitle={`${incidents.length} total incidents`}>
-      {/* Filters */}
-      <div className="flex flex-nowrap gap-1.5 md:gap-2 mb-3 md:mb-4 overflow-x-auto pb-1 -mx-1 px-1">
-        <FilterChip active={filterType === "all"} onClick={() => setFilterType("all")}>All Types</FilterChip>
-        {(Object.keys(incidentTypeLabels) as IncidentType[]).map(type => (
-          <FilterChip key={type} active={filterType === type} onClick={() => setFilterType(type)}>
-            {incidentTypeIcons[type]} {incidentTypeLabels[type]}
-          </FilterChip>
-        ))}
-      </div>
-      <div className="flex flex-nowrap gap-1.5 md:gap-2 mb-4 md:mb-6 overflow-x-auto pb-1 -mx-1 px-1">
-        {(["all", "active", "escalated", "monitoring", "resolved"] as const).map(s => (
-          <FilterChip key={s} active={filterStatus === s} onClick={() => setFilterStatus(s)}>
-            {s === "all" ? "All Status" : s.charAt(0).toUpperCase() + s.slice(1)}
-          </FilterChip>
+    <AppLayout
+      title="Status"
+      headerLeft={
+        <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center">
+          <ArrowLeft className="h-4 w-4 text-foreground" />
+        </button>
+      }
+    >
+      {/* Filter pills */}
+      <div className="flex gap-1.5 overflow-x-auto pb-2 mb-4 -mx-1 px-1">
+        {filterOptions.map(f => (
+          <button
+            key={f.value}
+            onClick={() => setFilter(f.value)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap shrink-0 transition-colors ${
+              filter === f.value
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
+            }`}
+          >
+            {f.label}
+          </button>
         ))}
       </div>
 
-      <div className="space-y-2">
-        {filtered.map((incident) => (
-          <Card key={incident.id} className="hover:border-primary/30 transition-colors cursor-pointer" onClick={() => navigate(`/incidents/${incident.id}`)}>
-            <CardContent className="p-3 md:p-4">
-              <div className="flex items-start gap-2 md:gap-3">
-                <span className="text-base md:text-lg mt-0.5">{incidentTypeIcons[incident.type]}</span>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 md:gap-2 mb-0.5 flex-wrap">
-                    <span className="text-xs md:text-sm font-medium">{incident.title}</span>
-                    <IncidentStatusBadge status={incident.status} />
+      {/* Incident cards */}
+      <div className="space-y-2.5">
+        {filtered.map((inc) => {
+          const cfg = statusConfig[inc.status];
+          return (
+            <Card
+              key={inc.id}
+              className="cursor-pointer hover:bg-muted/30 transition-colors"
+              onClick={() => navigate(`/incidents/${inc.id}`)}
+            >
+              <CardContent className="p-4">
+                {/* Top row: plate + status */}
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center">
+                      <Car className="h-4 w-4 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-foreground">{inc.plate}</p>
+                      <p className="text-[10px] text-muted-foreground">{inc.vehicleType}</p>
+                    </div>
                   </div>
-                  <p className="text-[10px] md:text-xs text-muted-foreground truncate">{incident.zone} · {incident.cameraName} · {incidentTypeLabels[incident.type]}</p>
-                </div>
-                <div className="flex flex-col items-end gap-1 shrink-0">
-                  {incident.licensePlate && (
-                    <span className="text-[10px] md:text-xs font-mono-data font-medium px-1.5 md:px-2 py-0.5 md:py-1 rounded bg-muted">{incident.licensePlate}</span>
-                  )}
-                  <span className="text-[10px] md:text-xs text-muted-foreground">
-                    {formatDistanceToNow(new Date(incident.timestamp), { addSuffix: true })}
+                  <span className={`flex items-center gap-1 text-[10px] font-medium px-2 py-0.5 rounded-full ${cfg.bg} ${cfg.color}`}>
+                    {cfg.icon}
+                    {cfg.label}
                   </span>
                 </div>
-              </div>
+
+                {/* Description */}
+                <p className="text-xs text-muted-foreground mb-2">{inc.description}</p>
+
+                {/* Bottom row: zone + time */}
+                <div className="flex items-center justify-between text-[10px] text-muted-foreground">
+                  <span className="flex items-center gap-1">
+                    <MapPin className="h-3 w-3" /> {inc.zone}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" /> {inc.time}
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          );
+        })}
+        {filtered.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center text-sm text-muted-foreground">
+              No incidents found
             </CardContent>
           </Card>
-        ))}
+        )}
       </div>
     </AppLayout>
-  );
-}
-
-function Detail({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div>
-      <div className="flex items-center gap-1 text-muted-foreground mb-0.5">{icon}<span className="text-[10px] uppercase tracking-wide">{label}</span></div>
-      <p className="text-xs md:text-sm font-medium">{value}</p>
-    </div>
-  );
-}
-
-function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-2.5 md:px-3 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-medium transition-colors border whitespace-nowrap shrink-0 ${
-        active ? "bg-primary text-primary-foreground border-primary" : "bg-card text-muted-foreground border-border hover:border-primary/30"
-      }`}
-    >
-      {children}
-    </button>
   );
 }
