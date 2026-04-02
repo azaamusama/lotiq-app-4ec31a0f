@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { MobileBottomNav } from "./MobileBottomNav";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLotIQ } from "@/contexts/LotIQContext";
@@ -20,10 +21,10 @@ export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
         <div className="flex-1 flex flex-col min-w-0">
           <header className="h-12 md:h-14 flex items-center justify-between border-b bg-card px-3 md:px-4 shrink-0">
             <div className="flex items-center gap-2 md:gap-3 min-w-0">
-              <SidebarTrigger className="text-muted-foreground shrink-0" />
+              <SidebarTrigger className="text-muted-foreground shrink-0 hidden md:flex" />
               {title && (
                 <div className="min-w-0">
-                  <h2 className="text-xs md:text-sm font-semibold text-foreground truncate">{title}</h2>
+                  <h2 className="text-sm md:text-sm font-semibold text-foreground truncate">{title}</h2>
                   {subtitle && <p className="text-[10px] md:text-xs text-muted-foreground truncate hidden sm:block">{subtitle}</p>}
                 </div>
               )}
@@ -42,11 +43,12 @@ export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
               </div>
             </div>
           </header>
-          <main className="flex-1 overflow-auto p-3 md:p-6">
+          <main className="flex-1 overflow-auto p-3 md:p-6 pb-20 md:pb-6">
             {children}
           </main>
         </div>
       </div>
+      <MobileBottomNav />
     </SidebarProvider>
   );
 }
