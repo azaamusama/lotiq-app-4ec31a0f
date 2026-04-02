@@ -132,7 +132,7 @@ export default function PropertyDetail() {
               iconBg="bg-muted"
               title="Billing"
               subtitle="Manage subscription, invoices, and payment methods"
-              onClick={() => navigate("/pricing")}
+              onClick={() => navigate(`/property/${id || "prop-1"}/billing`)}
             />
           </CardContent>
         </Card>
