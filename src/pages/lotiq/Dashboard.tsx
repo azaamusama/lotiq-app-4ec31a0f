@@ -1,9 +1,9 @@
 import { AppLayout } from "@/components/lotiq/AppLayout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useLotIQ } from "@/contexts/LotIQContext";
 import { IncidentStatusBadge } from "@/components/lotiq/StatusBadge";
-import { incidentTypeLabels, incidentTypeIcons } from "@/lib/mock-data";
-import { AlertTriangle, CheckCircle2, Video, Truck, Clock, ChevronRight, Snowflake, Camera, ShieldAlert } from "lucide-react";
+import { incidentTypeIcons } from "@/lib/mock-data";
+import { CheckCircle2, Truck, Clock, ChevronRight, Snowflake, Camera, ShieldAlert } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
 
@@ -12,7 +12,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const activeIncidents = incidents.filter(i => i.status === "active" || i.status === "escalated").slice(0, 4);
-  const activeTows = towJobs.filter(t => !["completed", "cancelled"].includes(t.status));
 
   // Attention items - combine urgent incidents
   const attentionItems = activeIncidents.map(inc => ({
