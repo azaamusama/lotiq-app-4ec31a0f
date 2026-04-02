@@ -17,6 +17,7 @@ import PropertySetup from "@/pages/lotiq/PropertySetup";
 import Properties from "@/pages/lotiq/Properties";
 import PropertyDetail from "@/pages/lotiq/PropertyDetail";
 import Pricing from "@/pages/lotiq/Pricing";
+import MonitoringRules from "@/pages/lotiq/MonitoringRules";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
