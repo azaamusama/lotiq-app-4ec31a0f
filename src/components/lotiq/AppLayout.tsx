@@ -13,8 +13,8 @@ export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
   const { stats } = useLotIQ();
 
   return (
-    <div className="min-h-screen flex flex-col w-full max-w-3xl mx-auto">
-      <header className="h-12 md:h-14 flex items-center justify-between border-b bg-card px-3 md:px-4 shrink-0">
+    <div className="min-h-screen flex flex-col w-full">
+      <header className="h-12 md:h-14 flex items-center justify-between border-b bg-card px-3 md:px-6 shrink-0">
         <div className="flex items-center gap-2 md:gap-3 min-w-0">
           {title && (
             <div className="min-w-0">
@@ -37,7 +37,7 @@ export function AppLayout({ children, title, subtitle }: AppLayoutProps) {
           </div>
         </div>
       </header>
-      <main className="flex-1 overflow-auto p-3 md:p-6 pb-20">
+      <main className="flex-1 overflow-auto p-3 md:p-6 pb-20 max-w-3xl mx-auto w-full">
         {children}
       </main>
       <MobileBottomNav />
