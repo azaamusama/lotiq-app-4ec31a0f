@@ -3,15 +3,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import IndexV2 from "./pages/IndexV2.tsx";
-import IndexV3 from "./pages/IndexV3.tsx";
-import IndexV4 from "./pages/IndexV4.tsx";
-import IndexV5 from "./pages/IndexV5.tsx";
-import ProductDetail from "./pages/ProductDetail.tsx";
-import ProductListing from "./pages/ProductListing.tsx";
-import BundleBuilder from "./pages/BundleBuilder.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import { LotIQProvider } from "@/contexts/LotIQContext";
+
+import Dashboard from "@/pages/lotiq/Dashboard";
+import Incidents from "@/pages/lotiq/Incidents";
+import TowManagement from "@/pages/lotiq/TowManagement";
+import Rules from "@/pages/lotiq/Rules";
+import People from "@/pages/lotiq/People";
+import Vehicles from "@/pages/lotiq/Vehicles";
+import Cameras from "@/pages/lotiq/Cameras";
+import PropertySetup from "@/pages/lotiq/PropertySetup";
+import Pricing from "@/pages/lotiq/Pricing";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -21,18 +24,21 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/v2" element={<IndexV2 />} />
-          <Route path="/v3" element={<IndexV3 />} />
-          <Route path="/v4" element={<IndexV4 />} />
-          <Route path="/v5" element={<IndexV5 />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/category/:slug" element={<ProductListing />} />
-          <Route path="/bundle/:id" element={<BundleBuilder />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <LotIQProvider>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/incidents" element={<Incidents />} />
+            <Route path="/incidents/:id" element={<Incidents />} />
+            <Route path="/towing" element={<TowManagement />} />
+            <Route path="/rules" element={<Rules />} />
+            <Route path="/people" element={<People />} />
+            <Route path="/vehicles" element={<Vehicles />} />
+            <Route path="/cameras" element={<Cameras />} />
+            <Route path="/property" element={<PropertySetup />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LotIQProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
