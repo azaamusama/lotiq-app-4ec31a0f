@@ -99,7 +99,7 @@ export default function Dashboard() {
           <OverviewStat
             icon={<Snowflake className="h-5 w-5 text-[hsl(var(--lotiq-blue))]" />}
             iconBg="bg-[hsl(var(--lotiq-blue))]/10"
-            value={incidents.filter(i => i.type === "hazard" && i.status !== "resolved").length}
+            value={incidents.filter(i => i.type === "hazardous_condition" && i.status !== "resolved").length}
             label="Slip Risk Alerts"
           />
           <OverviewStat
