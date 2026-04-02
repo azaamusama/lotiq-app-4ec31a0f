@@ -156,6 +156,13 @@ export default function Properties() {
             </Card>
           );
         })}
+        {filtered.length === 0 && (
+          <Card>
+            <CardContent className="p-6 text-center text-sm text-muted-foreground">
+              No properties match "{search}"
+            </CardContent>
+          </Card>
+        )}
       </div>
     </AppLayout>
   );
