@@ -12,22 +12,22 @@ export default function Vehicles() {
   return (
     <AppLayout title="Vehicle Registry" subtitle={`${allVehicles.length} registered vehicles`}>
       <div className="flex justify-end mb-4">
-        <Button size="sm"><Plus className="h-4 w-4 mr-1" /> Add Vehicle</Button>
+        <Button size="sm" className="text-xs md:text-sm"><Plus className="h-4 w-4 mr-1" /> Add Vehicle</Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-5xl">
         {allVehicles.map((v) => (
           <Card key={v.id} className="hover:border-primary/30 transition-colors">
-            <CardContent className="p-4">
-              <div className="flex items-start justify-between mb-3">
-                <div className="p-2 rounded-lg bg-muted">
-                  <Car className="h-5 w-5 text-muted-foreground" />
+            <CardContent className="p-3 md:p-4">
+              <div className="flex items-start justify-between mb-2 md:mb-3">
+                <div className="p-1.5 md:p-2 rounded-lg bg-muted">
+                  <Car className="h-4 md:h-5 w-4 md:w-5 text-muted-foreground" />
                 </div>
                 {v.isPrimary && <Badge variant="secondary" className="text-[10px]">Primary</Badge>}
               </div>
-              <p className="text-lg font-mono-data font-bold mb-1">{v.licensePlate}</p>
-              <p className="text-sm text-foreground">{v.color} {v.make} {v.model}</p>
-              <p className="text-xs text-muted-foreground mt-2">{v.ownerName}</p>
+              <p className="text-base md:text-lg font-mono-data font-bold mb-1">{v.licensePlate}</p>
+              <p className="text-xs md:text-sm text-foreground">{v.color} {v.make} {v.model}</p>
+              <p className="text-[10px] md:text-xs text-muted-foreground mt-2">{v.ownerName}</p>
             </CardContent>
           </Card>
         ))}
