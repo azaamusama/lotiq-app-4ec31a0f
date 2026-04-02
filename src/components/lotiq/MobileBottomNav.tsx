@@ -12,7 +12,7 @@ export function MobileBottomNav() {
   const location = useLocation();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border">
       <div className="flex items-center justify-around h-14">
         {tabs.map((tab) => {
           const isActive = tab.path === "/" ? location.pathname === "/" : location.pathname.startsWith(tab.path);
