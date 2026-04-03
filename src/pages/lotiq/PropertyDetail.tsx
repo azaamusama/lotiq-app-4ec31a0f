@@ -94,7 +94,29 @@ export default function PropertyDetail() {
         </Card>
       </section>
 
-      {/* SLIP & FALL */}
+      {/* AUTHORIZED PARKERS */}
+      <section className="mb-6">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
+            Authorized Parkers
+          </h3>
+          <button onClick={() => navigate("/vehicles")} className="text-xs font-medium text-primary">
+            View All
+          </button>
+        </div>
+        <Card>
+          <CardContent className="p-0">
+            <DetailRow
+              icon={<Car className="h-5 w-5 text-[hsl(var(--lotiq-blue))]" />}
+              iconBg="bg-[hsl(var(--lotiq-blue))]/10"
+              title="12 authorized vehicles"
+              subtitle="Manage registered vehicles & permits"
+              onClick={() => navigate("/vehicles")}
+            />
+          </CardContent>
+        </Card>
+      </section>
+
       <section className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
