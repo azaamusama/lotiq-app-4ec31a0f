@@ -1,14 +1,26 @@
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card } from "@/components/ui/card";
-import { HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight } from "lucide-react";
+import { Bell, HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const sections = [
   {
+    label: "NOTIFICATIONS",
+    items: [
+      { icon: Bell, title: "Notifications", subtitle: "Choose how your receive system alerts", path: "/notifications" },
+    ],
+  },
+  {
     label: "SYSTEM & SUPPORT",
     items: [
       { icon: HelpCircle, title: "Help & Support", subtitle: "Contact support and view documentation", path: "/settings/help" },
+    ],
+  },
+  {
+    label: "ACCESS MANAGEMENT",
+    items: [
+      { icon: Shield, title: "Authorized Parker", subtitle: "Invite and manage who is allowed to park", path: "/authorized-parkers" },
     ],
   },
   {
@@ -69,7 +81,7 @@ export default function Settings() {
           Log Out
         </Button>
 
-        <p className="text-center text-xs text-muted-foreground pb-4">LotIQ v1.0.0</p>
+        <p className="text-center text-xs text-muted-foreground pb-4">ParkIQ v1.0.0</p>
       </div>
     </AppLayout>
   );
