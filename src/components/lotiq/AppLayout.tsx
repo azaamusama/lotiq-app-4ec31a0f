@@ -31,7 +31,7 @@ export function AppLayout({ children, title, subtitle, headerRight, headerLeft }
         <div className="flex items-center gap-2">
           {headerRight || (
             <>
-              <Button variant="ghost" size="icon" className="text-muted-foreground relative h-8 w-8 md:h-9 md:w-9" onClick={() => navigate("/settings/notifications")}>
+              <Button variant="ghost" size="icon" className="text-muted-foreground relative h-8 w-8 md:h-9 md:w-9" onClick={() => navigate("/notifications")}>
                 <Bell className="h-4 w-4" />
                 {stats.activeIncidents > 0 && (
                   <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-destructive text-destructive-foreground text-[10px] flex items-center justify-center font-medium">
