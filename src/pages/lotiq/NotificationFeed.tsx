@@ -176,7 +176,7 @@ export default function NotificationFeed() {
           >
             <ClipboardList className="h-4 w-4 text-foreground" />
           </button>
-        ) : undefined
+        ) : <span />
       }
     >
       {!hasNotifications ? (
