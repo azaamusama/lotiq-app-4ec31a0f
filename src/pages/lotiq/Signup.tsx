@@ -55,7 +55,8 @@ export default function Signup() {
               {step > 1 && (
                 <button
                   onClick={() => {
-                    if (showAddPlace) { setShowAddPlace(false); return; }
+                    if (subStep === "addPlace") { setSubStep("map"); return; }
+                    if (subStep === "map") { setSubStep("details"); return; }
                     setStep((s) => (s - 1) as Step);
                   }}
                   className="w-8 h-8 rounded-xl bg-muted flex items-center justify-center"
