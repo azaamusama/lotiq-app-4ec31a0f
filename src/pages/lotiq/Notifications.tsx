@@ -85,7 +85,7 @@ export default function Notifications() {
         </button>
       }
       headerRight={
-        <button onClick={() => navigate("/settings/notifications/add")} className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+        <button onClick={() => navigate(`/property/${id || "prop-1"}/notifications/add`)} className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
           <Plus className="h-4 w-4 text-primary-foreground" />
         </button>
       }
