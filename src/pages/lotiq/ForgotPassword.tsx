@@ -57,7 +57,7 @@ export default function ForgotPassword() {
               <div className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-card px-3 text-muted-foreground">or Login with</span>
+              <span className="bg-background px-3 text-muted-foreground">or Login with</span>
             </div>
           </div>
 

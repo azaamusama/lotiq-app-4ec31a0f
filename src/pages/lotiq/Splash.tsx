@@ -15,7 +15,7 @@ export default function Splash() {
         {/* Logo icon */}
         <div className="w-24 h-24 rounded-2xl bg-[hsl(var(--lotiq-emerald))]/10 flex items-center justify-center">
           <div className="w-16 h-16 rounded-xl bg-[hsl(var(--lotiq-emerald))] flex items-center justify-center">
-            <span className="text-white font-bold text-3xl">L</span>
+            <span className="text-primary-foreground font-bold text-3xl">L</span>
           </div>
         </div>
         {/* Brand name */}

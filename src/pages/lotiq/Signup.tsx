@@ -65,11 +65,11 @@ export default function Signup() {
                 </button>
               )}
               <div className="flex items-center gap-1.5">
-                <div className="w-6 h-6 rounded-md bg-[hsl(var(--lotiq-emerald))] flex items-center justify-center">
-                  <span className="text-white font-bold text-[10px]">L</span>
+                <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary font-bold text-[10px]">L</span>
                 </div>
                 <span className="text-sm font-bold text-foreground">
-                  Lot <span className="text-[hsl(var(--lotiq-emerald))]">IQ</span>
+                  Lot <span className="text-primary">IQ</span>
                 </span>
               </div>
             </div>
