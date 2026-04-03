@@ -47,9 +47,9 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
-      <div className="w-full flex flex-col flex-1">
+      <div className="w-full flex-1 px-6 pt-6 pb-6 flex flex-col">
         {/* Header */}
-        <div className="p-4 pb-0 shrink-0">
+        <div className="shrink-0">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               {step > 1 && (
@@ -95,8 +95,8 @@ export default function Signup() {
           </div>
         </div>
 
-        {/* Content - scrollable */}
-        <div className="flex-1 overflow-y-auto px-6 pb-6">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto">
           {step === 1 && (
             <div>
               <h2 className="text-lg font-bold text-foreground mb-1">Create your account</h2>
