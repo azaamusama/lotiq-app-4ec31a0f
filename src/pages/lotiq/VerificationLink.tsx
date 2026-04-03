@@ -8,8 +8,8 @@ export default function VerificationLink() {
   const email = (location.state as any)?.email || "username@email.com";
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--lotiq-navy))] flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-card rounded-2xl p-6 md:p-8 shadow-2xl flex flex-col min-h-[70vh]">
+    <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
+      <div className="w-full flex-1 px-6 pt-6 pb-6 flex flex-col">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
           <button
@@ -38,7 +38,7 @@ export default function VerificationLink() {
 
         <Button
           variant="outline"
-          className="w-full h-12 rounded-xl font-semibold text-base mt-6"
+          className="w-full h-12 rounded-xl font-semibold text-base mt-6 border-border"
           onClick={() => navigate("/forgot-password/set-password")}
         >
           Resend Email

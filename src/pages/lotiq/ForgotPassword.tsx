@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { KeyRound } from "lucide-react";
+import { ArrowLeft, KeyRound } from "lucide-react";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -16,8 +16,17 @@ export default function ForgotPassword() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
-      <div className="w-full flex-1 p-6 md:p-8 flex flex-col">
-        <h1 className="text-xl font-bold text-foreground text-center mb-6">Forgot Password</h1>
+      <div className="w-full flex-1 px-6 pt-6 pb-6 flex flex-col">
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-8">
+          <button
+            onClick={() => navigate("/login")}
+            className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center"
+          >
+            <ArrowLeft className="h-4 w-4 text-foreground" />
+          </button>
+          <h1 className="text-xl font-bold text-foreground">Forgot Password</h1>
+        </div>
 
         {/* Icon */}
         <div className="flex justify-center mb-8">
@@ -28,7 +37,7 @@ export default function ForgotPassword() {
 
         <form onSubmit={handleReset} className="flex flex-col flex-1">
           <div className="space-y-1.5 mb-4">
-            <Label className="text-xs text-foreground">
+            <Label className="text-xs font-medium text-foreground">
               Email <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -46,8 +55,8 @@ export default function ForgotPassword() {
               ← Back to login
             </button>
             <p className="text-xs text-muted-foreground">
-              Doesn't have an account?{" "}
-              <button type="button" onClick={() => navigate("/signup")} className="text-primary font-medium">Signup</button>
+              Don't have an account?{" "}
+              <button type="button" onClick={() => navigate("/signup")} className="text-primary font-semibold">Sign Up</button>
             </p>
           </div>
 
@@ -67,7 +76,7 @@ export default function ForgotPassword() {
               { label: "Google", color: "text-[#DB4437]", icon: "G" },
               { label: "Facebook", color: "text-[#4267B2]", icon: "f" },
               { label: "Apple", color: "text-foreground", icon: "" },
-              { label: "Twitter", color: "text-[#1DA1F2]", icon: "𝕏" },
+              { label: "Twitter", color: "text-foreground", icon: "𝕏" },
             ].map((p) => (
               <button
                 key={p.label}
@@ -75,7 +84,9 @@ export default function ForgotPassword() {
                 className={`w-10 h-10 rounded-full border border-border flex items-center justify-center ${p.color} hover:bg-muted transition-colors text-lg font-bold`}
                 aria-label={`Login with ${p.label}`}
               >
-                {p.icon}
+                {p.label === "Apple" ? (
+                  <svg className="h-5 w-5 text-foreground" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                ) : p.icon}
               </button>
             ))}
           </div>
