@@ -34,7 +34,7 @@ const stepLabels = [
   "Tow Partner",
   "Pricing",
   "Payment",
-  "Select Date",
+  "Schedule Installation",
   "Confirmation",
 ];
 
