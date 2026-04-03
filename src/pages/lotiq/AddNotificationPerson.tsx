@@ -32,7 +32,7 @@ export default function AddNotificationPerson() {
       return;
     }
     toast.success("Person added successfully");
-    navigate("/settings/notifications");
+    navigate(`/property/${id || "prop-1"}/notifications`);
   };
 
   return (
