@@ -51,6 +51,7 @@ const App = () => (
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/cameras" element={<Cameras />} />
             <Route path="/property" element={<Properties />} />
+            <Route path="/property/add" element={<AddProperty />} />
             <Route path="/property/setup" element={<PropertySetup />} />
             <Route path="/property/:id" element={<PropertyDetail />} />
             <Route path="/property/:id/monitoring" element={<MonitoringRules />} />
