@@ -15,6 +15,7 @@ import Vehicles from "@/pages/lotiq/Vehicles";
 import Cameras from "@/pages/lotiq/Cameras";
 import PropertySetup from "@/pages/lotiq/PropertySetup";
 import Properties from "@/pages/lotiq/Properties";
+import AddProperty from "@/pages/lotiq/AddProperty";
 import PropertyDetail from "@/pages/lotiq/PropertyDetail";
 import Pricing from "@/pages/lotiq/Pricing";
 import MonitoringRules from "@/pages/lotiq/MonitoringRules";
