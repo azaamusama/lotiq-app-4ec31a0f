@@ -75,7 +75,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <AppLayout title="Overview">
+    <AppLayout title="Hi, Vikram">
       {/* REQUIRES ATTENTION */}
       <section className="mb-6">
         <h3 className="text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
