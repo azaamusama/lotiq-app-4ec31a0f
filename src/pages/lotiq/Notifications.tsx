@@ -116,6 +116,7 @@ export default function Notifications() {
 
   const todayItems = filtered.filter((n) => n.group === "today");
   const yesterdayItems = filtered.filter((n) => n.group === "yesterday");
+  const earlierItems = filtered.filter((n) => n.group === "earlier");
   const hasUnread = notifications.some((n) => n.unread);
 
   const markAllRead = () => {
