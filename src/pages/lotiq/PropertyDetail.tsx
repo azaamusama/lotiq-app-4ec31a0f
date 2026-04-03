@@ -100,7 +100,7 @@ export default function PropertyDetail() {
           <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
             Slip & Fall
           </h3>
-          <button className="text-xs font-medium text-primary">Request</button>
+          <button onClick={() => navigate(`/property/${id || "prop-1"}/slip-fall`)} className="text-xs font-medium text-primary">Request</button>
         </div>
         <div className="space-y-2">
           {slipFallReports.map((report, i) => (
