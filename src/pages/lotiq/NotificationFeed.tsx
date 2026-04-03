@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft, CameraOff, Truck, CheckCircle2, XCircle,
-  AlertTriangle, SlidersHorizontal, Filter, ChevronDown,
+  AlertTriangle, SlidersHorizontal, Filter, ChevronDown, ClipboardList,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import emptyIllustration from "@/assets/empty-notifications.png";
@@ -131,8 +131,7 @@ export default function NotificationFeed() {
   const [propertyFilter, setPropertyFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
 
-  // Set to true to show empty state, false to show notifications
-  const hasNotifications = false;
+  const hasNotifications = todayNotifs.length > 0 || yesterdayNotifs.length > 0;
 
   return (
     <AppLayout
@@ -145,7 +144,7 @@ export default function NotificationFeed() {
       headerRight={
         hasNotifications ? (
           <button className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center">
-            <SlidersHorizontal className="h-4 w-4 text-foreground" />
+            <ClipboardList className="h-4 w-4 text-foreground" />
           </button>
         ) : undefined
       }
