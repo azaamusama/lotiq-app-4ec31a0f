@@ -19,8 +19,8 @@ export default function Splash() {
           </div>
         </div>
         {/* Brand name */}
-        <h1 className="text-3xl font-bold text-white">
-          Lot <span className="text-[hsl(var(--lotiq-emerald))]">IQ</span>
+        <h1 className="text-3xl font-bold text-foreground">
+          Lot <span className="text-primary">IQ</span>
         </h1>
       </div>
     </div>
