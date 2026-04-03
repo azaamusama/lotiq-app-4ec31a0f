@@ -34,7 +34,8 @@ export default function Signup() {
   const [placeName, setPlaceName] = useState("");
   const [category, setCategory] = useState("");
   const [locatedWithin, setLocatedWithin] = useState("");
-  const [showAddPlace, setShowAddPlace] = useState(false);
+  // sub-steps within step 2: "details" | "map" | "addPlace"
+  const [subStep, setSubStep] = useState<"details" | "map" | "addPlace">("details");
 
   const progressWidth = step === 1 ? "33%" : step === 2 ? "66%" : "100%";
 
@@ -54,7 +55,8 @@ export default function Signup() {
               {step > 1 && (
                 <button
                   onClick={() => {
-                    if (showAddPlace) { setShowAddPlace(false); return; }
+                    if (subStep === "addPlace") { setSubStep("map"); return; }
+                    if (subStep === "map") { setSubStep("details"); return; }
                     setStep((s) => (s - 1) as Step);
                   }}
                   className="w-8 h-8 rounded-xl bg-muted flex items-center justify-center"
@@ -171,7 +173,7 @@ export default function Signup() {
             </div>
           )}
 
-          {step === 2 && !showAddPlace && (
+          {step === 2 && subStep === "details" && (
             <div>
               <h2 className="text-lg font-bold text-foreground mb-1">Business details</h2>
               <p className="text-xs text-muted-foreground mb-5">Tell us about your business.</p>
@@ -207,7 +209,7 @@ export default function Signup() {
 
               <button
                 type="button"
-                onClick={() => setShowAddPlace(true)}
+                onClick={() => setSubStep("map")}
                 className="w-full mt-5 h-11 rounded-xl border border-border flex items-center justify-center gap-2 text-sm text-muted-foreground hover:bg-muted transition-colors"
               >
                 <MapPin className="h-4 w-4" />
@@ -216,14 +218,50 @@ export default function Signup() {
 
               <Button
                 className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
-                onClick={() => setStep(3)}
+                onClick={() => setSubStep("map")}
               >
                 Continue
               </Button>
             </div>
           )}
 
-          {step === 2 && showAddPlace && (
+          {/* Confirm Location - Map View */}
+          {step === 2 && subStep === "map" && (
+            <div className="flex flex-col -mx-6 -mt-2">
+              <div className="flex items-center gap-3 px-6 py-3">
+                <h2 className="text-lg font-bold text-foreground">Confirm location</h2>
+              </div>
+              {/* Map placeholder */}
+              <div className="relative w-full h-80 bg-muted overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--lotiq-blue))]/5 to-[hsl(var(--lotiq-blue))]/10 flex items-center justify-center">
+                  <div className="text-center">
+                    <MapPin className="h-10 w-10 text-[hsl(var(--lotiq-blue))] mx-auto mb-2" />
+                    <p className="text-sm font-medium text-foreground">{address || "New York, NY"}</p>
+                    <p className="text-xs text-muted-foreground mt-1">Drag pin to adjust location</p>
+                  </div>
+                </div>
+                {/* Simulated map grid */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="grid grid-cols-6 grid-rows-6 h-full w-full">
+                    {Array.from({ length: 36 }).map((_, i) => (
+                      <div key={i} className="border border-foreground/20" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <Button
+                  className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base"
+                  onClick={() => setSubStep("addPlace")}
+                >
+                  Save
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Add a Place */}
+          {step === 2 && subStep === "addPlace" && (
             <div>
               <h2 className="text-lg font-bold text-foreground mb-1">Add a place</h2>
               <p className="text-xs text-muted-foreground mb-5">
@@ -253,7 +291,7 @@ export default function Signup() {
 
               <Button
                 className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
-                onClick={() => { setShowAddPlace(false); setStep(3); }}
+                onClick={() => { setSubStep("details"); setStep(3); }}
               >
                 Save
               </Button>
