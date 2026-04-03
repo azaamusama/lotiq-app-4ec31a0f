@@ -90,11 +90,11 @@ const mockStatusIncidents: StatusIncident[] = [
     rulesTriggered: [],
   },
   {
-    id: "si-3", plate: "DEF-9012", vehicleType: "Standard", status: "trash_overflow",
-    description: "Unregistered vehicle · 12 min grace remaining",
-    zone: "Lot A - Row 2", camera: "CAM-002", time: "15 minutes ago",
-    timestamp: "2026-04-02T14:32:00Z", images: [evidence1, evidence2],
-    rulesTriggered: ["Not on authorized vehicle list", "After-hours enforcement active (10 PM – 6 AM)"],
+    id: "si-3", plate: "N/A", vehicleType: "Dumpster Area", status: "trash_overflow",
+    description: "Trash overflow detected · Dumpster at capacity",
+    zone: "Lot C - Service Area", camera: "CAM-004", time: "15 minutes ago",
+    timestamp: "2026-04-02T14:32:00Z", images: [trashEvidence1, trashEvidence2],
+    rulesTriggered: ["Trash overflow detection active", "Sanitation compliance violation"],
   },
   {
     id: "si-4", plate: "ABC-1234", vehicleType: "EV · Not Plugged", status: "violation",
