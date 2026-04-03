@@ -65,7 +65,7 @@ export default function Properties() {
     <AppLayout
       title="Properties"
       headerRight={
-        <Button size="icon" className="h-9 w-9 rounded-xl">
+        <Button size="icon" className="h-9 w-9 rounded-xl" onClick={() => navigate("/property/setup")}>
           <Plus className="h-5 w-5" />
         </Button>
       }
