@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Wifi, WifiOff, Pause, VolumeX, MicOff, Camera, Video, Maximize2, Zap, Settings2 } from "lucide-react";
+import { ArrowLeft, Pause, VolumeX, MicOff, Camera, Video, Maximize2, Zap, Settings2 } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
