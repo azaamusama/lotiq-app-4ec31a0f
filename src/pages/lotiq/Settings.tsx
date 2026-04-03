@@ -8,7 +8,7 @@ const sections = [
   {
     label: "NOTIFICATIONS",
     items: [
-      { icon: Bell, title: "Notifications", subtitle: "Choose how you receive system alerts", path: "" },
+      { icon: Bell, title: "Notifications", subtitle: "Choose how you receive system alerts", path: "/settings/notifications" },
     ],
   },
   {

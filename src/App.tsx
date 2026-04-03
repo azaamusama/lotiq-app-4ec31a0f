@@ -27,6 +27,7 @@ import TermsConditions from "@/pages/lotiq/TermsConditions";
 import PrivacyPolicy from "@/pages/lotiq/PrivacyPolicy";
 import HelpSupport from "@/pages/lotiq/HelpSupport";
 import ChangePassword from "@/pages/lotiq/ChangePassword";
+import Notifications from "@/pages/lotiq/Notifications";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -61,6 +62,7 @@ const App = () => (
             <Route path="/settings/privacy" element={<PrivacyPolicy />} />
             <Route path="/settings/help" element={<HelpSupport />} />
             <Route path="/settings/password" element={<ChangePassword />} />
+            <Route path="/settings/notifications" element={<Notifications />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </LotIQProvider>
