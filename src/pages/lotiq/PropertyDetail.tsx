@@ -111,7 +111,7 @@ export default function PropertyDetail() {
               iconBg="bg-[hsl(var(--lotiq-blue))]/10"
               title="12 authorized vehicles"
               subtitle="Manage registered vehicles & permits"
-              onClick={() => navigate("/vehicles")}
+              onClick={() => navigate(`/property/${id || "prop-1"}/parkers`)}
             />
           </CardContent>
         </Card>
