@@ -14,6 +14,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children, title, subtitle, headerRight, headerLeft }: AppLayoutProps) {
   const { stats } = useLotIQ();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col w-full">
