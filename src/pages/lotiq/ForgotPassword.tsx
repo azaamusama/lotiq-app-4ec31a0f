@@ -15,8 +15,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--lotiq-navy))] flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-card rounded-2xl p-6 md:p-8 shadow-2xl flex flex-col min-h-[70vh]">
+    <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
+      <div className="w-full flex-1 p-6 md:p-8 flex flex-col">
         <h1 className="text-xl font-bold text-foreground text-center mb-6">Forgot Password</h1>
 
         {/* Icon */}
@@ -47,7 +47,7 @@ export default function ForgotPassword() {
             </button>
             <p className="text-xs text-muted-foreground">
               Doesn't have an account?{" "}
-              <button type="button" onClick={() => navigate("/signup")} className="text-[hsl(var(--lotiq-blue))] font-medium">Signup</button>
+              <button type="button" onClick={() => navigate("/signup")} className="text-primary font-medium">Signup</button>
             </p>
           </div>
 
@@ -57,7 +57,7 @@ export default function ForgotPassword() {
               <div className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-xs">
-              <span className="bg-card px-3 text-muted-foreground">or Login with</span>
+              <span className="bg-background px-3 text-muted-foreground">or Login with</span>
             </div>
           </div>
 
@@ -82,7 +82,7 @@ export default function ForgotPassword() {
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
+            className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
           >
             Reset Password
           </Button>

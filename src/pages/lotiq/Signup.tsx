@@ -46,8 +46,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--lotiq-navy))] flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-card rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+    <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
+      <div className="w-full flex flex-col flex-1">
         {/* Header */}
         <div className="p-4 pb-0 shrink-0">
           <div className="flex items-center justify-between mb-3">
@@ -65,11 +65,11 @@ export default function Signup() {
                 </button>
               )}
               <div className="flex items-center gap-1.5">
-                <div className="w-6 h-6 rounded-md bg-[hsl(var(--lotiq-emerald))] flex items-center justify-center">
-                  <span className="text-white font-bold text-[10px]">L</span>
+                <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary font-bold text-[10px]">L</span>
                 </div>
                 <span className="text-sm font-bold text-foreground">
-                  Lot <span className="text-[hsl(var(--lotiq-emerald))]">IQ</span>
+                  Lot <span className="text-primary">IQ</span>
                 </span>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function Signup() {
             {[1, 2, 3].map((s) => (
               <div key={s} className="flex-1 h-1 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full bg-[hsl(var(--lotiq-blue))] transition-all duration-300"
+                  className="h-full bg-primary transition-all duration-300"
                   style={{ width: s <= step ? "100%" : "0%" }}
                 />
               </div>
@@ -119,7 +119,7 @@ export default function Signup() {
                       onClick={() => setRole(r)}
                       className={`flex-1 h-10 rounded-lg border text-xs font-medium transition-colors ${
                         role === r
-                          ? "border-[hsl(var(--lotiq-blue))] bg-[hsl(var(--lotiq-blue))]/5 text-[hsl(var(--lotiq-blue))]"
+                          ? "border-primary bg-primary/5 text-primary"
                           : "border-border text-muted-foreground hover:bg-muted"
                       }`}
                     >
@@ -165,7 +165,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
+                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
                 onClick={() => setStep(2)}
               >
                 Continue
@@ -217,7 +217,7 @@ export default function Signup() {
               </button>
 
               <Button
-                className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
+                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
                 onClick={() => setSubStep("map")}
               >
                 Continue
@@ -233,9 +233,9 @@ export default function Signup() {
               </div>
               {/* Map placeholder */}
               <div className="relative w-full h-80 bg-muted overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-[hsl(var(--lotiq-blue))]/5 to-[hsl(var(--lotiq-blue))]/10 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-primary/10 flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin className="h-10 w-10 text-[hsl(var(--lotiq-blue))] mx-auto mb-2" />
+                    <MapPin className="h-10 w-10 text-primary mx-auto mb-2" />
                     <p className="text-sm font-medium text-foreground">{address || "New York, NY"}</p>
                     <p className="text-xs text-muted-foreground mt-1">Drag pin to adjust location</p>
                   </div>
@@ -251,7 +251,7 @@ export default function Signup() {
               </div>
               <div className="px-6 pt-4 pb-2">
                 <Button
-                  className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base"
+                  className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base"
                   onClick={() => setSubStep("addPlace")}
                 >
                   Save
@@ -290,7 +290,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
+                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
                 onClick={() => { setSubStep("details"); setStep(3); }}
               >
                 Save
@@ -300,8 +300,8 @@ export default function Signup() {
 
           {step === 3 && (
             <div className="flex flex-col items-center pt-8">
-              <div className="w-16 h-16 rounded-full bg-[hsl(var(--lotiq-emerald))]/10 flex items-center justify-center mb-6">
-                <CheckCircle2 className="h-8 w-8 text-[hsl(var(--lotiq-emerald))]" />
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <CheckCircle2 className="h-8 w-8 text-primary" />
               </div>
               <h2 className="text-lg font-bold text-foreground text-center mb-1">
                 Your request has been submitted.
@@ -315,8 +315,8 @@ export default function Signup() {
                   { num: 4, text: "Schedules installation" },
                 ].map((item) => (
                   <div key={item.num} className="flex items-center gap-3">
-                    <div className="w-7 h-7 rounded-full bg-[hsl(var(--lotiq-blue))]/10 flex items-center justify-center shrink-0">
-                      <span className="text-xs font-bold text-[hsl(var(--lotiq-blue))]">{item.num}</span>
+                    <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <span className="text-xs font-bold text-primary">{item.num}</span>
                     </div>
                     <span className="text-sm text-foreground">{item.text}</span>
                   </div>
@@ -324,7 +324,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base"
+                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base"
                 onClick={() => navigate("/login")}
               >
                 Open email
