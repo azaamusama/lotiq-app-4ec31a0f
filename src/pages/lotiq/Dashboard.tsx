@@ -4,6 +4,8 @@ import { useLotIQ } from "@/contexts/LotIQContext";
 import { CheckCircle2, Truck, Snowflake, Camera, ShieldAlert, ChevronRight, AlertTriangle, Zap, Building2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const attentionIconMap: Record<string, { icon: React.ReactNode; bg: string; border: string; labelColor: string }> = {
   escalated: {
@@ -35,6 +37,24 @@ const attentionIconMap: Record<string, { icon: React.ReactNode; bg: string; bord
 export default function Dashboard() {
   const { stats, incidents, towJobs } = useLotIQ();
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data } = await supabase
+          .from("profiles")
+          .select("first_name")
+          .eq("user_id", user.id)
+          .single();
+        if (data?.first_name) {
+          setFirstName(data.first_name);
+        }
+      }
+    };
+    fetchProfile();
+  }, []);
 
   // Build attention items from active/escalated incidents + active tows
   const activeIncidents = incidents.filter(i => i.status === "active" || i.status === "escalated").slice(0, 3);
@@ -75,7 +95,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <AppLayout title="Hi, Vikram">
+    <AppLayout title={firstName ? `Hi, ${firstName}` : "Hi there"}>
       {/* REQUIRES ATTENTION */}
       <section className="mb-6">
         <h3 className="text-[10px] md:text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">
