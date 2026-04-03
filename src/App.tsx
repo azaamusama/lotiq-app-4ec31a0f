@@ -60,6 +60,7 @@ const App = () => (
             <Route path="/settings/terms" element={<TermsConditions />} />
             <Route path="/settings/privacy" element={<PrivacyPolicy />} />
             <Route path="/settings/help" element={<HelpSupport />} />
+            <Route path="/settings/password" element={<ChangePassword />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </LotIQProvider>
