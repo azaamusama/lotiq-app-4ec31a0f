@@ -101,7 +101,7 @@ export default function Login() {
           {[
             { label: "Google", bg: "bg-[#DB4437]/10", color: "text-[#DB4437]", icon: "G" },
             { label: "Facebook", bg: "bg-[#4267B2]/10", color: "text-[#4267B2]", icon: "f" },
-            { label: "Apple", bg: "bg-foreground/10", color: "text-foreground", icon: "" },
+            { label: "Apple", bg: "bg-foreground/10", color: "text-foreground", icon: "🍎" },
             { label: "Twitter", bg: "bg-foreground/10", color: "text-foreground", icon: "𝕏" },
           ].map((provider) => (
             <button
