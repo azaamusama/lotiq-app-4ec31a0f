@@ -1,6 +1,6 @@
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card } from "@/components/ui/card";
-import { Bell, HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight, Shield } from "lucide-react";
+import { Bell, HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
