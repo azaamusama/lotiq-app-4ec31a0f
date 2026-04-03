@@ -75,7 +75,7 @@ export default function Settings() {
           Log Out
         </Button>
 
-        <p className="text-center text-xs text-muted-foreground pb-4">ParkIQ v1.0.0</p>
+        <p className="text-center text-xs text-muted-foreground pb-4">Lot IQ v1.0.0</p>
       </div>
     </AppLayout>
   );

@@ -5,7 +5,7 @@ import { ArrowLeft, Mail, Phone, Camera, Truck, Shield, ChevronRight, ExternalLi
 import { useNavigate } from "react-router-dom";
 
 const contactItems = [
-  { icon: Mail, title: "Email Support", subtitle: "support@parkiq.com", external: true },
+  { icon: Mail, title: "Email Support", subtitle: "support@lotiq.com", external: true },
   { icon: Phone, title: "Phone Support", subtitle: "1-800-5555-1234", external: true },
 ];
 
