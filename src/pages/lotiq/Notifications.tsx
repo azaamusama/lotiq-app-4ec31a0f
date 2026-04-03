@@ -64,6 +64,7 @@ function AlertRow({
 
 export default function Notifications() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [critical, setCritical] = useState(defaultCritical);
   const [operational, setOperational] = useState(defaultOperational);
 
