@@ -7,6 +7,10 @@ import { LotIQProvider } from "@/contexts/LotIQContext";
 
 import Splash from "@/pages/lotiq/Splash";
 import Login from "@/pages/lotiq/Login";
+import ForgotPassword from "@/pages/lotiq/ForgotPassword";
+import VerificationLink from "@/pages/lotiq/VerificationLink";
+import SetPassword from "@/pages/lotiq/SetPassword";
+import PasswordChanged from "@/pages/lotiq/PasswordChanged";
 import Dashboard from "@/pages/lotiq/Dashboard";
 import Incidents from "@/pages/lotiq/Incidents";
 import TowManagement from "@/pages/lotiq/TowManagement";
