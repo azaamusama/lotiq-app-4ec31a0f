@@ -6,7 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import {
   ArrowLeft, Plus, Mail, MessageSquare, Phone, Info,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface AlertChannel {
   email: boolean;
