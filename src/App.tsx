@@ -11,6 +11,7 @@ import ForgotPassword from "@/pages/lotiq/ForgotPassword";
 import VerificationLink from "@/pages/lotiq/VerificationLink";
 import SetPassword from "@/pages/lotiq/SetPassword";
 import PasswordChanged from "@/pages/lotiq/PasswordChanged";
+import Signup from "@/pages/lotiq/Signup";
 import Dashboard from "@/pages/lotiq/Dashboard";
 import Incidents from "@/pages/lotiq/Incidents";
 import TowManagement from "@/pages/lotiq/TowManagement";
