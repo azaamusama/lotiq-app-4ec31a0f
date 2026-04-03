@@ -13,6 +13,7 @@ import Rules from "@/pages/lotiq/Rules";
 import People from "@/pages/lotiq/People";
 import Vehicles from "@/pages/lotiq/Vehicles";
 import Cameras from "@/pages/lotiq/Cameras";
+import CameraDetail from "@/pages/lotiq/CameraDetail";
 import PropertySetup from "@/pages/lotiq/PropertySetup";
 import Properties from "@/pages/lotiq/Properties";
 import AddProperty from "@/pages/lotiq/AddProperty";
