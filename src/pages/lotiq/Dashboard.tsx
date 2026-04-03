@@ -4,6 +4,8 @@ import { useLotIQ } from "@/contexts/LotIQContext";
 import { CheckCircle2, Truck, Snowflake, Camera, ShieldAlert, ChevronRight, AlertTriangle, Zap, Building2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const attentionIconMap: Record<string, { icon: React.ReactNode; bg: string; border: string; labelColor: string }> = {
   escalated: {
