@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   ArrowLeft, ClipboardCheck, Camera, Truck, AlertTriangle,
-  CheckCircle2, XCircle, Settings2, ChevronDown
+  CheckCircle2, XCircle, Settings2, ChevronDown, Shield, Zap, UserPlus
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -27,7 +27,7 @@ interface Notification {
   iconBg: string;
   iconColor: string;
   unread: boolean;
-  group: "today" | "yesterday";
+  group: "today" | "yesterday" | "earlier";
 }
 
 const properties = ["All Properties", "Maple Heights Apts", "Mall of Downtown"];
@@ -75,6 +75,24 @@ const initialNotifications: Notification[] = [
     icon: Settings2, iconBg: "bg-muted", iconColor: "text-muted-foreground",
     unread: false, group: "yesterday",
   },
+  {
+    id: "8", title: "Enforcement Paused", description: "Enforcement paused for scheduled main...",
+    property: "Maple Heights Apts", time: "3 days ago", category: "operational",
+    icon: Shield, iconBg: "bg-muted", iconColor: "text-muted-foreground",
+    unread: false, group: "earlier",
+  },
+  {
+    id: "9", title: "System Outage Resolved", description: "All systems back to normal operation.",
+    property: "Mall of Downtown", time: "4 days ago", category: "critical",
+    icon: Zap, iconBg: "bg-destructive/10", iconColor: "text-destructive",
+    unread: false, group: "earlier",
+  },
+  {
+    id: "10", title: "Authorized Parker Added", description: "Maria Garcia added to Maple Heights.",
+    property: "Maple Heights Apts", time: "5 days ago", category: "configuration",
+    icon: UserPlus, iconBg: "bg-muted", iconColor: "text-muted-foreground",
+    unread: false, group: "earlier",
+  },
 ];
 
 export default function Notifications() {
@@ -98,6 +116,7 @@ export default function Notifications() {
 
   const todayItems = filtered.filter((n) => n.group === "today");
   const yesterdayItems = filtered.filter((n) => n.group === "yesterday");
+  const earlierItems = filtered.filter((n) => n.group === "earlier");
   const hasUnread = notifications.some((n) => n.unread);
 
   const markAllRead = () => {
@@ -187,6 +206,18 @@ export default function Notifications() {
               <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">YESTERDAY</p>
               <Card className="divide-y divide-border">
                 {yesterdayItems.map((n) => (
+                  <NotificationRow key={n.id} notification={n} />
+                ))}
+              </Card>
+            </div>
+          )}
+
+          {/* Earlier */}
+          {earlierItems.length > 0 && (
+            <div>
+              <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">EARLIER</p>
+              <Card className="divide-y divide-border">
+                {earlierItems.map((n) => (
                   <NotificationRow key={n.id} notification={n} />
                 ))}
               </Card>
