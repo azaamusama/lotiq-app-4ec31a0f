@@ -27,7 +27,7 @@ const sections = [
   {
     label: "SECURITY",
     items: [
-      { icon: Lock, title: "Change Password", subtitle: "Update your account password", path: "" },
+      { icon: Lock, title: "Change Password", subtitle: "Update your account password", path: "/settings/password" },
     ],
   },
 ];
