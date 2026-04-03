@@ -22,6 +22,7 @@ import Billing from "@/pages/lotiq/Billing";
 import Invoices from "@/pages/lotiq/Invoices";
 import InvoiceDetail from "@/pages/lotiq/InvoiceDetail";
 import PaymentMethod from "@/pages/lotiq/PaymentMethod";
+import Settings from "@/pages/lotiq/Settings";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,7 +40,7 @@ const App = () => (
             <Route path="/incidents" element={<Incidents />} />
             <Route path="/incidents/:id" element={<Incidents />} />
             <Route path="/towing" element={<TowManagement />} />
-            <Route path="/rules" element={<Rules />} />
+            <Route path="/rules" element={<Settings />} />
             <Route path="/people" element={<People />} />
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/cameras" element={<Cameras />} />
