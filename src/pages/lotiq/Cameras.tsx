@@ -113,7 +113,7 @@ export default function Cameras() {
       {/* Camera list/grid */}
       <div className={view === "grid" ? "grid grid-cols-2 gap-3" : "space-y-3"}>
         {cameras.map((cam) => (
-          <Card key={cam.id} className="overflow-hidden">
+          <Card key={cam.id} className="overflow-hidden cursor-pointer" onClick={() => navigate(`/cameras/${cam.id}`)}>
             <div className="relative">
               <img
                 src={cam.image}
