@@ -63,23 +63,18 @@ export default function CameraDetail() {
 
   return (
     <AppLayout
-      title=""
+      title={camera.name}
+      subtitle={camera.zone}
       headerLeft={
         <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center">
           <ArrowLeft className="h-4 w-4 text-foreground" />
         </button>
       }
-      headerCenter={
-        <div className="text-center">
-          <div className="flex items-center justify-center gap-2">
-            <h1 className="text-lg font-bold text-foreground">{camera.name}</h1>
-            <span className="flex items-center gap-1 text-xs font-medium text-[hsl(var(--lotiq-green))]">
-              <span className={`w-2 h-2 rounded-full ${statusDot}`} />
-              {statusText}
-            </span>
-          </div>
-          <p className="text-xs text-muted-foreground">{camera.zone}</p>
-        </div>
+      headerRight={
+        <span className="flex items-center gap-1 text-xs font-medium text-[hsl(var(--lotiq-green))]">
+          <span className={`w-2 h-2 rounded-full ${statusDot}`} />
+          {statusText}
+        </span>
       }
     >
       {tab === "zones" ? (
