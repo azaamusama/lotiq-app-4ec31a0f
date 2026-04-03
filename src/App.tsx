@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { LotIQProvider } from "@/contexts/LotIQContext";
 
+import Splash from "@/pages/lotiq/Splash";
 import Login from "@/pages/lotiq/Login";
 import Dashboard from "@/pages/lotiq/Dashboard";
 import Incidents from "@/pages/lotiq/Incidents";
