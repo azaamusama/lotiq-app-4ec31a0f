@@ -1,6 +1,6 @@
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card } from "@/components/ui/card";
-import { Bell, HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight, Shield } from "lucide-react";
+import { Bell, HelpCircle, FileText, ShieldCheck, Lock, LogOut, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -15,12 +15,6 @@ const sections = [
     label: "SYSTEM & SUPPORT",
     items: [
       { icon: HelpCircle, title: "Help & Support", subtitle: "Contact support and view documentation", path: "/settings/help" },
-    ],
-  },
-  {
-    label: "ACCESS MANAGEMENT",
-    items: [
-      { icon: Shield, title: "Authorized Parker", subtitle: "Invite and manage who is allowed to park", path: "/authorized-parkers" },
     ],
   },
   {
