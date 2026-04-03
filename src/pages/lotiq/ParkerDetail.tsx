@@ -37,14 +37,16 @@ export default function ParkerDetail() {
       }
     >
       {/* Avatar & Name */}
-      <div className="flex flex-col items-center mb-6">
-        <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-xl font-bold text-foreground mb-3">
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-14 h-14 rounded-full bg-muted flex items-center justify-center text-xl font-bold text-foreground shrink-0">
           {parker.initials}
         </div>
-        <h2 className="text-lg font-bold text-foreground">{parker.name}</h2>
-        <span className={`text-xs font-medium px-3 py-1 rounded-full mt-1 ${sc.bg} ${sc.color}`}>
-          {sc.label}
-        </span>
+        <div>
+          <h2 className="text-lg font-bold text-foreground">{parker.name}</h2>
+          <span className={`text-[10px] font-medium px-2.5 py-0.5 rounded-full ${sc.bg} ${sc.color}`}>
+            {sc.label}
+          </span>
+        </div>
       </div>
 
       {/* Info rows */}
