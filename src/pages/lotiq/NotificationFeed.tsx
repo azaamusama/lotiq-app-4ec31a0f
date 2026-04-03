@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AppLayout } from "@/components/lotiq/AppLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft, CameraOff, Truck, CheckCircle2, XCircle,
-  AlertTriangle, SlidersHorizontal, Filter, ChevronDown, ClipboardList,
+  AlertTriangle, SlidersHorizontal, Filter, ChevronDown, ClipboardList, Check,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import emptyIllustration from "@/assets/empty-notifications.png";
@@ -130,8 +130,34 @@ export default function NotificationFeed() {
   const navigate = useNavigate();
   const [propertyFilter, setPropertyFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
+  const [propertyOpen, setPropertyOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
+  const propertyRef = useRef<HTMLDivElement>(null);
+  const categoryRef = useRef<HTMLDivElement>(null);
 
   const hasNotifications = todayNotifs.length > 0 || yesterdayNotifs.length > 0;
+
+  const properties = [
+    { value: "all", label: "All Properties" },
+    { value: "maple", label: "Maple Heights Apts" },
+    { value: "mall", label: "Mall of Downtown" },
+  ];
+
+  const categories = [
+    { value: "all", label: "All Categories" },
+    { value: "critical", label: "Critical" },
+    { value: "operational", label: "Operational" },
+    { value: "configuration", label: "Configuration" },
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (propertyRef.current && !propertyRef.current.contains(e.target as Node)) setPropertyOpen(false);
+      if (categoryRef.current && !categoryRef.current.contains(e.target as Node)) setCategoryOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <AppLayout
@@ -152,35 +178,65 @@ export default function NotificationFeed() {
       {!hasNotifications ? (
         <div className="flex flex-col items-center justify-center flex-1 py-16">
           <p className="text-lg text-muted-foreground mb-8">Nothing to worry about!</p>
-          <img
-            src={emptyIllustration}
-            alt="No notifications"
-            width={280}
-            height={280}
-            className="mb-10"
-            loading="lazy"
-          />
-          <Button
-            className="w-full"
-            size="lg"
-            onClick={() => navigate("/dashboard")}
-          >
-            Home
-          </Button>
+          <img src={emptyIllustration} alt="No notifications" width={280} height={280} className="mb-10" loading="lazy" />
+          <Button className="w-full" size="lg" onClick={() => navigate("/dashboard")}>Home</Button>
         </div>
       ) : (
         <>
           {/* Filters */}
           <div className="flex gap-2 mb-5">
-            <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground font-medium flex-1">
-              <Filter className="h-4 w-4 text-muted-foreground" />
-              All Properties
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground font-medium flex-1">
-              All Categories
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
-            </button>
+            {/* Property Filter */}
+            <div className="relative flex-1" ref={propertyRef}>
+              <button
+                onClick={() => { setPropertyOpen(!propertyOpen); setCategoryOpen(false); }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground font-medium w-full"
+              >
+                <Filter className="h-4 w-4 text-muted-foreground" />
+                {properties.find((p) => p.value === propertyFilter)?.label}
+                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
+              </button>
+              {propertyOpen && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+                  {properties.map((p) => (
+                    <button
+                      key={p.value}
+                      onClick={() => { setPropertyFilter(p.value); setPropertyOpen(false); }}
+                      className={`flex items-center gap-2.5 w-full px-4 py-3 text-sm text-foreground hover:bg-muted/50 transition-colors ${propertyFilter === p.value ? "bg-muted" : ""}`}
+                    >
+                      {propertyFilter === p.value && <Check className="h-4 w-4 text-foreground" />}
+                      {propertyFilter !== p.value && <span className="w-4" />}
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Category Filter */}
+            <div className="relative flex-1" ref={categoryRef}>
+              <button
+                onClick={() => { setCategoryOpen(!categoryOpen); setPropertyOpen(false); }}
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground font-medium w-full"
+              >
+                {categories.find((c) => c.value === categoryFilter)?.label}
+                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
+              </button>
+              {categoryOpen && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+                  {categories.map((c) => (
+                    <button
+                      key={c.value}
+                      onClick={() => { setCategoryFilter(c.value); setCategoryOpen(false); }}
+                      className={`flex items-center gap-2.5 w-full px-4 py-3 text-sm text-foreground hover:bg-muted/50 transition-colors ${categoryFilter === c.value ? "bg-muted" : ""}`}
+                    >
+                      {categoryFilter === c.value && <Check className="h-4 w-4 text-foreground" />}
+                      {categoryFilter !== c.value && <span className="w-4" />}
+                      {c.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Today */}
