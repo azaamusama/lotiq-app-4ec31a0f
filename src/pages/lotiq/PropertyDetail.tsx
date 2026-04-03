@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ChevronRight, ShieldCheck, Moon, Camera,
-  AlertTriangle, Truck, Play, Sparkles, CreditCard, Car,
+  AlertTriangle, Truck, Play, Sparkles, CreditCard, Car, Bell,
 } from "lucide-react";
 
 const propertiesData: Record<string, { name: string; address: string }> = {
