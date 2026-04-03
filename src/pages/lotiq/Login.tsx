@@ -52,7 +52,7 @@ export default function Login() {
               placeholder="••••••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="h-12 bg-muted/50 border-0 rounded-xl pr-11"
+              className="h-11 bg-background border-border pr-10"
             />
             <button
               type="button"
