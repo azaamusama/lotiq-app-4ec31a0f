@@ -75,7 +75,7 @@ export default function PropertySetup() {
 
   // Step 7 – Schedule
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
-
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   // Step 8 – Billing Setup path
   const [billingPath, setBillingPath] = useState<"onetime" | "subscription" | null>(null);
 
