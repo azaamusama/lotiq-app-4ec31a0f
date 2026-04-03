@@ -3,7 +3,7 @@ import { Home, Building2, Settings } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const tabs = [
-  { label: "Home", icon: Home, path: "/" },
+  { label: "Home", icon: Home, path: "/dashboard" },
   { label: "Property", icon: Building2, path: "/property" },
   { label: "Settings", icon: Settings, path: "/rules" },
 ];
