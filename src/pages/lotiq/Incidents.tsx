@@ -12,6 +12,8 @@ import { format } from "date-fns";
 import evidence1 from "@/assets/evidence-1.jpg";
 import evidence2 from "@/assets/evidence-2.jpg";
 import evidence3 from "@/assets/evidence-3.jpg";
+import trashEvidence1 from "@/assets/evidence-trash-1.jpg";
+import trashEvidence2 from "@/assets/evidence-trash-2.jpg";
 
 type VehicleStatus = "allowed" | "grace" | "violation" | "tow_requested" | "trash_overflow" | "ev";
 
