@@ -47,7 +47,7 @@ export default function ForgotPassword() {
             </button>
             <p className="text-xs text-muted-foreground">
               Doesn't have an account?{" "}
-              <button type="button" className="text-[hsl(var(--lotiq-blue))] font-medium">Signup</button>
+              <button type="button" onClick={() => navigate("/signup")} className="text-[hsl(var(--lotiq-blue))] font-medium">Signup</button>
             </p>
           </div>
 

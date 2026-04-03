@@ -11,6 +11,7 @@ import ForgotPassword from "@/pages/lotiq/ForgotPassword";
 import VerificationLink from "@/pages/lotiq/VerificationLink";
 import SetPassword from "@/pages/lotiq/SetPassword";
 import PasswordChanged from "@/pages/lotiq/PasswordChanged";
+import Signup from "@/pages/lotiq/Signup";
 import Dashboard from "@/pages/lotiq/Dashboard";
 import Incidents from "@/pages/lotiq/Incidents";
 import TowManagement from "@/pages/lotiq/TowManagement";
@@ -55,6 +56,7 @@ const App = () => (
             <Route path="/forgot-password/verify" element={<VerificationLink />} />
             <Route path="/forgot-password/set-password" element={<SetPassword />} />
             <Route path="/forgot-password/success" element={<PasswordChanged />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/incidents" element={<Incidents />} />
             <Route path="/incidents/:id" element={<Incidents />} />
