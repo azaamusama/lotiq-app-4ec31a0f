@@ -132,10 +132,11 @@ export default function NotificationFeed() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [propertyOpen, setPropertyOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const [markedAllRead, setMarkedAllRead] = useState(false);
   const propertyRef = useRef<HTMLDivElement>(null);
   const categoryRef = useRef<HTMLDivElement>(null);
 
-  const hasNotifications = todayNotifs.length > 0 || yesterdayNotifs.length > 0;
+  const hasNotifications = !markedAllRead && (todayNotifs.length > 0 || yesterdayNotifs.length > 0);
 
   const properties = [
     { value: "all", label: "All Properties" },
