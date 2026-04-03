@@ -14,23 +14,13 @@ const sections = [
   {
     label: "SYSTEM & SUPPORT",
     items: [
-      {
-        icon: HelpCircle,
-        title: "Help & Support",
-        subtitle: "Contact support and view documentation",
-        path: "/settings/help",
-      },
+      { icon: HelpCircle, title: "Help & Support", subtitle: "Contact support and view documentation", path: "/settings/help" },
     ],
   },
   {
     label: "ACCESS MANAGEMENT",
     items: [
-      {
-        icon: Shield,
-        title: "Authorized Parker",
-        subtitle: "Invite and manage who is allowed to park",
-        path: "/authorized-parkers",
-      },
+      { icon: Shield, title: "Authorized Parker", subtitle: "Invite and manage who is allowed to park", path: "/authorized-parkers" },
     ],
   },
   {
@@ -56,7 +46,9 @@ export default function Settings() {
       <div className="space-y-6">
         {sections.map((section) => (
           <div key={section.label}>
-            <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">{section.label}</p>
+            <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">
+              {section.label}
+            </p>
             <div className="space-y-2">
               {section.items.map((item) => (
                 <Card
@@ -69,7 +61,9 @@ export default function Settings() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-foreground">{item.title}</p>
-                    {item.subtitle && <p className="text-xs text-muted-foreground">{item.subtitle}</p>}
+                    {item.subtitle && (
+                      <p className="text-xs text-muted-foreground">{item.subtitle}</p>
+                    )}
                   </div>
                   <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
                 </Card>
@@ -87,7 +81,7 @@ export default function Settings() {
           Log Out
         </Button>
 
-        <p className="text-center text-xs text-muted-foreground pb-4">LotIQ v1.0.0</p>
+        <p className="text-center text-xs text-muted-foreground pb-4">ParkIQ v1.0.0</p>
       </div>
     </AppLayout>
   );

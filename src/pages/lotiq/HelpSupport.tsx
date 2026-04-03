@@ -5,7 +5,7 @@ import { ArrowLeft, Mail, Phone, Camera, Truck, Shield, ChevronRight, ExternalLi
 import { useNavigate } from "react-router-dom";
 
 const contactItems = [
-  { icon: Mail, title: "Email Support", subtitle: "support@lotiq.com", external: true },
+  { icon: Mail, title: "Email Support", subtitle: "support@parkiq.com", external: true },
   { icon: Phone, title: "Phone Support", subtitle: "1-800-5555-1234", external: true },
 ];
 
@@ -30,13 +30,12 @@ export default function HelpSupport() {
     >
       <div className="space-y-6">
         <div>
-          <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">CONTACT SUPPORT</p>
+          <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">
+            CONTACT SUPPORT
+          </p>
           <div className="space-y-2">
             {contactItems.map((item) => (
-              <Card
-                key={item.title}
-                className="flex items-center gap-3 p-3.5 cursor-pointer hover:bg-muted/50 transition-colors"
-              >
+              <Card key={item.title} className="flex items-center gap-3 p-3.5 cursor-pointer hover:bg-muted/50 transition-colors">
                 <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center shrink-0">
                   <item.icon className="h-4 w-4 text-muted-foreground" />
                 </div>
@@ -51,13 +50,12 @@ export default function HelpSupport() {
         </div>
 
         <div>
-          <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">COMMON TOPICS</p>
+          <p className="text-[11px] font-semibold text-muted-foreground tracking-wider mb-2 px-1">
+            COMMON TOPICS
+          </p>
           <div className="space-y-2">
             {commonTopics.map((item) => (
-              <Card
-                key={item.title}
-                className="flex items-center gap-3 p-3.5 cursor-pointer hover:bg-muted/50 transition-colors"
-              >
+              <Card key={item.title} className="flex items-center gap-3 p-3.5 cursor-pointer hover:bg-muted/50 transition-colors">
                 <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center shrink-0">
                   <item.icon className="h-4 w-4 text-muted-foreground" />
                 </div>
