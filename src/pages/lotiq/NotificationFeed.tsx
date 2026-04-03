@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLeft, CameraOff, Truck, CheckCircle2, XCircle,
-  AlertTriangle, SlidersHorizontal, Filter, ChevronDown,
+  AlertTriangle, SlidersHorizontal, Filter, ChevronDown, ClipboardList,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import emptyIllustration from "@/assets/empty-notifications.png";
