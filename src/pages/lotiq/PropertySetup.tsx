@@ -397,13 +397,48 @@ export default function PropertySetup() {
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Schedule Installation</h2>
+              <p className="text-sm text-muted-foreground mt-1">Pick a date and time for your on-site setup.</p>
             </div>
-            <Calendar
-              mode="single"
-              selected={selectedDate}
-              onSelect={setSelectedDate}
-              className="rounded-xl border mx-auto"
-            />
+
+            <Card>
+              <CardContent className="p-3">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate}
+                  onSelect={setSelectedDate}
+                  disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
+                  className="rounded-xl mx-auto w-full"
+                />
+              </CardContent>
+            </Card>
+
+            {selectedDate && (
+              <div>
+                <Label className="text-xs text-muted-foreground mb-2 block">Preferred Time Slot</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  {["9:00 AM – 12:00 PM", "12:00 PM – 3:00 PM", "3:00 PM – 6:00 PM", "6:00 PM – 8:00 PM"].map((slot) => (
+                    <button
+                      key={slot}
+                      onClick={() => setSelectedTimeSlot(slot)}
+                      className={`p-3 rounded-xl text-xs font-medium border-2 transition-colors ${
+                        selectedTimeSlot === slot
+                          ? "border-primary bg-primary/5 text-primary"
+                          : "border-border text-muted-foreground"
+                      }`}
+                    >
+                      <Clock className="h-3.5 w-3.5 mb-1 mx-auto" />
+                      {slot}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <Card className="bg-muted/50 border-0">
+              <CardContent className="p-3 text-xs text-muted-foreground">
+                A LotIQ technician will arrive during your selected window. Installation typically takes 2–4 hours depending on property size.
+              </CardContent>
+            </Card>
           </div>
         )}
 
