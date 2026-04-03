@@ -22,8 +22,8 @@ export default function SetPassword() {
   };
 
   return (
-    <div className="min-h-screen bg-[hsl(var(--lotiq-navy))] flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-card rounded-2xl p-6 md:p-8 shadow-2xl flex flex-col min-h-[70vh]">
+    <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
+      <div className="w-full flex-1 px-6 pt-6 pb-6 flex flex-col">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
           <button
@@ -45,7 +45,7 @@ export default function SetPassword() {
         <form onSubmit={handleUpdate} className="flex flex-col flex-1">
           {/* Password */}
           <div className="space-y-1.5 mb-4">
-            <Label className="text-xs text-foreground">
+            <Label className="text-xs font-medium text-foreground">
               Password <span className="text-destructive">*</span>
             </Label>
             <div className="relative">
@@ -68,7 +68,7 @@ export default function SetPassword() {
 
           {/* Confirm */}
           <div className="space-y-1.5 mb-4">
-            <Label className="text-xs text-foreground">
+            <Label className="text-xs font-medium text-foreground">
               Confirm Password <span className="text-destructive">*</span>
             </Label>
             <div className="relative">
@@ -92,18 +92,18 @@ export default function SetPassword() {
           {/* Validation */}
           <div className="space-y-2 mb-auto">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className={`h-4 w-4 ${hasMinLength ? "text-[hsl(var(--lotiq-emerald))]" : "text-muted-foreground/40"}`} />
+              <CheckCircle2 className={`h-4 w-4 ${hasMinLength ? "text-primary" : "text-muted-foreground/40"}`} />
               <span className={`text-xs ${hasMinLength ? "text-foreground" : "text-muted-foreground"}`}>Must be at least 8 characters</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className={`h-4 w-4 ${hasSpecial ? "text-[hsl(var(--lotiq-emerald))]" : "text-muted-foreground/40"}`} />
+              <CheckCircle2 className={`h-4 w-4 ${hasSpecial ? "text-primary" : "text-muted-foreground/40"}`} />
               <span className={`text-xs ${hasSpecial ? "text-foreground" : "text-muted-foreground"}`}>Must contain one special character</span>
             </div>
           </div>
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-[hsl(var(--lotiq-blue))] hover:bg-[hsl(var(--lotiq-blue-light))] text-white font-semibold text-base mt-6"
+            className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
             disabled={!hasMinLength || !hasSpecial || password !== confirm}
           >
             Update
