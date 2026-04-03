@@ -52,6 +52,7 @@ const App = () => (
             <Route path="/people" element={<People />} />
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/cameras" element={<Cameras />} />
+            <Route path="/cameras/:id" element={<CameraDetail />} />
             <Route path="/property" element={<Properties />} />
             <Route path="/property/add" element={<AddProperty />} />
             <Route path="/property/setup" element={<PropertySetup />} />
