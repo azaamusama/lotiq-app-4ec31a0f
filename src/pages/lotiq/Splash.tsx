@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Shield } from "lucide-react";
 
 export default function Splash() {
   const navigate = useNavigate();
@@ -11,17 +12,14 @@ export default function Splash() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center">
-      <div className="animate-pulse flex flex-col items-center gap-4">
-        {/* Logo icon */}
-        <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center">
-          <div className="w-16 h-16 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-3xl">L</span>
-          </div>
+      <div className="animate-fade-in flex flex-col items-center gap-5">
+        <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center shadow-elevated">
+          <Shield className="h-10 w-10 text-primary" />
         </div>
-        {/* Brand name */}
-        <h1 className="text-3xl font-bold text-foreground">
-          Lot <span className="text-primary">IQ</span>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+          Lot<span className="text-primary">IQ</span>
         </h1>
+        <p className="text-sm text-muted-foreground">Intelligent property monitoring</p>
       </div>
     </div>
   );

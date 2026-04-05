@@ -20,41 +20,40 @@ export default function Login() {
     <div className="min-h-screen bg-background flex flex-col max-w-lg mx-auto">
       {/* Top section with logo */}
       <div className="flex flex-col items-center pt-16 pb-8 px-6">
-        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-3">
+        <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 shadow-card">
           <Shield className="h-7 w-7 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-foreground">
-          Lot <span className="text-primary">IQ</span>
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          Lot<span className="text-primary">IQ</span>
         </h1>
-        <p className="text-sm text-muted-foreground mt-1">Sign in to your account</p>
+        <p className="text-sm text-muted-foreground mt-1.5">Sign in to your account</p>
       </div>
 
-      {/* Form */}
       {/* Form */}
       <form onSubmit={handleLogin} className="flex-1 px-6 flex flex-col">
         <div className="flex-1 space-y-5">
           {/* Email */}
-          <div className="space-y-1.5">
-            <Label className="text-xs font-medium text-foreground">Email <span className="text-destructive">*</span></Label>
+          <div className="space-y-2">
+            <Label className="text-xs font-medium text-muted-foreground">Email <span className="text-destructive">*</span></Label>
             <Input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-11 bg-background border-border"
+              className="h-11 rounded-lg bg-card border-border shadow-subtle transition-shadow focus-visible:shadow-elevated"
             />
           </div>
 
           {/* Password */}
-          <div className="space-y-1.5">
-            <Label className="text-xs font-medium text-foreground">Password <span className="text-destructive">*</span></Label>
+          <div className="space-y-2">
+            <Label className="text-xs font-medium text-muted-foreground">Password <span className="text-destructive">*</span></Label>
             <div className="relative">
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-11 bg-background border-border pr-10"
+                className="h-11 rounded-lg bg-card border-border pr-10 shadow-subtle transition-shadow focus-visible:shadow-elevated"
               />
               <button
                 type="button"
@@ -76,12 +75,12 @@ export default function Login() {
           </div>
 
           {/* FaceID */}
-          <div className="flex flex-col items-center py-1">
+          <div className="flex flex-col items-center py-2">
             <button
               type="button"
               className="flex flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
+              <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shadow-subtle">
                 <ScanFace className="h-6 w-6" />
               </div>
               <span className="text-[10px] font-medium">FaceID Login</span>
@@ -99,7 +98,7 @@ export default function Login() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex justify-center gap-5">
+          <div className="flex justify-center gap-4">
             {[
               { label: "Google", color: "text-[#DB4437]", icon: "G" },
               { label: "Facebook", color: "text-[#4267B2]", icon: "f" },
@@ -109,7 +108,7 @@ export default function Login() {
               <button
                 key={p.label}
                 type="button"
-                className={`w-10 h-10 rounded-full border border-border flex items-center justify-center ${p.color} hover:bg-muted transition-colors text-lg font-bold`}
+                className={`w-11 h-11 rounded-xl border border-border bg-card flex items-center justify-center ${p.color} hover:bg-secondary transition-colors text-lg font-semibold shadow-subtle`}
                 aria-label={`Login with ${p.label}`}
               >
                 {p.label === "Apple" ? (
@@ -124,7 +123,7 @@ export default function Login() {
         <div className="shrink-0 pt-4 pb-6">
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base"
+            className="w-full h-12 rounded-xl font-semibold text-base shadow-elevated hover:shadow-float transition-all"
           >
             Log In
           </Button>

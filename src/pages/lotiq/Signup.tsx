@@ -47,8 +47,8 @@ export default function Signup() {
       <div className="w-full flex-1 px-6 pt-6 pb-6 flex flex-col">
         {/* Header */}
         <div className="shrink-0">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2.5">
               {step > 1 && (
                 <button
                   onClick={() => {
@@ -56,7 +56,7 @@ export default function Signup() {
                     if (subStep === "map") { setSubStep("details"); return; }
                     setStep((s) => (s - 1) as Step);
                   }}
-                  className="w-8 h-8 rounded-xl bg-muted flex items-center justify-center"
+                  className="w-8 h-8 rounded-xl bg-secondary flex items-center justify-center shadow-subtle hover:bg-accent transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4 text-foreground" />
                 </button>
@@ -65,20 +65,20 @@ export default function Signup() {
                 <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center">
                   <span className="text-primary font-bold text-[10px]">L</span>
                 </div>
-                <span className="text-sm font-bold text-foreground">
-                  Lot <span className="text-primary">IQ</span>
+                <span className="text-sm font-semibold tracking-tight text-foreground">
+                  Lot<span className="text-primary">IQ</span>
                 </span>
               </div>
             </div>
-            <span className="text-xs text-muted-foreground">Step {step} of 3</span>
+            <span className="text-xs text-muted-foreground font-medium">Step {step} of 3</span>
           </div>
 
           {/* Progress */}
-          <div className="flex gap-1 mb-3">
+          <div className="flex gap-1.5 mb-4">
             {[1, 2, 3].map((s) => (
-              <div key={s} className="flex-1 h-1 rounded-full bg-muted overflow-hidden">
+              <div key={s} className="flex-1 h-1 rounded-full bg-secondary overflow-hidden">
                 <div
-                  className="h-full bg-primary transition-all duration-300"
+                  className="h-full bg-primary transition-all duration-500 ease-out"
                   style={{ width: s <= step ? "100%" : "0%" }}
                 />
               </div>
@@ -86,7 +86,7 @@ export default function Signup() {
           </div>
 
           {/* Step label */}
-          <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-3">
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-4">
             {stepLabels[step].icon}
             <span>{stepLabels[step].label}</span>
           </div>
@@ -97,15 +97,15 @@ export default function Signup() {
           {step === 1 && (
             <div className="flex flex-col flex-1">
               <div className="flex-1">
-                <h2 className="text-lg font-bold text-foreground mb-1">Create your account</h2>
-                <p className="text-xs text-muted-foreground mb-5">Get started with Lot IQ.</p>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground mb-1">Create your account</h2>
+                <p className="text-xs text-muted-foreground mb-5">Get started with LotIQ.</p>
 
                 <div className="space-y-4">
                   <Field label="Full name">
-                    <Input placeholder="Jane Smith" value={fullName} onChange={(e) => setFullName(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="Jane Smith" value={fullName} onChange={(e) => setFullName(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Company name">
-                    <Input placeholder="Company Name" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="Company Name" value={companyName} onChange={(e) => setCompanyName(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
 
                   {/* Role toggle */}
@@ -115,10 +115,10 @@ export default function Signup() {
                         key={r}
                         type="button"
                         onClick={() => setRole(r)}
-                        className={`flex-1 h-10 rounded-lg border text-xs font-medium transition-colors ${
+                        className={`flex-1 h-10 rounded-lg border text-xs font-medium transition-all ${
                           role === r
-                            ? "border-primary bg-primary/5 text-primary"
-                            : "border-border text-muted-foreground hover:bg-muted"
+                            ? "border-primary bg-primary/5 text-primary shadow-subtle"
+                            : "border-border text-muted-foreground hover:bg-secondary"
                         }`}
                       >
                         {r === "landlord" ? "Landlord" : "Property Manager"}
@@ -127,10 +127,10 @@ export default function Signup() {
                   </div>
 
                   <Field label="Work email">
-                    <Input type="email" placeholder="jan@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input type="email" placeholder="jan@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Phone number">
-                    <Input type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={(e) => setPhone(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input type="tel" placeholder="+1 (555) 000-0000" value={phone} onChange={(e) => setPhone(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Password">
                     <div className="relative">
@@ -139,7 +139,7 @@ export default function Signup() {
                         placeholder="Create a strong password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="h-11 bg-background border-border pr-10"
+                        className="h-11 rounded-lg bg-card border-border pr-10 shadow-subtle"
                       />
                       <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                         {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -153,7 +153,7 @@ export default function Signup() {
                         placeholder="Confirm password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="h-11 bg-background border-border pr-10"
+                        className="h-11 rounded-lg bg-card border-border pr-10 shadow-subtle"
                       />
                       <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                         {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -164,7 +164,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6 shrink-0"
+                className="w-full h-12 rounded-xl font-semibold text-base mt-6 shrink-0 shadow-elevated hover:shadow-float transition-all"
                 onClick={() => setStep(2)}
               >
                 Continue
@@ -175,16 +175,16 @@ export default function Signup() {
           {step === 2 && subStep === "details" && (
             <div className="flex flex-col flex-1">
               <div className="flex-1">
-                <h2 className="text-lg font-bold text-foreground mb-1">Business details</h2>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground mb-1">Business details</h2>
                 <p className="text-xs text-muted-foreground mb-5">Tell us about your business.</p>
 
                 <div className="space-y-4">
                   <Field label="Business name">
-                    <Input placeholder="Sunset Plaza" value={businessName} onChange={(e) => setBusinessName(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="Sunset Plaza" value={businessName} onChange={(e) => setBusinessName(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Type">
                     <Select value={businessType} onValueChange={setBusinessType}>
-                      <SelectTrigger className="h-11">
+                      <SelectTrigger className="h-11 rounded-lg shadow-subtle">
                         <SelectValue placeholder="Select Type" />
                       </SelectTrigger>
                       <SelectContent>
@@ -197,20 +197,20 @@ export default function Signup() {
                     </Select>
                   </Field>
                   <Field label="Address">
-                    <Input placeholder="123 Main St, City, State" value={address} onChange={(e) => setAddress(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="123 Main St, City, State" value={address} onChange={(e) => setAddress(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Country / Region">
-                    <Input value={country} onChange={(e) => setCountry(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input value={country} onChange={(e) => setCountry(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Timezone">
-                    <Input value={timezone} onChange={(e) => setTimezone(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input value={timezone} onChange={(e) => setTimezone(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => setSubStep("map")}
-                  className="w-full mt-5 h-11 rounded-xl border border-border flex items-center justify-center gap-2 text-sm text-muted-foreground hover:bg-muted transition-colors"
+                  className="w-full mt-5 h-11 rounded-xl border border-border flex items-center justify-center gap-2 text-sm text-muted-foreground hover:bg-secondary transition-colors shadow-subtle"
                 >
                   <MapPin className="h-4 w-4" />
                   Add Location Automatically
@@ -218,7 +218,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6 shrink-0"
+                className="w-full h-12 rounded-xl font-semibold text-base mt-6 shrink-0 shadow-elevated hover:shadow-float transition-all"
                 onClick={() => setSubStep("map")}
               >
                 Continue
@@ -230,9 +230,9 @@ export default function Signup() {
             <div className="flex flex-col flex-1 -mx-6 -mt-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 px-6 py-3">
-                  <h2 className="text-lg font-bold text-foreground">Confirm location</h2>
+                  <h2 className="text-lg font-semibold tracking-tight text-foreground">Confirm location</h2>
                 </div>
-                <div className="relative w-full h-80 bg-muted overflow-hidden">
+                <div className="relative w-full h-80 bg-secondary overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-primary/10 flex items-center justify-center">
                     <div className="text-center">
                       <MapPin className="h-10 w-10 text-primary mx-auto mb-2" />
@@ -251,7 +251,7 @@ export default function Signup() {
               </div>
               <div className="px-6 pt-4 pb-2 shrink-0">
                 <Button
-                  className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base"
+                  className="w-full h-12 rounded-xl font-semibold text-base shadow-elevated hover:shadow-float transition-all"
                   onClick={() => setSubStep("addPlace")}
                 >
                   Save
@@ -263,35 +263,35 @@ export default function Signup() {
           {step === 2 && subStep === "addPlace" && (
             <div className="flex flex-col flex-1">
               <div className="flex-1">
-                <h2 className="text-lg font-bold text-foreground mb-1">Add a place</h2>
+                <h2 className="text-lg font-semibold tracking-tight text-foreground mb-1">Add a place</h2>
                 <p className="text-xs text-muted-foreground mb-5">
                   Provide some information about this place. This place is added to Maps, it will appear publicly.
                 </p>
 
                 <div className="space-y-4">
                   <Field label="Place name (required)*" noStar>
-                    <Input placeholder="Place name (required)*" value={placeName} onChange={(e) => setPlaceName(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="Place name (required)*" value={placeName} onChange={(e) => setPlaceName(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Category (required)*" noStar>
                     <button
                       type="button"
-                      className="w-full h-11 rounded-md border border-border bg-background px-3 flex items-center justify-between text-sm text-muted-foreground"
+                      className="w-full h-11 rounded-lg border border-border bg-card px-3 flex items-center justify-between text-sm text-muted-foreground shadow-subtle"
                     >
                       <span>{category || "Category (required)*"}</span>
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </Field>
                   <Field label="Address *">
-                    <Input placeholder="123 Main St, City, State" value={address} onChange={(e) => setAddress(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="123 Main St, City, State" value={address} onChange={(e) => setAddress(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                   <Field label="Located within" noStar>
-                    <Input placeholder="Located within" value={locatedWithin} onChange={(e) => setLocatedWithin(e.target.value)} className="h-11 bg-background border-border" />
+                    <Input placeholder="Located within" value={locatedWithin} onChange={(e) => setLocatedWithin(e.target.value)} className="h-11 rounded-lg bg-card border-border shadow-subtle" />
                   </Field>
                 </div>
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6 shrink-0"
+                className="w-full h-12 rounded-xl font-semibold text-base mt-6 shrink-0 shadow-elevated hover:shadow-float transition-all"
                 onClick={() => { setSubStep("details"); setStep(3); }}
               >
                 Save
@@ -302,10 +302,10 @@ export default function Signup() {
           {step === 3 && (
             <div className="flex flex-col items-center flex-1 pt-8">
               <div className="flex-1 w-full flex flex-col items-center">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 shadow-card">
                   <CheckCircle2 className="h-8 w-8 text-primary" />
                 </div>
-                <h2 className="text-lg font-bold text-foreground text-center mb-1">
+                <h2 className="text-lg font-semibold tracking-tight text-foreground text-center mb-1">
                   Your request has been submitted.
                 </h2>
                 <p className="text-xs text-muted-foreground mb-8">Here's what happens next:</p>
@@ -327,7 +327,7 @@ export default function Signup() {
               </div>
 
               <Button
-                className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base shrink-0"
+                className="w-full h-12 rounded-xl font-semibold text-base shrink-0 shadow-elevated hover:shadow-float transition-all"
                 onClick={() => navigate("/login")}
               >
                 Open email
@@ -342,8 +342,8 @@ export default function Signup() {
 
 function Field({ label, children, noStar }: { label: string; children: React.ReactNode; noStar?: boolean }) {
   return (
-    <div className="space-y-1.5">
-      <Label className="text-xs text-foreground">
+    <div className="space-y-2">
+      <Label className="text-xs font-medium text-muted-foreground">
         {label} {!noStar && <span className="text-destructive">*</span>}
       </Label>
       {children}

@@ -21,23 +21,23 @@ export default function ForgotPassword() {
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={() => navigate("/login")}
-            className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center"
+            className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center shadow-subtle hover:bg-accent transition-colors"
           >
             <ArrowLeft className="h-4 w-4 text-foreground" />
           </button>
-          <h1 className="text-xl font-bold text-foreground">Forgot Password</h1>
+          <h1 className="text-xl font-semibold tracking-tight text-foreground">Forgot Password</h1>
         </div>
 
         {/* Icon */}
         <div className="flex justify-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center">
+          <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center shadow-card">
             <KeyRound className="h-6 w-6 text-muted-foreground" />
           </div>
         </div>
 
         <form onSubmit={handleReset} className="flex flex-col flex-1">
-          <div className="space-y-1.5 mb-4">
-            <Label className="text-xs font-medium text-foreground">
+          <div className="space-y-2 mb-4">
+            <Label className="text-xs font-medium text-muted-foreground">
               Email <span className="text-destructive">*</span>
             </Label>
             <Input
@@ -45,7 +45,7 @@ export default function ForgotPassword() {
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="h-11 bg-background border-border"
+              className="h-11 rounded-lg bg-card border-border shadow-subtle transition-shadow focus-visible:shadow-elevated"
             />
           </div>
 
@@ -71,7 +71,7 @@ export default function ForgotPassword() {
           </div>
 
           {/* Social Icons */}
-          <div className="flex justify-center gap-5 mb-auto">
+          <div className="flex justify-center gap-4 mb-auto">
             {[
               { label: "Google", color: "text-[#DB4437]", icon: "G" },
               { label: "Facebook", color: "text-[#4267B2]", icon: "f" },
@@ -81,7 +81,7 @@ export default function ForgotPassword() {
               <button
                 key={p.label}
                 type="button"
-                className={`w-10 h-10 rounded-full border border-border flex items-center justify-center ${p.color} hover:bg-muted transition-colors text-lg font-bold`}
+                className={`w-11 h-11 rounded-xl border border-border bg-card flex items-center justify-center ${p.color} hover:bg-secondary transition-colors text-lg font-semibold shadow-subtle`}
                 aria-label={`Login with ${p.label}`}
               >
                 {p.label === "Apple" ? (
@@ -93,7 +93,7 @@ export default function ForgotPassword() {
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
+            className="w-full h-12 rounded-xl font-semibold text-base mt-6 shadow-elevated hover:shadow-float transition-all"
           >
             Reset Password
           </Button>

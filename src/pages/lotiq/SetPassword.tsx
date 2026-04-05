@@ -28,24 +28,24 @@ export default function SetPassword() {
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={() => navigate(-1)}
-            className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center"
+            className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center shadow-subtle hover:bg-accent transition-colors"
           >
             <ArrowLeft className="h-4 w-4 text-foreground" />
           </button>
-          <h1 className="text-xl font-bold text-foreground">Set Password</h1>
+          <h1 className="text-xl font-semibold tracking-tight text-foreground">Set Password</h1>
         </div>
 
         {/* Icon */}
         <div className="flex justify-center mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center">
+          <div className="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center shadow-card">
             <Lock className="h-6 w-6 text-muted-foreground" />
           </div>
         </div>
 
         <form onSubmit={handleUpdate} className="flex flex-col flex-1">
           {/* Password */}
-          <div className="space-y-1.5 mb-4">
-            <Label className="text-xs font-medium text-foreground">
+          <div className="space-y-2 mb-4">
+            <Label className="text-xs font-medium text-muted-foreground">
               Password <span className="text-destructive">*</span>
             </Label>
             <div className="relative">
@@ -54,7 +54,7 @@ export default function SetPassword() {
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="h-11 bg-background border-border pr-10"
+                className="h-11 rounded-lg bg-card border-border pr-10 shadow-subtle transition-shadow focus-visible:shadow-elevated"
               />
               <button
                 type="button"
@@ -67,8 +67,8 @@ export default function SetPassword() {
           </div>
 
           {/* Confirm */}
-          <div className="space-y-1.5 mb-4">
-            <Label className="text-xs font-medium text-foreground">
+          <div className="space-y-2 mb-4">
+            <Label className="text-xs font-medium text-muted-foreground">
               Confirm Password <span className="text-destructive">*</span>
             </Label>
             <div className="relative">
@@ -77,7 +77,7 @@ export default function SetPassword() {
                 placeholder="••••••••••••"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
-                className="h-11 bg-background border-border pr-10"
+                className="h-11 rounded-lg bg-card border-border pr-10 shadow-subtle transition-shadow focus-visible:shadow-elevated"
               />
               <button
                 type="button"
@@ -90,20 +90,20 @@ export default function SetPassword() {
           </div>
 
           {/* Validation */}
-          <div className="space-y-2 mb-auto">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className={`h-4 w-4 ${hasMinLength ? "text-primary" : "text-muted-foreground/40"}`} />
-              <span className={`text-xs ${hasMinLength ? "text-foreground" : "text-muted-foreground"}`}>Must be at least 8 characters</span>
+          <div className="space-y-2.5 mb-auto">
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className={`h-4 w-4 transition-colors ${hasMinLength ? "text-primary" : "text-muted-foreground/30"}`} />
+              <span className={`text-xs transition-colors ${hasMinLength ? "text-foreground" : "text-muted-foreground"}`}>Must be at least 8 characters</span>
             </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className={`h-4 w-4 ${hasSpecial ? "text-primary" : "text-muted-foreground/40"}`} />
-              <span className={`text-xs ${hasSpecial ? "text-foreground" : "text-muted-foreground"}`}>Must contain one special character</span>
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className={`h-4 w-4 transition-colors ${hasSpecial ? "text-primary" : "text-muted-foreground/30"}`} />
+              <span className={`text-xs transition-colors ${hasSpecial ? "text-foreground" : "text-muted-foreground"}`}>Must contain one special character</span>
             </div>
           </div>
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-primary hover:bg-primary/90 text-white font-semibold text-base mt-6"
+            className="w-full h-12 rounded-xl font-semibold text-base mt-6 shadow-elevated hover:shadow-float transition-all"
             disabled={!hasMinLength || !hasSpecial || password !== confirm}
           >
             Update
