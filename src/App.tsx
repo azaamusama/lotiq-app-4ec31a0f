@@ -42,6 +42,7 @@ import ChangePassword from "@/pages/lotiq/ChangePassword";
 import Notifications from "@/pages/lotiq/Notifications";
 import NotificationFeed from "@/pages/lotiq/NotificationFeed";
 import SlipFallAnalysis from "@/pages/lotiq/SlipFallAnalysis";
+import PropertyReporting from "@/pages/lotiq/PropertyReporting";
 import AddNotificationPerson from "@/pages/lotiq/AddNotificationPerson";
 import NotFound from "@/pages/NotFound";
 
