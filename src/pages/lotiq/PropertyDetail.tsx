@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft, ChevronRight, ShieldCheck, Moon, Camera,
-  AlertTriangle, Truck, Play, Sparkles, CreditCard, Car, Bell,
+  AlertTriangle, Truck, Play, Sparkles, CreditCard, Car, Bell, BarChart3,
 } from "lucide-react";
 
 const propertiesData: Record<string, { name: string; address: string }> = {
@@ -140,6 +140,24 @@ export default function PropertyDetail() {
             </Card>
           ))}
         </div>
+      </section>
+
+      {/* REPORTS */}
+      <section className="mb-6">
+        <h3 className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-3">
+          Reports
+        </h3>
+        <Card>
+          <CardContent className="p-0">
+            <DetailRow
+              icon={<BarChart3 className="h-5 w-5 text-primary" />}
+              iconBg="bg-primary/10"
+              title="Property Reports"
+              subtitle="Weekly, monthly & yearly analytics"
+              onClick={() => navigate(`/property/${id || "prop-1"}/reports`)}
+            />
+          </CardContent>
+        </Card>
       </section>
 
       {/* BILLING */}
