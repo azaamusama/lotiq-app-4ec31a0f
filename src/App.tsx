@@ -44,6 +44,7 @@ import NotificationFeed from "@/pages/lotiq/NotificationFeed";
 import SlipFallAnalysis from "@/pages/lotiq/SlipFallAnalysis";
 import PropertyReporting from "@/pages/lotiq/PropertyReporting";
 import AddNotificationPerson from "@/pages/lotiq/AddNotificationPerson";
+import ParkingEnforcement from "@/pages/lotiq/ParkingEnforcement";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -80,6 +81,7 @@ const App = () => (
               <Route path="/property/:id/slip-fall" element={<SlipFallAnalysis />} />
               <Route path="/property/:id/reports" element={<PropertyReporting />} />
               <Route path="/property/:id/monitoring" element={<MonitoringRules />} />
+              <Route path="/property/:id/enforcement" element={<ParkingEnforcement />} />
               <Route path="/property/:id/parkers" element={<AuthorizedParkers />} />
               <Route path="/property/:id/parkers/invite" element={<InviteParker />} />
               <Route path="/property/:id/parkers/:parkerId" element={<ParkerDetail />} />
