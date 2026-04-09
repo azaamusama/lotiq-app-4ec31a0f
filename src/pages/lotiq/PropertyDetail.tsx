@@ -51,7 +51,7 @@ export default function PropertyDetail() {
               iconBg="bg-muted"
               title="Parking Enforcement Schedule"
               subtitle="Inactive · Starts 10 PM"
-              onClick={() => navigate("/rules")}
+              onClick={() => navigate(`/property/${id || "prop-1"}/enforcement`)}
             />
             <DetailRow
               icon={<Camera className="h-5 w-5 text-muted-foreground" />}
