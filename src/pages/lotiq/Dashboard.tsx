@@ -136,7 +136,7 @@ export default function Dashboard() {
           Pending Activation
         </h3>
         <button
-          onClick={() => navigate("/property")}
+          onClick={() => navigate("/activation-review")}
           className="w-full rounded-xl bg-primary p-4 flex items-center gap-3 text-left hover:bg-primary/90 transition-all shadow-elevated hover:shadow-float"
         >
           <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
