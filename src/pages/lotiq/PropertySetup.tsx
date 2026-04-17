@@ -55,6 +55,8 @@ export default function PropertySetup() {
   // Step 3 – Property Mapping
   const [hasUnderground, setHasUnderground] = useState(false);
   const [parkingSpots, setParkingSpots] = useState("");
+  const [indoorMonitoring, setIndoorMonitoring] = useState(false);
+  const [indoorCameras, setIndoorCameras] = useState("");
 
   // Step 4 – Tow Partner
   const [towCompanyName, setTowCompanyName] = useState("");
@@ -250,6 +252,28 @@ export default function PropertySetup() {
                 </div>
                 <Switch checked={hasUnderground} onCheckedChange={setHasUnderground} />
               </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium">Indoor monitoring</p>
+                </div>
+                <Switch checked={indoorMonitoring} onCheckedChange={setIndoorMonitoring} />
+              </div>
+              {indoorMonitoring && (
+                <div className="animate-accordion-down overflow-hidden">
+                  <Label className="text-xs text-muted-foreground">How many cameras do you envision?</Label>
+                  <Input
+                    type="number"
+                    min={1}
+                    placeholder="e.g. 6"
+                    value={indoorCameras}
+                    onChange={(e) => setIndoorCameras(e.target.value)}
+                    className="mt-1.5"
+                  />
+                  <p className="text-xs text-muted-foreground mt-1.5">
+                    This is just an estimate — LotIQ will finalize camera placement during setup.
+                  </p>
+                </div>
+              )}
               <div>
                 <Label className="text-xs text-muted-foreground">Number of Parking Spots</Label>
                 <Input
