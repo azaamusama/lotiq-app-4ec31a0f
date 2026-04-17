@@ -64,7 +64,7 @@ export default function PropertySetup() {
   const [hasTowAgreement, setHasTowAgreement] = useState(true);
 
   // Step 5 – Pricing
-  const [pricingTab, setPricingTab] = useState<"monthly" | "quarterly" | "annual">("monthly");
+  const [pricingTab, setPricingTab] = useState<"quarterly" | "monthly" | "annual">("quarterly");
   const [selectedPlan, setSelectedPlan] = useState("standard");
 
   // Step 6 – Payment

@@ -63,7 +63,7 @@ export default function Signup() {
   const [hasTowAgreement, setHasTowAgreement] = useState(true);
 
   // Step 6 – Pricing
-  const [pricingTab, setPricingTab] = useState<"monthly" | "quarterly" | "annual">("monthly");
+  const [pricingTab, setPricingTab] = useState<"quarterly" | "monthly" | "annual">("quarterly");
   const [selectedPlan, setSelectedPlan] = useState("standard");
 
   // Step 7 – Payment
@@ -87,20 +87,14 @@ export default function Signup() {
   const progressPercent = ((step + 1) / TOTAL_STEPS) * 100;
 
   const pricingPlans = {
-    monthly: [
-      { id: "standard", name: "Standard", price: "$24/mth", desc: "Switch to annual to save 44%\n($240 in total)", recommended: true },
-      { id: "standard-mid", name: "Standard", price: "$25/mth", desc: "Billed $300 annually", recommended: false },
-      { id: "standard-high", name: "Standard", price: "$250/mth", desc: "Billed $3000 annually", recommended: false },
-    ],
     quarterly: [
       { id: "standard", name: "Standard", price: "$22/mth", desc: "Billed $66 quarterly", recommended: true },
-      { id: "standard-mid", name: "Standard", price: "$23/mth", desc: "Billed $276 annually", recommended: false },
-      { id: "standard-high", name: "Standard", price: "$230/mth", desc: "Billed $2760 annually", recommended: false },
+    ],
+    monthly: [
+      { id: "standard", name: "Standard", price: "$24/mth", desc: "Switch to quarterly to save more", recommended: false },
     ],
     annual: [
-      { id: "standard", name: "Standard", price: "$20/mth", desc: "Billed $240 annually", recommended: true },
-      { id: "standard-mid", name: "Standard", price: "$21/mth", desc: "Billed $252 annually", recommended: false },
-      { id: "standard-high", name: "Standard", price: "$210/mth", desc: "Billed $2520 annually", recommended: false },
+      { id: "standard", name: "Standard", price: "$20/mth", desc: "Billed $240 annually", recommended: false },
     ],
   };
 
@@ -340,7 +334,7 @@ export default function Signup() {
               <p className="text-sm text-muted-foreground mt-1">Transparent pricing, confirmed after on-site assessment.</p>
             </div>
             <div className="flex rounded-xl bg-muted p-1">
-              {(["monthly", "quarterly", "annual"] as const).map((tab) => (
+              {(["quarterly", "monthly", "annual"] as const).map((tab) => (
                 <button key={tab} onClick={() => setPricingTab(tab)}
                   className={`flex-1 py-2 text-xs font-medium rounded-lg capitalize transition-colors ${pricingTab === tab ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}>
                   {tab}
