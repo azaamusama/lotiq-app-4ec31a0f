@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Calendar } from "@/components/ui/calendar";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
@@ -67,11 +68,13 @@ export default function Signup() {
   const [selectedPlan, setSelectedPlan] = useState("standard");
 
   // Step 7 – Payment
-  const [nameOnAccount, setNameOnAccount] = useState("");
-  const [routingNumber, setRoutingNumber] = useState("");
-  const [accountNumber, setAccountNumber] = useState("");
-  const [refugeAccountNumber, setRefugeAccountNumber] = useState("");
-  const [billingAddress, setBillingAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState<"ach" | "cheque" | "monthly">("ach");
+  const [nameOnAccount, setNameOnAccount] = useState("Sarah Johnson");
+  const [routingNumber, setRoutingNumber] = useState("110000000");
+  const [accountNumber, setAccountNumber] = useState("000123456789");
+  const [refugeAccountNumber, setRefugeAccountNumber] = useState("000123456789");
+  const [billingAddress, setBillingAddress] = useState("1200 Maple Ave, Toronto ON");
+  const [invoiceEmail, setInvoiceEmail] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
 
   // Step 8 – Schedule
@@ -367,27 +370,96 @@ export default function Signup() {
 
         {/* STEP 7: Payment */}
         {step === 6 && (
-          <div className="space-y-5">
+          <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-bold text-foreground">ACH / Bank Account</h2>
+              <h2 className="text-xl font-bold text-foreground">Payment Method</h2>
+              <p className="text-sm text-muted-foreground mt-1">Choose how you'd like to pay for LotIQ.</p>
             </div>
-            <div className="space-y-4">
-              <Field label="Name on Account">
-                <Input placeholder="Sarah Johnson" value={nameOnAccount} onChange={(e) => setNameOnAccount(e.target.value)} className="mt-1.5" />
-              </Field>
-              <Field label="Routing Number">
-                <Input placeholder="110000000" value={routingNumber} onChange={(e) => setRoutingNumber(e.target.value)} className="mt-1.5" />
-              </Field>
-              <Field label="Account Number">
-                <Input placeholder="000123456789" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="mt-1.5" />
-              </Field>
-              <Field label="Refuge Account Number">
-                <Input placeholder="000123456789" value={refugeAccountNumber} onChange={(e) => setRefugeAccountNumber(e.target.value)} className="mt-1.5" />
-              </Field>
-              <Field label="Billing Address">
-                <Input placeholder="1200 Maple Ave, Toronto ON" value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)} className="mt-1.5" />
-              </Field>
-              <p className="text-xs text-muted-foreground">You will be charged now.</p>
+
+            <RadioGroup value={paymentMethod} onValueChange={(v) => setPaymentMethod(v as typeof paymentMethod)} className="space-y-2">
+              {[
+                { id: "ach", label: "ACH / Bank Transfer", badge: "Recommended" },
+                { id: "cheque", label: "Bank Cheque" },
+                { id: "monthly", label: "Monthly Push to Account" },
+              ].map((opt) => (
+                <label
+                  key={opt.id}
+                  htmlFor={`pm-${opt.id}`}
+                  className={`flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-colors ${
+                    paymentMethod === opt.id ? "border-primary bg-primary/5" : "border-border"
+                  }`}
+                >
+                  <RadioGroupItem value={opt.id} id={`pm-${opt.id}`} />
+                  <span className="text-sm font-medium text-foreground flex-1">{opt.label}</span>
+                  {opt.badge && (
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                      {opt.badge}
+                    </span>
+                  )}
+                </label>
+              ))}
+            </RadioGroup>
+
+            <div className="animate-accordion-down overflow-hidden">
+              {paymentMethod === "ach" && (
+                <div className="space-y-4">
+                  <Field label="Name on Account">
+                    <Input value={nameOnAccount} onChange={(e) => setNameOnAccount(e.target.value)} className="mt-1.5" />
+                  </Field>
+                  <Field label="Routing Number">
+                    <Input value={routingNumber} onChange={(e) => setRoutingNumber(e.target.value)} className="mt-1.5" />
+                  </Field>
+                  <Field label="Account Number">
+                    <Input value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} className="mt-1.5" />
+                  </Field>
+                  <Field label="Confirm Account Number">
+                    <Input value={refugeAccountNumber} onChange={(e) => setRefugeAccountNumber(e.target.value)} className="mt-1.5" />
+                  </Field>
+                  <Field label="Billing Address">
+                    <Input value={billingAddress} onChange={(e) => setBillingAddress(e.target.value)} className="mt-1.5" />
+                  </Field>
+                </div>
+              )}
+
+              {paymentMethod === "cheque" && (
+                <div className="space-y-3">
+                  <p className="text-sm text-foreground">Please send a cheque to the following address:</p>
+                  <Card className="border-2 border-primary/20 bg-primary/5">
+                    <CardContent className="p-4">
+                      <p className="text-sm font-semibold text-foreground">LotIQ Inc.</p>
+                      <p className="text-sm text-muted-foreground mt-0.5">123 Business Ave</p>
+                      <p className="text-sm text-muted-foreground">Boston, MA 02101</p>
+                      <p className="text-sm text-muted-foreground">United States</p>
+                    </CardContent>
+                  </Card>
+                  <p className="text-xs text-muted-foreground">Your account will be activated once the cheque is received.</p>
+                </div>
+              )}
+
+              {paymentMethod === "monthly" && (
+                <Card className="bg-muted/50 border-0">
+                  <CardContent className="p-4">
+                    <p className="text-sm text-foreground">We will send you a monthly invoice. Payment must be completed via bank transfer.</p>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+
+            <div className="space-y-2 pt-2 border-t border-border">
+              <Label className="text-sm font-semibold text-foreground">Where should we send your invoices?</Label>
+              <Input
+                type="email"
+                placeholder="e.g. billing@company.com"
+                value={invoiceEmail}
+                onChange={(e) => setInvoiceEmail(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground">Invoices and receipts will be sent to this email.</p>
+            </div>
+
+            <div className="space-y-3 pt-2">
+              <p className="text-xs text-muted-foreground">
+                {paymentMethod === "ach" ? "You will be charged immediately." : "Billing will follow your selected method."}
+              </p>
               <div className="flex items-center gap-2">
                 <Switch checked={agreeTerms} onCheckedChange={setAgreeTerms} />
                 <p className="text-xs text-muted-foreground">
@@ -499,7 +571,9 @@ export default function Signup() {
             <Button className="flex-1 h-12 rounded-xl" onClick={next}>Save Partner</Button>
           </div>
         ) : step === 6 ? (
-          <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next}>Add Payment Information</Button>
+          <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!agreeTerms}>
+            {paymentMethod === "ach" ? "Add Payment Information" : "Continue"}
+          </Button>
         ) : step === 7 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!selectedDate || !selectedTimeSlot}>Schedule Now</Button>
         ) : step === 8 ? (
