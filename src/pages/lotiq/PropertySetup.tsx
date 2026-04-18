@@ -26,11 +26,10 @@ import {
   Zap,
 } from "lucide-react";
 
-const TOTAL_STEPS = 8;
+const TOTAL_STEPS = 7;
 
 const stepLabels = [
   "Property Basics",
-  "Services",
   "Property Mapping",
   "Tow Partner",
   "Pricing",
@@ -50,8 +49,7 @@ export default function PropertySetup() {
   const [country, setCountry] = useState("United States");
   const [timezone, setTimezone] = useState("United States");
 
-  // Step 2 – Services
-  const [serviceType, setServiceType] = useState("full");
+  // (Services step removed)
 
   // Step 3 – Property Mapping
   const [hasUnderground, setHasUnderground] = useState(false);
@@ -177,59 +175,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 2: Services */}
+        {/* STEP 2: Property Mapping */}
         {step === 1 && (
-          <div className="space-y-5">
-            <div>
-              <h2 className="text-xl font-bold text-foreground">What service are you looking for?</h2>
-              <p className="text-sm text-muted-foreground mt-1">Select the enforcement type for this property</p>
-            </div>
-            <div className="space-y-3">
-              <button
-                onClick={() => setServiceType("full")}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-colors ${serviceType === "full" ? "border-primary bg-primary/5" : "border-border"}`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-semibold">Full Lot Enforcement</span>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">Recommended</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-3">Comprehensive monitoring and enforcement across the entire property.</p>
-                <div className="space-y-1.5 text-xs text-muted-foreground">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Full property coverage
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Unauthorized vehicles
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Tow / violation
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-primary" /> 24/7 continuous
-                  </div>
-                </div>
-                <p className="text-xs font-semibold text-primary mt-3">Starting at $150/month</p>
-                <p className="text-[10px] text-muted-foreground">Pricing varies based on lot size and usage</p>
-              </button>
-
-              <button
-                onClick={() => setServiceType("fixed")}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-colors ${serviceType === "fixed" ? "border-primary bg-primary/5" : "border-border"}`}
-              >
-                <span className="text-sm font-semibold">Fixed Parking Enforcement</span>
-                <p className="text-xs text-muted-foreground mt-1">Enforcement limited to fixed number of vehicles or specific, designated zones.</p>
-                <div className="space-y-1.5 text-xs text-muted-foreground mt-3">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-muted-foreground" /> Ideal for reserved or permit-only areas
-                  </div>
-                </div>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 3: Property Mapping */}
-        {step === 2 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Property Mapping</h2>
@@ -285,8 +232,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 4: Tow Partner */}
-        {step === 3 && (
+        {/* STEP 3: Tow Partner */}
+        {step === 2 && (
           <div className="space-y-5">
             <div>
               <div className="flex items-center gap-2">
@@ -322,8 +269,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 5: Pricing */}
-        {step === 4 && (
+        {/* STEP 4: Pricing */}
+        {step === 3 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Pricing estimate</h2>
@@ -375,8 +322,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 6: Payment */}
-        {step === 5 && (
+        {/* STEP 5: Payment */}
+        {step === 4 && (
           <div className="space-y-6">
             <div>
               <h2 className="text-xl font-bold text-foreground">Payment Method</h2>
@@ -482,8 +429,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 7: Schedule Installation */}
-        {step === 6 && (
+        {/* STEP 6: Schedule Installation */}
+        {step === 5 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Schedule Installation</h2>
@@ -532,8 +479,8 @@ export default function PropertySetup() {
           </div>
         )}
 
-        {/* STEP 8: Confirmation */}
-        {step === 7 && (
+        {/* STEP 7: Confirmation */}
+        {step === 6 && (
           <div className="space-y-6 py-4">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -591,7 +538,7 @@ export default function PropertySetup() {
 
       {/* Bottom button */}
       <div className="sticky bottom-0 bg-background border-t border-border px-4 py-3">
-        {step === 3 ? (
+        {step === 2 ? (
           <div className="flex gap-3">
             <Button variant="outline" className="flex-1 h-12 rounded-xl" onClick={next}>
               Skip for Now
@@ -600,15 +547,15 @@ export default function PropertySetup() {
               Save Partner
             </Button>
           </div>
-        ) : step === 5 ? (
+        ) : step === 4 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!agreeTerms}>
             {paymentMethod === "ach" ? "Add Payment Information" : "Continue"}
           </Button>
-        ) : step === 6 ? (
+        ) : step === 5 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!selectedDate || !selectedTimeSlot}>
             Schedule Now
           </Button>
-        ) : step === 7 ? (
+        ) : step === 6 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={() => navigate("/property")}>
             Home
           </Button>
