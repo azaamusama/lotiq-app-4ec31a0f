@@ -14,11 +14,10 @@ import {
   Eye, EyeOff, ArrowLeft, CheckCircle2, Clock, MapPin, Shield, Zap,
 } from "lucide-react";
 
-const TOTAL_STEPS = 9;
+const TOTAL_STEPS = 8;
 const stepLabels = [
   "Create Account",
   "Property Basics",
-  "Services",
   "Property Mapping",
   "Tow Partner",
   "Pricing",
