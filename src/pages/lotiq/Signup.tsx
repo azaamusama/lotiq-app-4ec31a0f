@@ -48,25 +48,22 @@ export default function Signup() {
   const [country, setCountry] = useState("United States");
   const [timezone, setTimezone] = useState("United States");
 
-  // Step 3 – Services
-  const [serviceType, setServiceType] = useState("full");
-
-  // Step 4 – Property Mapping
+  // Step 3 – Property Mapping
   const [hasUnderground, setHasUnderground] = useState(false);
   const [parkingSpots, setParkingSpots] = useState("");
   const [indoorMonitoring, setIndoorMonitoring] = useState(false);
   const [indoorCameras, setIndoorCameras] = useState("");
 
-  // Step 5 – Tow Partner
+  // Step 4 – Tow Partner
   const [towCompanyName, setTowCompanyName] = useState("");
   const [towContact, setTowContact] = useState("");
   const [hasTowAgreement, setHasTowAgreement] = useState(true);
 
-  // Step 6 – Pricing
+  // Step 5 – Pricing
   const [pricingTab, setPricingTab] = useState<"quarterly" | "monthly" | "annual">("quarterly");
   const [selectedPlan, setSelectedPlan] = useState("standard");
 
-  // Step 7 – Payment
+  // Step 6 – Payment
   const [paymentMethod, setPaymentMethod] = useState<"ach" | "cheque" | "monthly">("ach");
   const [nameOnAccount, setNameOnAccount] = useState("Sarah Johnson");
   const [routingNumber, setRoutingNumber] = useState("110000000");
@@ -76,7 +73,7 @@ export default function Signup() {
   const [invoiceEmail, setInvoiceEmail] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
 
-  // Step 8 – Schedule
+  // Step 7 – Schedule
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
