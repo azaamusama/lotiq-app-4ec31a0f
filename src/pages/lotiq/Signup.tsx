@@ -212,44 +212,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 3: Services */}
+        {/* STEP 3: Property Mapping */}
         {step === 2 && (
-          <div className="space-y-5">
-            <div>
-              <h2 className="text-xl font-bold text-foreground">What service are you looking for?</h2>
-              <p className="text-sm text-muted-foreground mt-1">Select the enforcement type for this property.</p>
-            </div>
-            <div className="space-y-3">
-              <button onClick={() => setServiceType("full")}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-colors ${serviceType === "full" ? "border-primary bg-primary/5" : "border-border"}`}>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-semibold">Full Lot Enforcement</span>
-                  <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-primary/10 text-primary">Recommended</span>
-                </div>
-                <p className="text-xs text-muted-foreground mb-3">Comprehensive monitoring and enforcement across the entire property.</p>
-                <div className="space-y-1.5 text-xs text-muted-foreground">
-                  {["Full property coverage", "Unauthorized vehicles", "Tow / violation", "24/7 continuous"].map((f) => (
-                    <div key={f} className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> {f}</div>
-                  ))}
-                </div>
-                <p className="text-xs font-semibold text-primary mt-3">Starting at $150/month</p>
-                <p className="text-[10px] text-muted-foreground">Pricing varies based on lot size and usage</p>
-              </button>
-
-              <button onClick={() => setServiceType("fixed")}
-                className={`w-full text-left p-4 rounded-xl border-2 transition-colors ${serviceType === "fixed" ? "border-primary bg-primary/5" : "border-border"}`}>
-                <span className="text-sm font-semibold">Fixed Parking Enforcement</span>
-                <p className="text-xs text-muted-foreground mt-1">Enforcement limited to fixed number of vehicles or specific, designated zones.</p>
-                <div className="space-y-1.5 text-xs text-muted-foreground mt-3">
-                  <div className="flex items-center gap-2"><CheckCircle2 className="h-3.5 w-3.5 text-muted-foreground" /> Ideal for reserved or permit-only areas</div>
-                </div>
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* STEP 4: Property Mapping */}
-        {step === 3 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Property Mapping</h2>
@@ -294,8 +258,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 5: Tow Partner */}
-        {step === 4 && (
+        {/* STEP 4: Tow Partner */}
+        {step === 3 && (
           <div className="space-y-5">
             <div>
               <div className="flex items-center gap-2">
@@ -325,8 +289,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 6: Pricing */}
-        {step === 5 && (
+        {/* STEP 5: Pricing */}
+        {step === 4 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Pricing estimate</h2>
@@ -364,8 +328,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 7: Payment */}
-        {step === 6 && (
+        {/* STEP 6: Payment */}
+        {step === 5 && (
           <div className="space-y-6">
             <div>
               <h2 className="text-xl font-bold text-foreground">Payment Method</h2>
@@ -466,8 +430,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 8: Schedule Installation */}
-        {step === 7 && (
+        {/* STEP 7: Schedule Installation */}
+        {step === 6 && (
           <div className="space-y-5">
             <div>
               <h2 className="text-xl font-bold text-foreground">Schedule Installation</h2>
@@ -506,8 +470,8 @@ export default function Signup() {
           </div>
         )}
 
-        {/* STEP 9: Confirmation */}
-        {step === 8 && (
+        {/* STEP 8: Confirmation */}
+        {step === 7 && (
           <div className="space-y-6 py-4">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
@@ -524,10 +488,6 @@ export default function Signup() {
                   <p className="text-[10px] font-semibold text-muted-foreground tracking-wider uppercase">Property</p>
                   <p className="text-sm font-semibold mt-1">{propertyName || "Sunset Plaza"}</p>
                   <p className="text-xs text-muted-foreground">{address || "123 Main St, City, State"}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold text-muted-foreground tracking-wider uppercase">Service</p>
-                  <p className="text-sm font-semibold mt-1">{serviceType === "full" ? "Full Lot Enforcement" : "Fixed Parking Enforcement"}</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-semibold text-muted-foreground tracking-wider uppercase">Installation</p>
@@ -561,18 +521,18 @@ export default function Signup() {
 
       {/* Bottom button */}
       <div className="sticky bottom-0 bg-background border-t border-border px-4 py-3">
-        {step === 4 ? (
+        {step === 3 ? (
           <div className="flex gap-3">
             <Button variant="outline" className="flex-1 h-12 rounded-xl" onClick={next}>Skip for Now</Button>
             <Button className="flex-1 h-12 rounded-xl" onClick={next}>Save Partner</Button>
           </div>
-        ) : step === 6 ? (
+        ) : step === 5 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!agreeTerms}>
             {paymentMethod === "ach" ? "Add Payment Information" : "Continue"}
           </Button>
-        ) : step === 7 ? (
+        ) : step === 6 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next} disabled={!selectedDate || !selectedTimeSlot}>Schedule Now</Button>
-        ) : step === 8 ? (
+        ) : step === 7 ? (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={() => navigate("/login")}>Open Email</Button>
         ) : (
           <Button className="w-full h-12 rounded-xl text-base font-semibold" onClick={next}>Continue</Button>
